@@ -1,4 +1,4 @@
-package andrew.addons.powersuits.common;
+package andrew.powersuits.common;
 
 import net.machinemuse.powersuits.common.Config;
 import net.machinemuse.powersuits.common.ModCompatability;
@@ -16,26 +16,21 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
 
-@Mod(modid = "powersuitsAddons", name = "Andrew's Modular Powersuits Addons", version = "@MOD_VERSION@", dependencies = "required-after:mmmPowersuits", acceptedMinecraftVersions = "[1.4.7,)")
-@NetworkMod(clientSideRequired = true, serverSideRequired = true,
-clientPacketHandlerSpec = @SidedPacketHandler(channels = { "powersuitsAddons" }, packetHandler = MusePacketHandler.class),
-serverPacketHandlerSpec = @SidedPacketHandler(channels = { "powersuitsAddons" }, packetHandler = MusePacketHandler.class))
+@Mod(modid = "powersuitsAddons", name = "Andrew's Modular Powersuits Addons", version = "0.1.1", dependencies = "required-after:mmmPowersuits", acceptedMinecraftVersions = "[1.4.7,)")
+@NetworkMod(clientSideRequired = true, serverSideRequired = false,
+clientPacketHandlerSpec = @SidedPacketHandler(channels = { "psa" }, packetHandler = MusePacketHandler.class),
+serverPacketHandlerSpec = @SidedPacketHandler(channels = { "psa" }, packetHandler = MusePacketHandler.class))
 public class ModularPowersuitsAddons {
 	
-	@Instance("ModularPowersuits")
+	@Instance("powersuitsAddons")
 	public static ModularPowersuitsAddons instance;
-
-	/**
-	 * Tells Forge what classes to load for the client and server proxies. These
-	 * execute side-specific code like registering renderers (for the client) or
-	 * different tick handlers (for the server).
-	 */
-	@SidedProxy(clientSide = "andrew.addons.powersuits.client.ClientProxy", serverSide = "andrew.addons.powersuits.common.CommonProxy")
+	
+	@SidedProxy(clientSide = "andrew.powersuits.client.ClientProxy", serverSide = "andrew.powersuits.common.CommonProxy")
 	public static CommonProxy proxy;
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event) {
-		instance = this;
+		//Derp
 	}
 	
 	@Init
