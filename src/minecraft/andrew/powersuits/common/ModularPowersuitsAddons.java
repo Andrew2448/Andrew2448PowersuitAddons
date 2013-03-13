@@ -1,8 +1,5 @@
 package andrew.powersuits.common;
 
-import net.machinemuse.powersuits.common.Config;
-import net.machinemuse.powersuits.common.ModCompatability;
-import net.machinemuse.powersuits.common.RecipeManager;
 import net.machinemuse.powersuits.network.MusePacketHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -25,22 +22,17 @@ public class ModularPowersuitsAddons {
 	@Instance("powersuitsAddons")
 	public static ModularPowersuitsAddons instance;
 	
-	@SidedProxy(clientSide = "andrew.powersuits.client.ClientProxy", serverSide = "andrew.powersuits.common.CommonProxy")
-	public static CommonProxy proxy;
+	//@SidedProxy(clientSide = "andrew.powersuits.client.ClientProxy", serverSide = "andrew.powersuits.common.CommonProxy")
+	//public static CommonProxy proxy;
 	
 	@PreInit
-	public void preInit(FMLPreInitializationEvent event) {
-		//Derp
-	}
+	public void preInit(FMLPreInitializationEvent event) {}
 	
 	@Init
 	public void load(FMLInitializationEvent event) {
-		//proxy.registerHandlers();
-		//proxy.registerRenderers();
+		AddonConfig.loadPowerModules();
 	}
 	
 	@PostInit
-	public void postInit(FMLPostInitializationEvent event) {
-		//proxy.postInit();
-	}
+	public void postInit(FMLPostInitializationEvent event) {}
 }

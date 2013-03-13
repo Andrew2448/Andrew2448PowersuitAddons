@@ -1,0 +1,9 @@
+/*
+!/src
+!/mcmod.info
+!/MODLICENSE.txt
+!/.gitignore
+!/.gitattributes
+
+src/minecraft/*
+!src/minecraft/andrew
