@@ -50,18 +50,17 @@ public class KineticGeneratorModule extends PowerModuleBase implements IPlayerTi
 	@Override
 	public void onPlayerTickActive(EntityPlayer player, ItemStack item) {
 		if (!player.isAirBorne) {
-			NBTTagCompound tag = MuseItemUtils.getMuseItemTag(player.getCurrentArmor(1));
+			NBTTagCompound tag = MuseItemUtils.getMuseItemTag(item);
 			boolean isNotWalking = (player.ridingEntity != null) || (player.isInWater());
 			if ((!tag.hasKey("x")) || (isNotWalking))
 				tag.setInteger("x", (int) player.posX);
 			if ((!tag.hasKey("z")) || (isNotWalking))
 				tag.setInteger("z", (int) player.posZ);
-			double distance = Math.sqrt((tag.getInteger("x") - (int) player.posX) * (tag.getInteger("x") - (int) player.posX)
-					+ (tag.getInteger("z") - (int) player.posZ) * (tag.getInteger("z") - (int) player.posZ));
+			double distance = Math.sqrt((tag.getInteger("x") - (int) player.posX) * (tag.getInteger("x") - (int) player.posX) + (tag.getInteger("z") - (int) player.posZ) * (tag.getInteger("z") - (int) player.posZ));
 			if (distance >= 5.0D) {
 				tag.setInteger("x", (int) player.posX);
 				tag.setInteger("z", (int) player.posZ);
-				ElectricItemUtils.givePlayerEnergy(player, ModuleManager.computeModularProperty(player.getCurrentArmor(1), MuseCommonStrings.KINETIC_ENERGY_GENERATION));
+				ElectricItemUtils.givePlayerEnergy(player, ModuleManager.computeModularProperty(item, MuseCommonStrings.KINETIC_ENERGY_GENERATION));
 			}
 		}
 	}

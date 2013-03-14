@@ -60,16 +60,15 @@ public class SolarGeneratorModule extends PowerModuleBase implements IPlayerTick
 		isRaining = canRain && (world.isRaining() || world.isThundering());
 		// Make sure you're not in desert - Thanks cpw :P
 		boolean sunVisible = world.isDaytime() && !isRaining && world.canBlockSeeTheSky(xCoord, MathHelper.floor_double(player.posY) + 1, zCoord);
-		boolean moonVisible = !world.isDaytime() && !isRaining
-				&& world.canBlockSeeTheSky(xCoord, MathHelper.floor_double(player.posY) + 1, zCoord);
+		boolean moonVisible = !world.isDaytime() && !isRaining && world.canBlockSeeTheSky(xCoord, MathHelper.floor_double(player.posY) + 1, zCoord);
 		if (!world.isRemote && !world.provider.hasNoSky && (world.getTotalWorldTime() % 80) == 0) {
 			if (sunVisible) {
 				ElectricItemUtils.givePlayerEnergy(player,
-						ModuleManager.computeModularProperty(player.getCurrentArmor(3), MuseCommonStrings.SOLAR_ENERGY_GENERATION_DAY));
+						ModuleManager.computeModularProperty(item, MuseCommonStrings.SOLAR_ENERGY_GENERATION_DAY));
 			}
 			else if (moonVisible) {
 				ElectricItemUtils.givePlayerEnergy(player,
-						ModuleManager.computeModularProperty(player.getCurrentArmor(3), MuseCommonStrings.SOLAR_ENERGY_GENERATION_NIGHT));
+						ModuleManager.computeModularProperty(item, MuseCommonStrings.SOLAR_ENERGY_GENERATION_NIGHT));
 			}
 		}
 	}
