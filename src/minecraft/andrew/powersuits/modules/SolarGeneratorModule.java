@@ -21,8 +21,8 @@ import net.minecraft.world.World;
 public class SolarGeneratorModule extends PowerModuleBase implements IPlayerTickModule {
 	public SolarGeneratorModule(List<IModularItem> validItems) {
 		super(validItems);
-		addBaseProperty(MuseCommonStrings.SOLAR_ENERGY_GENERATION_DAY, 2000);
-		addBaseProperty(MuseCommonStrings.SOLAR_ENERGY_GENERATION_NIGHT, 200);
+		addBaseProperty(MuseCommonStrings.SOLAR_ENERGY_GENERATION_DAY, 1500);
+		addBaseProperty(MuseCommonStrings.SOLAR_ENERGY_GENERATION_NIGHT, 150);
 		addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.solarPanel, 1));
 		addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.controlCircuit, 2));
 	}

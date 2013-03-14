@@ -12,13 +12,8 @@ import net.machinemuse.powersuits.powermodule.modules.PlasmaCannonModule;
 public class AddonConfig extends Config {
 	
 	public static void loadPowerModules() {
-		List<IModularItem> ARMORONLY = Arrays.asList((IModularItem)
-				ModularPowersuits.powerArmorHead, ModularPowersuits.powerArmorTorso,
-				ModularPowersuits.powerArmorLegs, ModularPowersuits.powerArmorFeet);
-		List<IModularItem> ALLITEMS = Arrays.asList((IModularItem)
-				ModularPowersuits.powerArmorHead, ModularPowersuits.powerArmorTorso,
-				ModularPowersuits.powerArmorLegs, ModularPowersuits.powerArmorFeet,
-				ModularPowersuits.powerTool);
+		List<IModularItem> ARMORONLY = Arrays.asList((IModularItem) ModularPowersuits.powerArmorHead, ModularPowersuits.powerArmorTorso, ModularPowersuits.powerArmorLegs, ModularPowersuits.powerArmorFeet);
+		List<IModularItem> ALLITEMS = Arrays.asList((IModularItem) ModularPowersuits.powerArmorHead, ModularPowersuits.powerArmorTorso, ModularPowersuits.powerArmorLegs, ModularPowersuits.powerArmorFeet, ModularPowersuits.powerTool);
 		List<IModularItem> HEADONLY = Arrays.asList((IModularItem) ModularPowersuits.powerArmorHead);
 		List<IModularItem> TORSOONLY = Arrays.asList((IModularItem) ModularPowersuits.powerArmorTorso);
 		List<IModularItem> LEGSONLY = Arrays.asList((IModularItem) ModularPowersuits.powerArmorLegs);
@@ -29,5 +24,6 @@ public class AddonConfig extends Config {
 		addModule(new KineticGeneratorModule(LEGSONLY));
 		addModule(new SolarGeneratorModule(HEADONLY));
 		addModule(new AutoFeederModule(HEADONLY));
+		//addModule(new RedstoneControlModule(TOOLONLY));
 	}
 }
