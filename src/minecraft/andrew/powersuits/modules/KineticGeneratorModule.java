@@ -17,11 +17,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class KineticGeneratorModule extends PowerModuleBase implements IPlayerTickModule {
+	public static final String MODULE_KINETIC_GENERATOR = "Kinetic Generator";
+	public static final String KINETIC_ENERGY_GENERATION = "Energy Generation Per 5 Blocks";
 	public KineticGeneratorModule(List<IModularItem> validItems) {
 		super(validItems);
 		addBaseProperty(MuseCommonStrings.WEIGHT, 1000);
-		addBaseProperty(MuseCommonStrings.KINETIC_ENERGY_GENERATION, 250);
-		addTradeoffProperty("Energy Generated", MuseCommonStrings.KINETIC_ENERGY_GENERATION, 750, " Joules");
+		addBaseProperty(KINETIC_ENERGY_GENERATION, 250);
+		addTradeoffProperty("Energy Generated", KINETIC_ENERGY_GENERATION, 750, " Joules");
 		addTradeoffProperty("Energy Generated", MuseCommonStrings.WEIGHT, 3000, "g");
 		addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.servoMotor, 2));
 	    addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.controlCircuit, 1));
@@ -39,7 +41,7 @@ public class KineticGeneratorModule extends PowerModuleBase implements IPlayerTi
 
 	@Override
 	public String getName() {
-		return MuseCommonStrings.MODULE_KINETIC_GENERATOR;
+		return MODULE_KINETIC_GENERATOR;
 	}
 
 	@Override
@@ -60,7 +62,7 @@ public class KineticGeneratorModule extends PowerModuleBase implements IPlayerTi
 			if (distance >= 5.0D) {
 				tag.setInteger("x", (int) player.posX);
 				tag.setInteger("z", (int) player.posZ);
-				ElectricItemUtils.givePlayerEnergy(player, ModuleManager.computeModularProperty(item, MuseCommonStrings.KINETIC_ENERGY_GENERATION));
+				ElectricItemUtils.givePlayerEnergy(player, ModuleManager.computeModularProperty(item, KINETIC_ENERGY_GENERATION));
 			}
 		}
 	}

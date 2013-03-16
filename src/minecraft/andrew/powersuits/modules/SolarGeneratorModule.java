@@ -19,10 +19,13 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class SolarGeneratorModule extends PowerModuleBase implements IPlayerTickModule {
+	public static final String MODULE_SOLAR_GENERATOR = "Solar Generator";
+	public static final String SOLAR_ENERGY_GENERATION_DAY = "Daytime Solar Energy Generation";
+	public static final String SOLAR_ENERGY_GENERATION_NIGHT = "Nighttime Solar Energy Generation";
 	public SolarGeneratorModule(List<IModularItem> validItems) {
 		super(validItems);
-		addBaseProperty(MuseCommonStrings.SOLAR_ENERGY_GENERATION_DAY, 1500);
-		addBaseProperty(MuseCommonStrings.SOLAR_ENERGY_GENERATION_NIGHT, 150);
+		addBaseProperty(SOLAR_ENERGY_GENERATION_DAY, 1500);
+		addBaseProperty(SOLAR_ENERGY_GENERATION_NIGHT, 150);
 		addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.solarPanel, 1));
 		addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.controlCircuit, 2));
 	}
@@ -39,7 +42,7 @@ public class SolarGeneratorModule extends PowerModuleBase implements IPlayerTick
 
 	@Override
 	public String getName() {
-		return MuseCommonStrings.MODULE_SOLAR_GENERATOR;
+		return MODULE_SOLAR_GENERATOR;
 	}
 
 	@Override
@@ -64,11 +67,11 @@ public class SolarGeneratorModule extends PowerModuleBase implements IPlayerTick
 		if (!world.isRemote && !world.provider.hasNoSky && (world.getTotalWorldTime() % 80) == 0) {
 			if (sunVisible) {
 				ElectricItemUtils.givePlayerEnergy(player,
-						ModuleManager.computeModularProperty(item, MuseCommonStrings.SOLAR_ENERGY_GENERATION_DAY));
+						ModuleManager.computeModularProperty(item, SOLAR_ENERGY_GENERATION_DAY));
 			}
 			else if (moonVisible) {
 				ElectricItemUtils.givePlayerEnergy(player,
-						ModuleManager.computeModularProperty(item, MuseCommonStrings.SOLAR_ENERGY_GENERATION_NIGHT));
+						ModuleManager.computeModularProperty(item, SOLAR_ENERGY_GENERATION_NIGHT));
 			}
 		}
 	}

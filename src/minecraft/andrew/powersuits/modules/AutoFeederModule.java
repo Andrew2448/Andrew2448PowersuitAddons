@@ -22,12 +22,15 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.FoodStats;
 
 public class AutoFeederModule extends PowerModuleBase implements IToggleableModule, IPlayerTickModule {
+	public static final String MODULE_AUTO_FEEDER = "Auto-Feeder";
+	public static final String EATING_ENERGY_CONSUMPTION = "Eating Energy Consumption";
+	public static final String EATING_EFFICIENCY = "Auto-Feeder Efficiency";
 	public AutoFeederModule(List<IModularItem> validItems) {
 		super(validItems);
-		addBaseProperty(MuseCommonStrings.EATING_ENERGY_CONSUMPTION, 100);
-		addBaseProperty(MuseCommonStrings.EATING_EFFICIENCY, 50);
-		addTradeoffProperty("Efficiency", MuseCommonStrings.EATING_ENERGY_CONSUMPTION, 100);
-		addTradeoffProperty("Efficiency", MuseCommonStrings.EATING_EFFICIENCY, 50);
+		addBaseProperty(EATING_ENERGY_CONSUMPTION, 100);
+		addBaseProperty(EATING_EFFICIENCY, 50);
+		addTradeoffProperty("Efficiency", EATING_ENERGY_CONSUMPTION, 100);
+		addTradeoffProperty("Efficiency", EATING_EFFICIENCY, 50);
 		addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.servoMotor, 2));
 		addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.controlCircuit, 1));
 	}
@@ -59,7 +62,7 @@ public class AutoFeederModule extends PowerModuleBase implements IToggleableModu
 		IInventory inv = player.inventory;
 		double foodLevel = (double) MuseItemUtils.getFoodLevel(helmet);
 		double saturationLevel = MuseItemUtils.getSaturationLevel(helmet);
-		double efficiency = ModuleManager.computeModularProperty(helmet, MuseCommonStrings.EATING_EFFICIENCY);
+		double efficiency = ModuleManager.computeModularProperty(helmet, EATING_EFFICIENCY);
 		FoodStats foodStats = player.getFoodStats();
 		int foodNeeded = 20 - foodStats.getFoodLevel();
 		for (int i = 0; i < inv.getSizeInventory() && foodNeeded > foodLevel; i++) {
@@ -75,7 +78,7 @@ public class AutoFeederModule extends PowerModuleBase implements IToggleableModu
 				}
 			}
 		}
-		double eatingEnergyConsumption = foodNeeded * ModuleManager.computeModularProperty(helmet, MuseCommonStrings.EATING_ENERGY_CONSUMPTION);
+		double eatingEnergyConsumption = foodNeeded * ModuleManager.computeModularProperty(helmet, EATING_ENERGY_CONSUMPTION);
 		int foodConsumed = (int) Math.min(foodNeeded, Math.min(foodLevel, eatingEnergyConsumption * totalEnergy));
 		if (foodConsumed > 0) {
 			if (saturationLevel >= 1.0F) {

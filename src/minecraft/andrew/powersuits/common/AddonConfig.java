@@ -24,6 +24,5 @@ public class AddonConfig extends Config {
 		addModule(new KineticGeneratorModule(LEGSONLY));
 		addModule(new SolarGeneratorModule(HEADONLY));
 		addModule(new AutoFeederModule(HEADONLY));
-		//addModule(new RedstoneControlModule(TOOLONLY));
 	}
 }
