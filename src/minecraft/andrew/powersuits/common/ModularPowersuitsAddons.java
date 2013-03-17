@@ -19,6 +19,8 @@ clientPacketHandlerSpec = @SidedPacketHandler(channels = { "psa" }, packetHandle
 serverPacketHandlerSpec = @SidedPacketHandler(channels = { "psa" }, packetHandler = MusePacketHandler.class))
 public class ModularPowersuitsAddons {
 	
+	public static AddonComponent components;
+	
 	@Instance("AndrewPowersuitAddons")
 	public static ModularPowersuitsAddons instance;
 	
@@ -32,10 +34,15 @@ public class ModularPowersuitsAddons {
 	
 	@Init
 	public void load(FMLInitializationEvent event) {
+		components = new AddonComponent();
+		components.populate();
 		AddonConfig.loadPowerModules();
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 	}
 	
 	@PostInit
-	public void postInit(FMLPostInitializationEvent event) {}
+	public void postInit(FMLPostInitializationEvent event) {
+		AddonRecipeManager.addRecipes();
+		AddonConfig.getConfig().save();
+	}
 }
