@@ -25,8 +25,7 @@ public class InPlaceAssemblerModule extends PowerModuleBase implements IRightCli
 
 	@Override
 	public MuseIcon getIcon(ItemStack item) {
-		return MuseIcon.ALIEN;
-				//new MuseIcon(//Block.workbench.somethingDerpHere, 60);
+		return new MuseIcon(Block.workbench.func_94327_t_());
 	}
 
 	@Override

@@ -2,6 +2,8 @@ package andrew.powersuits.modules;
 
 import java.util.List;
 
+import andrew.powersuits.common.AddonComponent;
+
 import net.machinemuse.api.ElectricItemUtils;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.IPlayerTickModule;
@@ -26,7 +28,7 @@ public class SolarGeneratorModule extends PowerModuleBase implements IPlayerTick
 		super(validItems);
 		addBaseProperty(SOLAR_ENERGY_GENERATION_DAY, 1500);
 		addBaseProperty(SOLAR_ENERGY_GENERATION_NIGHT, 150);
-		addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.solarPanel, 1));
+		addInstallCost(MuseItemUtils.copyAndResize(AddonComponent.solarPanel, 1));
 		addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.controlCircuit, 2));
 	}
 	
