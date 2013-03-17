@@ -47,7 +47,7 @@ public class AutoFeederModule extends PowerModuleBase implements IToggleableModu
 
 	@Override
 	public String getName() {
-		return MuseCommonStrings.MODULE_AUTO_FEEDER;
+		return MODULE_AUTO_FEEDER;
 	}
 
 	@Override

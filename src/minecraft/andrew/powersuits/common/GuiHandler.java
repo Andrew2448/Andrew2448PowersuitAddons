@@ -1,14 +1,9 @@
 package andrew.powersuits.common;
 
-import net.machinemuse.general.gui.KeyConfigGui;
-import net.machinemuse.general.gui.PortableCraftingGui;
-import net.machinemuse.powersuits.block.GuiTinkerTable;
-import net.machinemuse.powersuits.container.PortableCraftingContainer;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.stats.AchievementList;
 import net.minecraft.world.World;
+import andrew.powersuits.client.PortableCraftingGui;
+import andrew.powersuits.container.PortableCraftingContainer;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GuiHandler implements IGuiHandler {
