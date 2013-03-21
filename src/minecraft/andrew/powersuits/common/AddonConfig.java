@@ -25,5 +25,6 @@ public class AddonConfig extends Config {
 		addModule(new SolarGeneratorModule(HEADONLY));
 		addModule(new AutoFeederModule(HEADONLY));
 		addModule(new MagnetModule(TORSOONLY));
+		addModule(new TorchPlacerModule(TOOLONLY));
 	}
 }

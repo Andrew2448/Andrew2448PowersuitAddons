@@ -2,23 +2,20 @@ package andrew.powersuits.modules;
 
 import java.util.List;
 
-import andrew.powersuits.common.AddonComponent;
-
-import net.machinemuse.api.ElectricItemUtils;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.IPlayerTickModule;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.MuseCommonStrings;
 import net.machinemuse.api.MuseItemUtils;
+import net.machinemuse.api.electricity.ElectricItemUtils;
 import net.machinemuse.general.gui.MuseIcon;
 import net.machinemuse.powersuits.item.ItemComponent;
-import net.machinemuse.powersuits.powermodule.modules.PowerModuleBase;
-import net.minecraft.block.Block;
+import net.machinemuse.powersuits.powermodule.PowerModuleBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import andrew.powersuits.common.AddonComponent;
 
 public class SolarGeneratorModule extends PowerModuleBase implements IPlayerTickModule {
 	public static final String MODULE_SOLAR_GENERATOR = "Solar Generator";
@@ -33,8 +30,8 @@ public class SolarGeneratorModule extends PowerModuleBase implements IPlayerTick
 	}
 	
 	@Override
-	public MuseIcon getIcon(ItemStack item) {
-		return MuseIcon.NEXUS_1_GREEN;
+	public String getTextureFile() {
+		return "solargen";
 	}
 
 	@Override

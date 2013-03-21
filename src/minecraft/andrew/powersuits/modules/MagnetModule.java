@@ -2,21 +2,16 @@ package andrew.powersuits.modules;
 
 import java.util.List;
 
-import andrew.powersuits.common.AddonComponent;
-
-import net.machinemuse.api.ElectricItemUtils;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.IPlayerTickModule;
 import net.machinemuse.api.IToggleableModule;
-import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.MuseCommonStrings;
 import net.machinemuse.api.MuseItemUtils;
-import net.machinemuse.general.gui.MuseIcon;
 import net.machinemuse.powersuits.item.ItemComponent;
-import net.machinemuse.powersuits.powermodule.modules.PowerModuleBase;
+import net.machinemuse.powersuits.powermodule.PowerModuleBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import andrew.powersuits.common.AddonComponent;
 
 public class MagnetModule extends PowerModuleBase implements IPlayerTickModule, IToggleableModule {
 	public static final String MODULE_MAGNET = "Magnet";
@@ -28,8 +23,8 @@ public class MagnetModule extends PowerModuleBase implements IPlayerTickModule, 
 	}
 	
 	@Override
-	public MuseIcon getIcon(ItemStack item) {
-		return MuseIcon.NEXUS_1_RED;
+	public String getTextureFile() {
+		return "magnetmodule";
 	}
 
 	@Override
@@ -44,7 +39,7 @@ public class MagnetModule extends PowerModuleBase implements IPlayerTickModule, 
 
 	@Override
 	public String getDescription() {
-		return "Generate power with your movement.";
+		return "Generates a magnetic field strong enough to attract items on the ground towards the player.";
 	}
 
 	@Override

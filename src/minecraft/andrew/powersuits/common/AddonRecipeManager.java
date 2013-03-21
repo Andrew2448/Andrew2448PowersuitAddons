@@ -59,7 +59,7 @@ public class AddonRecipeManager {
 			ItemStack reinforcedGlass = ModCompatability.getIC2Item("reinforcedGlass");
 			
 			//===========================================================================================================================
-			GameRegistry.addRecipe(new ShapedOreRecipe(ItemComponent.solarPanel, true, "GGG", "PCP", 'G', reinforcedGlass, 'P', "plateIridium", 'C', energyFlowCircuit));
+			GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.solarPanel, true, "GGG", "PCP", 'G', reinforcedGlass, 'P', "plateIridium", 'C', energyFlowCircuit));
 			//===========================================================================================================================
 		}
 		
@@ -78,7 +78,7 @@ public class AddonRecipeManager {
 			ItemStack teleportFrameFull = ModCompatability.getThermexItem("teleportBase", 1);
 			
 			//===========================================================================================================================
-			GameRegistry.addRecipe(new ShapedOreRecipe(ItemComponent.solarPanel, true, "GGG", "CLC", " E ", 'G', glass, 'L', new ItemStack(Block.blockLapis), 'C', conduitEnergy, 'E', powerCoilSilver));
+			GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.solarPanel, true, "GGG", "CLC", " E ", 'G', glass, 'L', new ItemStack(Block.blockLapis), 'C', conduitEnergy, 'E', powerCoilSilver));
 			//===========================================================================================================================
 		}
 	}

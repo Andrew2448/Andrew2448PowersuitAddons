@@ -6,9 +6,8 @@ import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.IRightClickModule;
 import net.machinemuse.api.MuseCommonStrings;
 import net.machinemuse.api.MuseItemUtils;
-import net.machinemuse.general.gui.MuseIcon;
 import net.machinemuse.powersuits.item.ItemComponent;
-import net.machinemuse.powersuits.powermodule.modules.PowerModuleBase;
+import net.machinemuse.powersuits.powermodule.PowerModuleBase;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -24,8 +23,8 @@ public class InPlaceAssemblerModule extends PowerModuleBase implements IRightCli
 	}
 
 	@Override
-	public MuseIcon getIcon(ItemStack item) {
-		return new MuseIcon(Block.workbench.func_94327_t_());
+	public String getTextureFile() {
+		return Block.workbench.func_94327_t_();
 	}
 
 	@Override

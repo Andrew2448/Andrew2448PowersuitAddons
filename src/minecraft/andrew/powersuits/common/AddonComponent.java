@@ -16,7 +16,7 @@ public class AddonComponent extends ItemComponent {
 	
 	@Override
 	public void populate() {
-		solarPanel = addComponent("componentSolarPanel", "Solar Panel", "A light sensitive device that will generate electricity from the sun.", new MuseIcon("blueplate"));
-		magnet = addComponent("componentMagnet", "Magnet", "A metallic device that generates a magnetic field which pulls items towards the player.", new MuseIcon("magnet"));
+		solarPanel = addComponent("componentSolarPanel", "Solar Panel", "A light sensitive device that will generate electricity from the sun.", "solarpanel");
+		magnet = addComponent("componentMagnet", "Magnet", "A metallic device that generates a magnetic field which pulls items towards the player.", "magnet");
 	}
 }
