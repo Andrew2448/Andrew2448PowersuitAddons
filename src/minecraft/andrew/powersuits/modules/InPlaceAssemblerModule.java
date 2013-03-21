@@ -24,7 +24,7 @@ public class InPlaceAssemblerModule extends PowerModuleBase implements IRightCli
 
 	@Override
 	public String getTextureFile() {
-		return Block.workbench.func_94327_t_();
+		return "portablecrafting";
 	}
 
 	@Override

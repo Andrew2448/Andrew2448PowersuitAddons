@@ -31,7 +31,7 @@ public class SolarGeneratorModule extends PowerModuleBase implements IPlayerTick
 	
 	@Override
 	public String getTextureFile() {
-		return "solargen";
+		return "solarhelmet";
 	}
 
 	@Override
