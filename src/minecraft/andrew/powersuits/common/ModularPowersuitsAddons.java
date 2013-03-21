@@ -13,21 +13,17 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
 
-@Mod(modid = "AndrewPowersuitAddons", name = "Andrew's Modular Powersuits Addons", version = "0.1.2-3", dependencies = "required-after:mmmPowersuits", acceptedMinecraftVersions = "[1.5,)")
+@Mod(modid = "AndrewPowersuitAddons", name = "Andrew's Modular Powersuits Addons", version = "0.1.1-1", dependencies = "required-after:mmmPowersuits", acceptedMinecraftVersions = "[1.5,)")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false,
 clientPacketHandlerSpec = @SidedPacketHandler(channels = { "psa" }, packetHandler = MusePacketHandler.class),
 serverPacketHandlerSpec = @SidedPacketHandler(channels = { "psa" }, packetHandler = MusePacketHandler.class))
 public class ModularPowersuitsAddons {
 	
 	public static AddonComponent components;
+	public static GuiHandler guiHandler = new GuiHandler();
 	
 	@Instance("AndrewPowersuitAddons")
 	public static ModularPowersuitsAddons instance;
-	
-	//@SidedProxy(clientSide = "andrew.powersuits.client.ClientProxy", serverSide = "andrew.powersuits.common.CommonProxy")
-	//public static CommonProxy proxy;
-	
-	public static GuiHandler guiHandler = new GuiHandler();
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event) {}
