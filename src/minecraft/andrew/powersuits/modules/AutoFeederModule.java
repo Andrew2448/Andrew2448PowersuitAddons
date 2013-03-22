@@ -3,13 +3,12 @@ package andrew.powersuits.modules;
 import java.util.List;
 
 import net.machinemuse.api.IModularItem;
-import net.machinemuse.api.IPlayerTickModule;
-import net.machinemuse.api.IToggleableModule;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.MuseCommonStrings;
 import net.machinemuse.api.MuseItemUtils;
 import net.machinemuse.api.electricity.ElectricItemUtils;
-import net.machinemuse.general.gui.MuseIcon;
+import net.machinemuse.api.moduletrigger.IPlayerTickModule;
+import net.machinemuse.api.moduletrigger.IToggleableModule;
 import net.machinemuse.powersuits.item.ItemComponent;
 import net.machinemuse.powersuits.powermodule.PowerModuleBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,6 +16,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.FoodStats;
+import andrew.powersuits.common.AddonUtils;
 
 public class AutoFeederModule extends PowerModuleBase implements IToggleableModule, IPlayerTickModule {
 	public static final String MODULE_AUTO_FEEDER = "Auto-Feeder";
@@ -57,8 +57,8 @@ public class AutoFeederModule extends PowerModuleBase implements IToggleableModu
 		ItemStack helmet = player.getCurrentArmor(3);
 		double totalEnergy = ElectricItemUtils.getPlayerEnergy(player);
 		IInventory inv = player.inventory;
-		double foodLevel = (double) MuseItemUtils.getFoodLevel(helmet);
-		double saturationLevel = MuseItemUtils.getSaturationLevel(helmet);
+		double foodLevel = (double) AddonUtils.getFoodLevel(helmet);
+		double saturationLevel = AddonUtils.getSaturationLevel(helmet);
 		double efficiency = ModuleManager.computeModularProperty(helmet, EATING_EFFICIENCY);
 		FoodStats foodStats = player.getFoodStats();
 		int foodNeeded = 20 - foodStats.getFoodLevel();
@@ -88,8 +88,8 @@ public class AutoFeederModule extends PowerModuleBase implements IToggleableModu
 			foodLevel -= foodConsumed;
 			ElectricItemUtils.drainPlayerEnergy(player, eatingEnergyConsumption * foodConsumed);
 		}
-		MuseItemUtils.setFoodLevel(helmet, foodLevel);
-		MuseItemUtils.setSaturationLevel(helmet, saturationLevel);
+		AddonUtils.setFoodLevel(helmet, foodLevel);
+		AddonUtils.setSaturationLevel(helmet, saturationLevel);
 	}
 
 	@Override

@@ -2,13 +2,11 @@ package andrew.powersuits.modules;
 
 import java.util.List;
 
-import andrew.powersuits.common.AddonComponent;
 import net.machinemuse.api.IModularItem;
-import net.machinemuse.api.IRightClickModule;
-import net.machinemuse.api.IToggleableModule;
 import net.machinemuse.api.MuseCommonStrings;
 import net.machinemuse.api.MuseItemUtils;
-import net.machinemuse.general.gui.MuseIcon;
+import net.machinemuse.api.moduletrigger.IRightClickModule;
+import net.machinemuse.api.moduletrigger.IToggleableModule;
 import net.machinemuse.powersuits.item.ItemComponent;
 import net.machinemuse.powersuits.powermodule.PowerModuleBase;
 import net.minecraft.block.Block;
