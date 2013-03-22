@@ -1,0 +1,12 @@
+MPSA - 2
++ Added Magnet Module
+~ Migrated more code
+
+MPSA - 1
++ Transferred modules over from MPS
+	*Auto-feeder
+	*Solar Generator
+	*Kinetic Generator
+	*Portable Crafting Table
++ Added two new components: Solar Panel and Magnet
+~ Migrated quite a lot of code from MPS

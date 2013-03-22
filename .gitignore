@@ -4,6 +4,7 @@
 !/MODLICENSE.txt
 !/.gitignore
 !/.gitattributes
+!/Changelog.txt
 
 src/minecraft/*
 !src/minecraft/andrew
