@@ -1,3 +1,6 @@
+MPSA - 3
++ Added textures and removed them from MPS
+
 MPSA - 2
 + Added Magnet Module
 ~ Migrated more code
