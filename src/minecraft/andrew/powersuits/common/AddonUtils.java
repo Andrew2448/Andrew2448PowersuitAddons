@@ -67,4 +67,22 @@ public class AddonUtils {
 			itemTag.setDouble("Saturation", d);
 		}
 	}
+	
+	public static int getTorchLevel(ItemStack stack) {
+		if (stack != null && stack.getItem() instanceof IModularItem) {
+			NBTTagCompound itemTag = MuseItemUtils.getMuseItemTag(stack);
+			Integer torchLevel = itemTag.getInteger("Torch");
+			if (torchLevel != null) {
+				return torchLevel;
+			}
+		}
+		return 0;
+	}
+	
+	public static void setTorchLevel(ItemStack stack, int i) {
+		if (stack != null && stack.getItem() instanceof IModularItem) {
+			NBTTagCompound itemTag = MuseItemUtils.getMuseItemTag(stack);
+			itemTag.setInteger("Torch", i);
+		}
+	}
 }

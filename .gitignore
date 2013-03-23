@@ -5,6 +5,7 @@
 !/.gitignore
 !/.gitattributes
 !/Changelog.txt
+!/mods
 
 src/minecraft/*
 !src/minecraft/andrew
