@@ -7,6 +7,7 @@ import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.MuseCommonStrings;
 import net.machinemuse.api.MuseItemUtils;
 import net.machinemuse.api.moduletrigger.IPlayerTickModule;
+import net.machinemuse.api.moduletrigger.IRightClickModule;
 import net.machinemuse.api.moduletrigger.IToggleableModule;
 import net.machinemuse.powersuits.item.ItemComponent;
 import net.machinemuse.powersuits.powermodule.PowerModuleBase;
@@ -14,9 +15,10 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import andrew.powersuits.common.AddonUtils;
 
-public class TorchPlacerModule extends PowerModuleBase implements IToggleableModule, IPlayerTickModule {
+public class TorchPlacerModule extends PowerModuleBase implements IToggleableModule, IPlayerTickModule, IRightClickModule {
 	public static final String MODULE_TORCH_PLACER = "Torch Placer";
 	public static final String TORCH_ENERGY_CONSUMPTION = "Torch Fabrication Energy Consumption";
 	public static final String MAX_TORCH_STORAGE = "Maximum Storage Amount";
@@ -74,5 +76,25 @@ public class TorchPlacerModule extends PowerModuleBase implements IToggleableMod
 
 	@Override
 	public void onPlayerTickInactive(EntityPlayer player, ItemStack item) {}
+
+	@Override
+	public void onRightClick(EntityPlayer playerClicking, World world, ItemStack item) {
+		
+	}
+
+	@Override
+	public void onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+		
+	}
+
+	@Override
+	public boolean onItemUseFirst(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+		return false;
+	}
+
+	@Override
+	public void onPlayerStoppedUsing(ItemStack itemStack, World world, EntityPlayer player, int par4) {
+		
+	}
 	
 }
