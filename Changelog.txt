@@ -1,5 +1,6 @@
 MPSA - 3
 + Added textures and removed them from MPS
+~ Fix for some MPS changes in 1.5.1
 
 MPSA - 2
 + Added Magnet Module
