@@ -3,11 +3,14 @@ package andrew.powersuits.common;
 import java.util.Arrays;
 import java.util.List;
 
-import andrew.powersuits.modules.*;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.powersuits.common.Config;
 import net.machinemuse.powersuits.common.ModularPowersuits;
-import net.machinemuse.powersuits.powermodule.modules.PlasmaCannonModule;
+import andrew.powersuits.modules.AutoFeederModule;
+import andrew.powersuits.modules.InPlaceAssemblerModule;
+import andrew.powersuits.modules.KineticGeneratorModule;
+import andrew.powersuits.modules.MagnetModule;
+import andrew.powersuits.modules.SolarGeneratorModule;
 
 public class AddonConfig extends Config {
 	
