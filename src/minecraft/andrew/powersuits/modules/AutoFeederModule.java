@@ -54,12 +54,11 @@ public class AutoFeederModule extends PowerModuleBase implements IToggleableModu
 
 	@Override
 	public void onPlayerTickActive(EntityPlayer player, ItemStack item) {
-		ItemStack helmet = player.getCurrentArmor(3);
 		double totalEnergy = ElectricItemUtils.getPlayerEnergy(player);
 		IInventory inv = player.inventory;
-		double foodLevel = (double) AddonUtils.getFoodLevel(helmet);
-		double saturationLevel = AddonUtils.getSaturationLevel(helmet);
-		double efficiency = ModuleManager.computeModularProperty(helmet, EATING_EFFICIENCY);
+		double foodLevel = (double) AddonUtils.getFoodLevel(item);
+		double saturationLevel = AddonUtils.getSaturationLevel(item);
+		double efficiency = ModuleManager.computeModularProperty(item, EATING_EFFICIENCY);
 		FoodStats foodStats = player.getFoodStats();
 		int foodNeeded = 20 - foodStats.getFoodLevel();
 		for (int i = 0; i < inv.getSizeInventory() && foodNeeded > foodLevel; i++) {
@@ -75,7 +74,7 @@ public class AutoFeederModule extends PowerModuleBase implements IToggleableModu
 				}
 			}
 		}
-		double eatingEnergyConsumption = foodNeeded * ModuleManager.computeModularProperty(helmet, EATING_ENERGY_CONSUMPTION);
+		double eatingEnergyConsumption = foodNeeded * ModuleManager.computeModularProperty(item, EATING_ENERGY_CONSUMPTION);
 		int foodConsumed = (int) Math.min(foodNeeded, Math.min(foodLevel, eatingEnergyConsumption * totalEnergy));
 		if (foodConsumed > 0) {
 			if (saturationLevel >= 1.0F) {
@@ -88,8 +87,8 @@ public class AutoFeederModule extends PowerModuleBase implements IToggleableModu
 			foodLevel -= foodConsumed;
 			ElectricItemUtils.drainPlayerEnergy(player, eatingEnergyConsumption * foodConsumed);
 		}
-		AddonUtils.setFoodLevel(helmet, foodLevel);
-		AddonUtils.setSaturationLevel(helmet, saturationLevel);
+		AddonUtils.setFoodLevel(item, foodLevel);
+		AddonUtils.setSaturationLevel(item, saturationLevel);
 	}
 
 	@Override

@@ -11,6 +11,7 @@ import andrew.powersuits.modules.InPlaceAssemblerModule;
 import andrew.powersuits.modules.KineticGeneratorModule;
 import andrew.powersuits.modules.MagnetModule;
 import andrew.powersuits.modules.SolarGeneratorModule;
+import andrew.powersuits.modules.TorchPlacerModule;
 
 public class AddonConfig extends Config {
 	
@@ -28,6 +29,6 @@ public class AddonConfig extends Config {
 		addModule(new SolarGeneratorModule(HEADONLY));
 		addModule(new AutoFeederModule(HEADONLY));
 		addModule(new MagnetModule(TORSOONLY));
-		//addModule(new TorchPlacerModule(TOOLONLY));
+		addModule(new TorchPlacerModule(TOOLONLY));
 	}
 }

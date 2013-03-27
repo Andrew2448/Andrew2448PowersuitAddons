@@ -13,7 +13,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
 
-@Mod(modid = "PowersuitAddons", name = "Andrew's Modular Powersuits Addons", version = "0.1.1-3", dependencies = "required-after:mmmPowersuits", acceptedMinecraftVersions = "[1.5,)")
+@Mod(modid = "PowersuitAddons", name = "Andrew's Modular Powersuits Addons", version = "0.1.1-4", dependencies = "required-after:mmmPowersuits", acceptedMinecraftVersions = "[1.5,)")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false,
 clientPacketHandlerSpec = @SidedPacketHandler(channels = { "psa" }, packetHandler = MusePacketHandler.class),
 serverPacketHandlerSpec = @SidedPacketHandler(channels = { "psa" }, packetHandler = MusePacketHandler.class))
