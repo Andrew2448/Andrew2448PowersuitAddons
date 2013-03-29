@@ -14,13 +14,10 @@
 
 	<!-- Directories -->
     <property name="download.dir" value="downloads" />
+	<property name="build.dir" value="build" />
 	<property name="src.dir" value="src" />
 	<property name="lib.dir" value="${src.dir}/lib" />
-	<property name="build.dir" value="build" />
-	<property name="classes.dir" value="${build.dir}/packaging" />
-	<property name="forge.dir" value="${build.dir}/forge" />
-	<property name="dist.dir" value="${build.dir}/dist" />
-	<property name="mcp.dir" value="${forge.dir}/mcp" />
+	<property name="mcp.dir" value="./" />
 	<property name="mcpsrc.dir" value="${mcp.dir}/src/minecraft" />
 	<property name="resources.dir" value="mods/mmmPowersuits" />
 	<property name="mpscore.dir" value="${mcp.dir}/MachineMusePowersuits/src/minecraft/net" />
@@ -32,8 +29,9 @@
 	</target>
 		
 	<target name="build">
-		<copy todir="${mcpsrc.dir}/net" />
+		<copy todir="${mcpsrc.dir}/net">
 		   <fileset dir="${mpscore.dir}" />
+		</copy>
 		<replace dir="${mcpsrc.dir}/andrew/powersuits" token="@VERSION@" value="${fullversion}" />
 	</target>
 		
@@ -60,7 +58,7 @@
 	<target name="release" depends="clean, build, recompile, reobfuscate">
 		
 		<mkdir dir="${build.dir}" />
-		<jar destfile="${build.dir}/MPSA-${fullversion}_MPS-${mpsrecommended}.jar">
+		<jar destfile="${mcp.dir}/reobf/MPSA-${fullversion}_MPS-${mpsrecommended}.jar">
 		   <fileset dir="${mcp.dir}/reobf" />
 		   <fileset dir="${mcp.dir}/mcmod.info" />
 		   <fileset dir="${mcp.dir}/CHANGELOG.txt" />
