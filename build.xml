@@ -1,4 +1,4 @@
-<project name="ModularPowersuitsAddons" default="run">
+<project name="ModularPowersuitsAddons" default="release">
 	
     <property environment="env" />
 
@@ -29,12 +29,11 @@
 	<target name="clean">
 		<delete dir="${mcp.dir}/reobf/minecraft" />
 		<delete dir="${mcpsrc.dir}/net/machinemuse" />
-	<target />
+	</target>
 		
 	<target name="build">
 		<copy todir="${mcpsrc.dir}/net" />
 		   <fileset dir="${mpscore.dir}" />
-		</copy>
 		<replace dir="${mcpsrc.dir}/andrew/powersuits" token="@VERSION@" value="${fullversion}" />
 	</target>
 		
@@ -58,11 +57,7 @@
 		</exec>
 	</target>
 		
-	<target name="run">
-		<antcall target="clean" />
-		<antcall target="build" />
-		<antcall target="recompile" />
-		<antcall target="reobfuscate" />
+	<target name="release" depends="clean, build, recompile, reobfuscate">
 		
 		<mkdir dir="${build.dir}" />
 		<jar destfile="${build.dir}/MPSA-${fullversion}_MPS-${mpsrecommended}.jar">
