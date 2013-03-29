@@ -23,11 +23,6 @@ import cpw.mods.fml.common.TickType;
 
 public class RenderTickHandler implements ITickHandler {
 	
-	Point val1 = new Point(17, 14);
-	Point icon1 = new Point(-1, 10);
-	Point val2 = new Point(17, 31);
-	Point icon2 = new Point(-1, 24);
-	
 	double yBaseIcon = 10.0;
 	int yBaseString = 14;
 	double yOffsetIcon = 12.0;
@@ -48,7 +43,6 @@ public class RenderTickHandler implements ITickHandler {
 		for (int i = 0; i < modules.size(); i++) {
 			if (modules.get(i).equals(AutoFeederModule.MODULE_AUTO_FEEDER)) {
 				int foodLevel = (int)AddonUtils.getFoodLevel(player.getCurrentArmor(3));
-				//String string = "Food level: "+MuseStringUtils.formatNumberShort(foodLevel);
 				String num = MuseStringUtils.formatNumberShort(foodLevel);
 				if (i == 0) {
 					MuseRenderer.drawString(num, 17, yBaseString);
@@ -62,7 +56,6 @@ public class RenderTickHandler implements ITickHandler {
 			else if (modules.get(i).equals(TorchPlacerModule.MODULE_TORCH_PLACER)) {
 				int torchLevel = AddonUtils.getTorchLevel(player.getCurrentEquippedItem());
 				int maxTorchLevel = (int)ModuleManager.computeModularProperty(player.getCurrentEquippedItem(), TorchPlacerModule.MAX_TORCH_STORAGE);
-				//String string = "Torch level: "+MuseStringUtils.formatNumberShort(torchLevel)+"/"+MuseStringUtils.formatNumberShort(maxTorchLevel);
 				String num = MuseStringUtils.formatNumberShort(torchLevel)+"/"+MuseStringUtils.formatNumberShort(maxTorchLevel);
 				if (i == 0) {
 					MuseRenderer.drawString(num, 17, yBaseString);
