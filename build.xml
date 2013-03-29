@@ -20,17 +20,23 @@
 	<property name="mcp.dir" value="./" />
 	<property name="mcpsrc.dir" value="${mcp.dir}/src/minecraft" />
 	<property name="resources.dir" value="mods" />
-	<property name="mpscore.dir" value="${mcp.dir}/MachineMusePowersuits/src/minecraft/net" />
 	
 	   <!-- Doing stuff -->
 	<target name="clean">
 		<delete dir="${mcp.dir}/reobf/minecraft" />
 		<delete dir="${mcpsrc.dir}/net/machinemuse" />
+		<delete dir="${build.dir}/MachineMusePowersuits" />
+	</target>
+	
+	<target name="download MPS">
+		<exec dir="${build.dir}" executable="git" osfamily="windows" failonerror="true">
+			  <arg line="clone https://github.com/MachineMuse/MachineMusePowersuits.git" />
+		</exec>
 	</target>
 		
 	<target name="build">
 		<copy todir="${mcpsrc.dir}/net">
-		   <fileset dir="${mpscore.dir}" />
+		   <fileset dir="${build.dir}/MachineMusePowersuits/src/minecraft/net" />
 		</copy>
 		<replace dir="${mcpsrc.dir}/andrew/powersuits" token="@VERSION@" value="${fullversion}" />
 	</target>
@@ -55,7 +61,7 @@
 		</exec>
 	</target>
 		
-	<target name="release" depends="clean, build, recompile, reobfuscate">
+	<target name="release" depends="clean, download MPS, build, recompile, reobfuscate">
 		
 		<mkdir dir="${build.dir}" />
 		<jar destfile="${build.dir}/MPSA-${fullversion}_MPS-${mpsrecommended}.jar">
