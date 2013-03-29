@@ -1,11 +1,11 @@
-<project name="ModularPowersuitsAddons" default="install" basedir=".">
-
-	<property environment="env" />
+<project name="ModularPowersuitsAddons" default="run">
+	
+    <property environment="env" />
 
 
 	<!-- Versions -->
 	<property name="build.ver" value="5" />
-	<property name="fullversion" value="0.2.0-${build.ver}" />
+    <property name="fullversion" value="0.2.0-${build.ver}" />
 	<property name="mpsrecommended" value="270" />
 	<property name="mcp.version" value="742" />
 	<property name="forgebuild" value="605" />
@@ -13,7 +13,7 @@
 
 
 	<!-- Directories -->
-	<property name="download.dir" value="downloads" />
+    <property name="download.dir" value="downloads" />
 	<property name="src.dir" value="src" />
 	<property name="lib.dir" value="${src.dir}/lib" />
 	<property name="build.dir" value="build" />
@@ -23,184 +23,58 @@
 	<property name="mcp.dir" value="${forge.dir}/mcp" />
 	<property name="mcpsrc.dir" value="${mcp.dir}/src/minecraft" />
 	<property name="resources.dir" value="mods/mmmPowersuits" />
-
-	<!-- URLs -->
-	<property name="forge.url" value="http://files.minecraftforge.net/minecraftforge/minecraftforge-src-${forge.version}.zip" />
-
-
-	<!-- Name -->
-	<property name="package.meta-inf" value="META-INF" />
-
-
-	<!-- Version Checking -->
-
-	<property file="${forge.dir}/forgeversion.properties" />
-	<condition property="forge-already-installed">
-		<equals arg1="${forge.build.number}" arg2="${forgebuild}" />
-	</condition>
-	<available property="forge-exists" file="${download.dir}/minecraftforge-src-${forge.version}.zip" />
-	<available property="already-compiled" file="${classes.dir}/net/machinemuse" />
-
-	<mkdir dir="${download.dir}" />
-	<mkdir dir="${build.dir}" />
-
-
-	<condition property="should-download-ant-contrib">
-		<or>
-			<available file="${download.dir}/ant-contrib/ant-contrib-1.0b3.jar" />
-			<available file="${download.dir}/minecraftforge-src-${forge.version}.zip" />
-		</or>
-	</condition>
-
-	<!-- Dependencies -->
-	<target name="update-names" depends="copy-source">
-		<get src="http://mcp.ocean-labs.de/files/mcptest/methods.csv" dest="${mcp.dir}/conf/methods.csv" />
-		<get src="http://mcp.ocean-labs.de/files/mcptest/fields.csv" dest="${mcp.dir}/conf/fields.csv" />
-
-		<exec dir="${mcp.dir}" executable="cmd" osfamily="windows" failonerror="true">
-			<arg line="/c updatenames.bat" />
-		</exec>
-
-		<exec dir="${mcp.dir}" executable="bash" osfamily="unix" failonerror="true">
-			<arg value="-c" />
-			<arg value="echo Yes | ./updatenames.sh" />
-		</exec>
-	</target>
-
-	<target name="install" depends="build">
-		<jar destfile="${dist.dir}/MPSA-${fullversion}_MPS-${mpsrecommended}.jar" basedir="${classes.dir}" />
-		<delete dir="${classes.dir}" />
-	</target>
-
-	<target name="forgeinstalled.check">
-	</target>
-
-	<target name="copy-source">
-		<copy todir="${mcpsrc.dir}/andrew/powersuits">
-			<fileset dir="${src.dir}/minecraft/andrew/powersuits" />
-			<filterset>
-				<filter token="MOD_VERSION" value="${fullversion}" />
-			</filterset>
+	<property name="mpscore.dir" value="${mcp.dir}/MachineMusePowersuits/src/minecraft/net" />
+	
+	   <!-- Doing stuff -->
+	<target name="clean">
+		<delete dir="${mcp.dir}/reobf/minecraft" />
+		<delete dir="${mcpsrc.dir}/net/machinemuse" />
+	<target />
+		
+	<target name="build">
+		<copy todir="${mcpsrc.dir}/net" />
+		   <fileset dir="${mpscore.dir}" />
 		</copy>
+		<replace dir="${mcpsrc.dir}/andrew/powersuits" token="@VERSION@" value="${fullversion}" />
 	</target>
-
-	<target name="build" depends="update-names" unless="already-compiled">
-
-		<!-- Recompile -->
+		
+	<target name="recompile">
 		<exec dir="${mcp.dir}" executable="cmd" osfamily="windows" failonerror="true">
-			<arg line="/c recompile.bat" />
+		   <arg line="/c recompile.bat" />
 		</exec>
 
 		<exec dir="${mcp.dir}" executable="sh" osfamily="unix" failonerror="true">
-			<arg value="recompile.sh" />
+		   <arg value="recompile.sh" />
 		</exec>
-
-		<!-- Reobf -->
-		<exec dir="${mcp.dir}" executable="cmd" osfamily="windows">
-			<arg line="/c reobfuscate-srg.bat" />
+	</target>
+		
+	<target name="reobfuscate">
+		<exec dir="${mcp.dir}" executable="cmd" osfamily="windows" failonerror="true">
+		   <arg value="/c reobfuscate_srg.bat" />
 		</exec>
-
-		<exec dir="${mcp.dir}" executable="sh" osfamily="unix">
-			<arg value="reobfuscate.sh" />
+		
+		<exec dir="${mcp.dir}" executable="sh" osfamily="unix" failonerror="true">
+		   <arg value="reobfuscate_srg.sh" />
 		</exec>
-		<copy todir="${classes.dir}">
-			<fileset dir="${mcp.dir}/reobf/minecraft" />
-		</copy>
-		<mkdir dir="${classes.dir}/mods" />
-		<copy todir="${classes.dir}/mods/mmmPowersuits">
-			<fileset dir="${resources.dir}" />
-		</copy>
-		<copy todir="${classes.dir}" file="mcmod.info">
-			<filterset>
-				<filter token="MOD_VERSION" value="${fullversion}" />
-			</filterset>
-		</copy>
 	</target>
-
-	<target name="setup-forge" depends="download-forge" unless="forge-already-installed">
-
-		<unzip dest="${build.dir}">
-			<fileset dir="${download.dir}">
-				<include name="minecraftforge-src-${forge.version}.zip" />
-			</fileset>
-		</unzip>
-
-
-
-		<!-- Change executables' permitions -->
-
-		<chmod file="${forge.dir}/install.sh" perm="+x" />
-
-		<!-- if your building on OSX these 2 should be executable -->
-
-
-
-		<!-- Install forge -->
-		<delete dir="${mcp.dir}" failonerror="no" />
-		<exec dir="${forge.dir}" executable="cmd" osfamily="windows" inputstring="Yes\n">
-			<arg line="/c install.cmd" />
-		</exec>
-
-		<exec dir="${forge.dir}" executable="sh" osfamily="unix" inputstring="Yes\n">
-			<arg value="install.sh" />
-
-		</exec>
-
-
-		<chmod file="${mcp.dir}/updatemd5.sh" perm="+x" />
-		<chmod file="${mcp.dir}/recompile.sh" perm="+x" />
-		<chmod file="${mcp.dir}/reobfuscate.sh" perm="+x" />
-		<chmod file="${mcp.dir}/runtime/bin/astyle-osx" perm="+x" />
-		<chmod file="${mcp.dir}/runtime/bin/jad-osx" perm="+x" />
-		<mkdir dir="${mcpsrc.dir}/andrew/powersuits" />
-
-		<!-- Copy libraries
-		<copy todir="${mcp.dir}/lib">
-			<fileset dir="lib">
-				<patternset includes="*.jar" />
-			</fileset>
-		</copy> -->
+		
+	<target name="run">
+		<antcall target="clean" />
+		<antcall target="build" />
+		<antcall target="recompile" />
+		<antcall target="reobfuscate" />
+		
+		<mkdir dir="${build.dir}" />
+		<jar destfile="${build.dir}/MPSA-${fullversion}_MPS-${mpsrecommended}.jar">
+		   <fileset dir="${mcp.dir}/reobf" />
+		   <fileset dir="${mcp.dir}/mcmod.info" />
+		   <fileset dir="${mcp.dir}/CHANGELOG.txt" />
+		   <fileset dir="${mcp.dir}/MODLICENSE.txt" />
+		   <fileset dir="${mcp.dir}/mods/mmmPowersuits" />
+		</jar>
+		
+		<antcall target="clean" />
 	</target>
-
-	<target name="download-forge" depends="download-ant-contrib" unless="forge-exists">
-		<taskdef resource="net/sf/antcontrib/antlib.xml">
-			<classpath>
-				<pathelement location="${download.dir}/ant-contrib/ant-contrib-1.0b3.jar" />
-				<fileset dir="${download.dir}/ant-contrib/lib">
-					<include name="*.jar" />
-				</fileset>
-			</classpath>
-		</taskdef>
-		<echo message="Downloading forge... " />
-		<getMethod url="http://files.minecraftforge.net/minecraftforge-src-${forge.version}.zip" responseDataFile="${download.dir}/minecraftforge-src-${forge.version}.zip">
-			<header name="User-Agent" value="Ant-${ant.version}/${ant.java.version}" />
-		</getMethod>
-	</target>
-
-	<target name="download-ant-contrib" unless="should-download-ant-contrib">
-		<echo message="Getting: ant-contrib" />
-		<mkdir dir="${download.dir}/tmp" />
-		<mkdir dir="${download.dir}/ant-contrib/lib" />
-		<get src="http://sourceforge.net/projects/ant-contrib/files/ant-contrib/1.0b3/ant-contrib-1.0b3-bin.zip/download" dest="${download.dir}/tmp/ant-contrib-1.0b3-bin.zip" />
-		<get src="http://archive.apache.org/dist/commons/codec/binaries/commons-codec-1.6-bin.zip" dest="${download.dir}/tmp/commons-codec-1.6-bin.zip" />
-
-		<unzip src="${download.dir}/tmp/ant-contrib-1.0b3-bin.zip" dest="${download.dir}" />
-		<unzip src="${download.dir}/tmp/commons-codec-1.6-bin.zip" dest="${download.dir}/tmp" />
-
-		<move todir="${download.dir}/ant-contrib/lib">
-			<fileset file="${download.dir}/tmp/commons-codec-1.6/commons-codec-1.6.jar" />
-		</move>
-
-		<!-- Delete useless files -->
-		<delete dir="${download.dir}/ant-contrib/docs" />
-		<delete dir="${download.dir}/tmp" />
-
-	</target>
-
-	<target name="clean">
-		<delete dir="${build.dir}" />
-		<delete dir="${download.dir}" />
-	</target>
-
-
 </project>
+		
+		
