@@ -6,6 +6,7 @@
 !/.gitattributes
 !/Changelog.txt
 !/mods
+!/build.xml
 
 src/minecraft/*
 !src/minecraft/andrew
