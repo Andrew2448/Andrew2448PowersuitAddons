@@ -4,7 +4,7 @@
 
 
 	<!-- Versions -->
-	<property name="build.ver" value="5" />
+	<property name="build.ver" value="8" />
     <property name="fullversion" value="0.2.0-${build.ver}" />
 	<property name="mpsrecommended" value="270" />
 	<property name="mcp.version" value="742" />
@@ -205,7 +205,7 @@
 	</target>
 	
 	<!-- ============================================================Update names===================================================================================== -->
-	<target name="update names" depends="reobfuscate">
+	<target name="update names">
 	        <get src="http://mcp.ocean-labs.de/files/mcptest/methods.csv" dest="${mcp.dir}/conf/methods.csv" />
 	        <get src="http://mcp.ocean-labs.de/files/mcptest/fields.csv" dest="${mcp.dir}/conf/fields.csv" />
 
@@ -220,7 +220,7 @@
 	</target>
 	
 	<!-- ============================================================Build===================================================================================== -->
-	<target name="build">
+	<target name="build" depends="update names">
 		<mkdir dir="${mcpsrc.dir}/andrew" />
 		<copy todir="${mcpsrc.dir}/andrew">
 		   <fileset dir="${src.dir}/andrew" />
