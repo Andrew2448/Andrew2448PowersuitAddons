@@ -17,55 +17,155 @@
 	<property name="build.dir" value="build" />
 	<property name="src.dir" value="src" />
 	<property name="lib.dir" value="${src.dir}/lib" />
+	<property name="forge.dir" value="${build.dir}/forge" />
 	<property name="mcp.dir" value="./" />
+	<property name="buildmcp.dir" value="${build.dir}/mcp" />
+	<property name="buildmcpsrc.dir" value="${buildmcp.dir}/src/minecraft" />
 	<property name="mcpsrc.dir" value="${mcp.dir}/src/minecraft" />
 	<property name="resources.dir" value="mods" />
+	<property name="forge.url" value="http://files.minecraftforge.net/minecraftforge/minecraftforge-src-${forge.version}.zip" />
 	
-	   <!-- Doing stuff -->
-	<target name="clean">
-		<delete dir="${mcp.dir}/reobf/minecraft" />
-		<delete dir="${mcpsrc.dir}/net/machinemuse" />
-		<delete dir="${build.dir}/MachineMusePowersuits" />
+	<!-- Doing stuff -->
+	<property file="${forge.dir}/forgeversion.properties" />
+	<condition property="forge-already-installed">
+	    <equals arg1="${forge.build.number}" arg2="${forgebuild}" />
+	</condition>
+	<available property="forge-exists" file="${download.dir}/minecraftforge-src-${forge.version}.zip" />
+	<available property="already-compiled" file="${mcp.dir}/reobf/minecraft/andrew" />
+	
+	<condition property="should-download-ant-contrib">
+		<or>
+		    <available file="${download.dir}/ant-contrib/ant-contrib-1.0b3.jar" />
+		    <available file="${download.dir}/minecraftforge-src-${forge.version}.zip" />
+		</or>
+	</condition>
+	<target name="forgeinstalled.check" />
+	<!-- ============================================================Update names===================================================================================== -->
+	<target name="update names" depends="build">
+	        <get src="http://mcp.ocean-labs.de/files/mcptest/methods.csv" dest="${buildmcp.dir}/conf/methods.csv" />
+	        <get src="http://mcp.ocean-labs.de/files/mcptest/fields.csv" dest="${buildmcp.dir}/conf/fields.csv" />
+
+	        <exec dir="${buildmcp.dir}" executable="cmd" osfamily="windows" failonerror="true">
+	            <arg line="/c updatenames.bat" />
+	        </exec>
+
+	        <exec dir="${buildmcp.dir}" executable="bash" osfamily="unix" failonerror="true">
+	            <arg value="-c" />
+	            <arg value="echo Yes | ./updatenames.sh" />
+	        </exec>
 	</target>
 	
-	<target name="download MPS">
+	<!-- ============================================================Clean===================================================================================== -->
+	<target name="clean">
+		<delete dir="${mcp.dir}/reobf/minecraft" />
+		<delete dir="${buildmcp.dir}/src/minecraft/net/machinemuse" />
+		<delete dir="${build.dir}/MachineMusePowersuits" />
+	</target>
+	<!-- ============================================================Download forge============================================================================ -->
+	<target name="download forge" depends="download ant-contrib" unless="forge-exists">
 		<mkdir dir="${build.dir}" />
+		<taskdef resource="net/sf/antcontrib/antlib.xml">
+			  <classpath>
+			    <pathelement location="${download.dir}/ant-contrib/ant-contrib-1.0b3.jar" />
+			        <fileset dir="${download.dir}/ant-contrib/lib">
+			    	   <include name="*.jar" />
+			        </fileset>
+			  </classpath>
+		</taskdef>
+		<echo message="Downloading forge... " />
+		<getMethod url="http://files.minecraftforge.net/minecraftforge-src-${forge.version}.zip" responseDataFile="${download.dir}/minecraftforge-src-${forge.version}.zip">
+		<header name="User-Agent" value="Ant-${ant.version}/${ant.java.version}" />
+		</getMethod>
+	</target>
+	<!-- ============================================================Download ant-contrib====================================================================== -->
+	<target name="download ant-contrib" unless="should-download-ant-contrib">
+		<echo message="Getting: ant-contrib" />
+		<mkdir dir="${download.dir}/tmp" />
+		<mkdir dir="${download.dir}/ant-contrib/lib" />
+		<get src="http://sourceforge.net/projects/ant-contrib/files/ant-contrib/1.0b3/ant-contrib-1.0b3-bin.zip/download" dest="${download.dir}/tmp/ant-contrib-1.0b3-bin.zip" />
+		<get src="http://archive.apache.org/dist/commons/codec/binaries/commons-codec-1.6-bin.zip" dest="${download.dir}/tmp/commons-codec-1.6-bin.zip" />
+
+		<unzip src="${download.dir}/tmp/ant-contrib-1.0b3-bin.zip" dest="${download.dir}" />
+		<unzip src="${download.dir}/tmp/commons-codec-1.6-bin.zip" dest="${download.dir}/tmp" />
+
+		<move todir="${download.dir}/ant-contrib/lib">
+			<fileset file="${download.dir}/tmp/commons-codec-1.6/commons-codec-1.6.jar" />
+		</move>
+
+		<!-- Delete useless files -->
+		<delete dir="${download.dir}/ant-contrib/docs" />
+		<delete dir="${download.dir}/tmp" />
+	</target>
+	<!-- ============================================================Setup forge=============================================================================== -->
+	<target name="setup forge" depends="download forge" unless="forge-already-installed">
+
+	        <unzip dest="${build.dir}">
+	            <fileset dir="${download.dir}">
+	                <include name="minecraftforge-src-${forge.version}.zip" />
+	            </fileset>
+	        </unzip>
+
+	        <chmod file="${forge.dir}/install.sh" perm="+x" />
+
+	        <!-- Install forge -->
+	        <delete dir="${buildmcp.dir}" failonerror="no" />
+	        <exec dir="${forge.dir}" executable="cmd" osfamily="windows" inputstring="Yes\n">
+	            <arg line="/c install.cmd" />
+	        </exec>
+
+	        <exec dir="${forge.dir}" executable="sh" osfamily="unix" inputstring="Yes\n">
+	            <arg value="install.sh" />
+	        </exec>
+
+	        <chmod file="${buildmcp.dir}/updatemd5.sh" perm="+x" />
+	        <chmod file="${buildmcp.dir}/recompile.sh" perm="+x" />
+	        <chmod file="${buildmcp.dir}/reobfuscate.sh" perm="+x" />
+	        <chmod file="${buildmcp.dir}/runtime/bin/astyle-osx" perm="+x" />
+	        <chmod file="${buildmcp.dir}/runtime/bin/jad-osx" perm="+x" />
+	        <mkdir dir="${buildmcpsrc.dir}/net/machinemuse" />
+	</target>
+	<!-- ============================================================Download MPS============================================================================== -->
+	<target name="download MPS">
 		<exec dir="${build.dir}" executable="git" failonerror="true">
 			  <arg line="clone https://github.com/MachineMuse/MachineMusePowersuits.git" />
 		</exec>
 	</target>
-		
+	<!-- ============================================================Build===================================================================================== -->
 	<target name="build">
-		<copy todir="${mcpsrc.dir}/net">
+		<mkdir dir="${buildmcpsrc.dir}/andrew" />
+		<copy todir="${buildmcpsrc.dir}/andrew">
+		   <fileset dir="${mcpsrc.dir}/andrew" />
+		</copy>
+		<copy todir="${buildmcpsrc.dir}/net">
 		   <fileset dir="${build.dir}/MachineMusePowersuits/src/minecraft/net" />
 		</copy>
-		<replace dir="${mcpsrc.dir}/andrew/powersuits" token="@VERSION@" value="${fullversion}" />
+		<replace dir="${buildmcpsrc.dir}/andrew/powersuits" token="@VERSION@" value="${fullversion}" />
 	</target>
-		
+	<!-- ============================================================Recompile================================================================================= -->
 	<target name="recompile">
-		<exec dir="${mcp.dir}" executable="cmd" osfamily="windows" failonerror="true">
+		<exec dir="${buildmcp.dir}" executable="cmd" osfamily="windows" failonerror="true">
 		   <arg line="/c recompile.bat" />
 		</exec>
 
-		<exec dir="${mcp.dir}" executable="sh" osfamily="unix" failonerror="true">
+		<exec dir="${buildmcp.dir}" executable="sh" osfamily="unix" failonerror="true">
 		   <arg value="recompile.sh" />
 		</exec>
 	</target>
-		
+	<!-- ============================================================Reobfuscate=============================================================================== -->
 	<target name="reobfuscate">
-		<exec dir="${mcp.dir}" executable="cmd" osfamily="windows" failonerror="true">
+		<exec dir="${buildmcp.dir}" executable="cmd" osfamily="windows" failonerror="true">
 		   <arg value="/c reobfuscate_srg.bat" />
 		</exec>
 		
-		<exec dir="${mcp.dir}" executable="sh" osfamily="unix" failonerror="true">
+		<exec dir="${buildmcp.dir}" executable="sh" osfamily="unix" failonerror="true">
 		   <arg value="reobfuscate_srg.sh" />
 		</exec>
 	</target>
-		
-	<target name="release" depends="clean, download MPS, build, recompile, reobfuscate">
+	<!-- ============================================================Release=================================================================================== -->
+	<target name="release" depends="clean, download forge, setup forge, download MPS, build, recompile, reobfuscate">
 		
 		<jar destfile="${build.dir}/MPSA-${fullversion}_MPS-${mpsrecommended}.jar">
-		   <fileset dir="${mcp.dir}/reobf/minecraft" includes="andrew/**" />
+		   <fileset dir="${buildmcp.dir}/reobf/minecraft" includes="andrew/**" />
 		   <fileset file="${mcp.dir}/mcmod.info" />
 		   <fileset file="${mcp.dir}/Changelog.txt" />
 		   <fileset file="${mcp.dir}/MODLICENSE.txt" />
