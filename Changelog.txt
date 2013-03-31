@@ -1,4 +1,7 @@
-MPSA - 7-9
+MPSA - 11
+- Removed indev GUI elements for now
+
+MPSA - 7-10
 ~ Getting jenkins to work, nothing new
 
 MPSA - 6

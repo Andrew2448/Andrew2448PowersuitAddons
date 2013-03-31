@@ -37,7 +37,7 @@ public class RenderTickHandler implements ITickHandler {
 	
 	@Override
 	public void tickEnd(EnumSet<TickType> type, Object... tickData) {
-		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
+		/*EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
 		modules = new ArrayList<String>();
 		findInstalledModules(player);
 		for (int i = 0; i < modules.size(); i++) {
@@ -66,7 +66,7 @@ public class RenderTickHandler implements ITickHandler {
 					MuseRenderer.drawItemAt(-1.0, yOffsetIcon*(i+1), new ItemStack(Block.torchWood));
 				}
 			}
-		}
+		}*/
 	}
 	
 	public void findInstalledModules(EntityClientPlayerMP player) {
