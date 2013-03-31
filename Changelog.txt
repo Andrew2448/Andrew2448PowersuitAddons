@@ -1,3 +1,6 @@
+MPSA - 12
++ Re-added indev GUI elements
+
 MPSA - 11
 - Removed indev GUI elements for now
 
