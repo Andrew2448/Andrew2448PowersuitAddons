@@ -4,7 +4,7 @@ Andrew2448PowersuitAddons
 Andrew2448's addon mod for MachineMuse's Modular Powersuits.
 Please only report bugs on latest versions.
 
-Downloads: http://bit.ly/1037DEb (No Adfly)
+Downloads: http://bit.ly/11Zptt2 (No Adfly)
 
 ModularPowersuits: http://www.machinemuse.net/download.php
 
