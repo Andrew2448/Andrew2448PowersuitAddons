@@ -232,7 +232,7 @@
 		<copy todir="${mcpsrc.dir}/net">
 		   <fileset dir="${download.dir}/MachineMusePowersuits/src/minecraft/net" />
 		</copy>
-		<replace dir="${mcpsrc.dir}/andrew/powersuits" token="@VERSION@" value="${fullversion}" />
+		<replace dir="${mcpsrc.dir}/andrew/powersuits/common" token="@VERSION@" value="${fullversion}" />
 		<replace dir="${main.dir}" token="@VERSION@" value="${fullversion}" />
 	</target>
 	
