@@ -20,8 +20,8 @@ public class KineticGeneratorModule extends PowerModuleBase implements IPlayerTi
 	public KineticGeneratorModule(List<IModularItem> validItems) {
 		super(validItems);
 		addBaseProperty(MuseCommonStrings.WEIGHT, 1000);
-		addBaseProperty(KINETIC_ENERGY_GENERATION, 250);
-		addTradeoffProperty("Energy Generated", KINETIC_ENERGY_GENERATION, 750, " Joules");
+		addBaseProperty(KINETIC_ENERGY_GENERATION, 200);
+		addTradeoffProperty("Energy Generated", KINETIC_ENERGY_GENERATION, 600, " Joules");
 		addTradeoffProperty("Energy Generated", MuseCommonStrings.WEIGHT, 3000, "g");
 		addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.servoMotor, 2));
 	    addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.controlCircuit, 1));
@@ -57,7 +57,7 @@ public class KineticGeneratorModule extends PowerModuleBase implements IPlayerTi
 			if ((!tag.hasKey("z")) || (isNotWalking))
 				tag.setInteger("z", (int) player.posZ);
 			double distance = Math.sqrt((tag.getInteger("x") - (int) player.posX) * (tag.getInteger("x") - (int) player.posX) + (tag.getInteger("z") - (int) player.posZ) * (tag.getInteger("z") - (int) player.posZ));
-			if (distance >= 5.0D) {
+			if (distance >= 5.0) {
 				tag.setInteger("x", (int) player.posX);
 				tag.setInteger("z", (int) player.posZ);
 				ElectricItemUtils.givePlayerEnergy(player, ModuleManager.computeModularProperty(item, KINETIC_ENERGY_GENERATION));
