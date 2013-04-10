@@ -142,7 +142,7 @@
 	        <get src="http://machinemuse.net/UniversalElectricity_v${ueapi.version}.zip" dest="${download.dir}/UniversalElectricity_v${ueapi.version}.zip" />
 
 	        <echo message="Downloading ICBM API..." />
-	        <get src="http://machinemuse.net/ICBM_API_v${icbmapi.version}_api.zip" dest="${download.dir}/ICBM_API_v${icbmapi.version}_api.zip" />
+	        <get src="http://machinemuse.net/ICBM_API_v${icbmapi.version}.zip" dest="${download.dir}/ICBM_API_v${icbmapi.version}.zip" />
 
 	        <echo message="Downloading Atomic Science API..." />
 	        <get src="http://machinemuse.net/AtomicScience_v${asapi.version}_api.zip" dest="${download.dir}/AtomicScience_v${asapi.version}_api.zip" />
@@ -176,7 +176,7 @@
 	        </move>
 
 	        <echo message="Extracting ICBM API... " />
-	        <unzip src="${download.dir}/ICBM_API_v${icbmapi.version}_api.zip" dest="${download.dir}/ue" />
+	        <unzip src="${download.dir}/ICBM_API_v${icbmapi.version}.zip" dest="${download.dir}/ue" />
 	        <mkdir dir="${mcpsrc.dir}/icbm/api/explosion" />
 	        <move file="${download.dir}/ue/src/minecraft/icbm/api/explosion/IExplosive.java" todir="${mcpsrc.dir}/icbm/api/explosion/" />
 	        <move file="${download.dir}/ue/src/minecraft/icbm/api/explosion/IEMPItem.java" todir="${mcpsrc.dir}/icbm/api/explosion/" />
