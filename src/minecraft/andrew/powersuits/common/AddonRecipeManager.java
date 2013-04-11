@@ -80,7 +80,7 @@ public class AddonRecipeManager {
 			ItemStack gearInvar = ModCompatability.getThermexItem("gearInvar", 1);
 			ItemStack compressedSawdust = ModCompatability.getThermexItem("sawdustCompressed", 1);
 			ItemStack energyFrameFull = ModCompatability.getThermexItem("energyFrameFull", 1);
-			ItemStack conduitEnergy = ModCompatability.getThermexItem("energyConduit", 1);
+			ItemStack conduitEnergy = ModCompatability.getThermexItem("conduitEnergyEmpty", 1);
 			ItemStack teleportFrameFull = ModCompatability.getThermexItem("teleportBase", 1);
 			
 			//===========================================================================================================================
