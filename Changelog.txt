@@ -1,4 +1,16 @@
-MPSA - 13/14
+MPSA - 23-28
+~ More fixes
+
+MPSA - 22
++ Added EU Reader Module to the power tool
+
+MPSA - 18-21
+~ Various bugfixes and such, nothing big
+
+MPSA - 17
+~ Tweaked kinetic generator energy amounts. Configs will need to be reset for this change to take place.
+
+MPSA - 13-16
 ~ Updated forge and buildscript.
 
 MPSA - 12
