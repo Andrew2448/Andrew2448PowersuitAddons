@@ -15,7 +15,9 @@ import net.minecraft.world.World;
 import andrew.powersuits.common.ModularPowersuitsAddons;
 
 public class InPlaceAssemblerModule extends PowerModuleBase implements IRightClickModule {
+	
 	public static final String MODULE_PORTABLE_CRAFTING = "In-Place Assembler";
+	
 	public InPlaceAssemblerModule(List<IModularItem> validItems) {
 		super(validItems);
 		addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.controlCircuit, 1));

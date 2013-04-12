@@ -85,4 +85,15 @@ public class AddonUtils {
 			itemTag.setInteger("Torch", i);
 		}
 	}
+	
+	public static NBTTagCompound getNBTTag(ItemStack itemStack) {
+	    NBTTagCompound tag = itemStack.getTagCompound();
+
+	    if (tag == null) {
+	      tag = new NBTTagCompound("tag");
+	      itemStack.setTagCompound(tag);
+	    }
+
+	    return tag;
+	  }
 }
