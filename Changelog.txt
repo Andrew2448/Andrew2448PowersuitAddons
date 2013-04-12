@@ -1,4 +1,6 @@
-MPSA - 23-28
+A more updated changelog can always be viewed here: http://bit.ly/10ZUTgC
+
+ - 23-28
 ~ More fixes
 
 MPSA - 22
