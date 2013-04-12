@@ -165,10 +165,13 @@
 	        <move file="${download.dir}/ic2/api/IElectricItem.java" todir="${mcpsrc.dir}/ic2/api/" />
 	        <move file="${download.dir}/ic2/api/ElectricItem.java" todir="${mcpsrc.dir}/ic2/api/" />
 	        <move file="${download.dir}/ic2/api/Items.java" todir="${mcpsrc.dir}/ic2/api/" />
-		    <move file="${download.dir}/ic2/api/energy/EnergyNet.java" todir="${mcpsrc.dir}/ic2/api/energy" />
-	        <move file="${download.dir}/ic2/api/energy/tile/IEnergyConductor.java" todir="${mcpsrc.dir}/ic2/api/energy/tile" />
-		    <move file="${download.dir}/ic2/api/energy/tile/IEnergySink.java" todir="${mcpsrc.dir}/ic2/api/energy/tile" />
-	        <move file="${download.dir}/ic2/api/energy/tile/IEnergySource.java" todir="${mcpsrc.dir}/ic2/api/energy/tile" />
+		    <copy todir="${mcpsrc.dir}/ic2/api/energy">
+		    	<fileset dir="${download.dir}/ic2/api/energy" />
+		    </copy>
+		    <!--move file="${download.dir}/ic2/api/energy/EnergyNet.java" todir="${mcpsrc.dir}/ic2/api/energy" /-->
+	        <!--move file="${download.dir}/ic2/api/energy/tile/IEnergyConductor.java" todir="${mcpsrc.dir}/ic2/api/energy/tile" /-->
+		    <!--move file="${download.dir}/ic2/api/energy/tile/IEnergySink.java" todir="${mcpsrc.dir}/ic2/api/energy/tile" /-->
+	        <!--move file="${download.dir}/ic2/api/energy/tile/IEnergySource.java" todir="${mcpsrc.dir}/ic2/api/energy/tile" /-->
 	        <delete dir="${download.dir}/ic2" />
 
 	        <echo message="Extracting UE API... " />
