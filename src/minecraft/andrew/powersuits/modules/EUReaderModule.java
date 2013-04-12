@@ -40,7 +40,7 @@ public class EUReaderModule extends PowerModuleBase implements IRightClickModule
 
 	@Override
 	public String getTextureFile() {
-		return "portablecrafting";
+		return "eureader";
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class EUReaderModule extends PowerModuleBase implements IRightClickModule
 
 	@Override
 	public String getDescription() {
-		return "A version of the IC2 EU Reader integrated in your power tool.";
+		return "An IC2 EU Reader integrated in your power tool.";
 	}
 
 	@Override
