@@ -45,7 +45,7 @@ public class EUReaderModule extends PowerModuleBase implements IRightClickModule
 
 	@Override
 	public String getCategory() {
-		return MuseCommonStrings.CATEGORY_TOOL;
+		return MuseCommonStrings.CATEGORY_ENERGY;
 	}
 
 	@Override
