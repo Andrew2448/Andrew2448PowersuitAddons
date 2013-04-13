@@ -16,6 +16,7 @@ public class GrafterModule extends PowerModuleBase implements IToolGrafter {
 	
 	public static final String MODULE_GRAFTER = "Grafter";
 	public static final String GRAFTER_ENERGY_CONSUMPTION = "Grafter Energy Consumption";
+	public static int USES = 5;
 	
 	public GrafterModule(List<IModularItem> validItems) {
 		super(validItems);

@@ -7,8 +7,10 @@ import net.machinemuse.api.IModularItem;
 import net.machinemuse.powersuits.common.Config;
 import net.machinemuse.powersuits.common.ModCompatability;
 import net.machinemuse.powersuits.common.ModularPowersuits;
+import andrew.powersuits.modules.ApiaristArmorModule;
 import andrew.powersuits.modules.AutoFeederModule;
 import andrew.powersuits.modules.EUReaderModule;
+import andrew.powersuits.modules.GrafterModule;
 import andrew.powersuits.modules.InPlaceAssemblerModule;
 import andrew.powersuits.modules.KineticGeneratorModule;
 import andrew.powersuits.modules.MagnetModule;
@@ -37,6 +39,11 @@ public class AddonConfig extends Config {
 		
 		if (ModCompatability.isIndustrialCraftLoaded()) {
 			addModule(new EUReaderModule(TOOLONLY));
+		}
+		
+		if (ModCompatability.isForestryLoaded()) {
+			addModule(new GrafterModule(TOOLONLY));
+			addModule(new ApiaristArmorModule(ARMORONLY));
 		}
 	}
 }
