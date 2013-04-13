@@ -155,7 +155,7 @@
 			<get src="http://machinemuse.net/Galacticraft API.zip" dest="${download.dir}/Galacticraft API.zip" />
 		
 		    <echo message="Downloading Buildcraft API..." />
-		    <get src="https://dl.dropboxusercontent.com/u/66472801/Buildcraft_api.zip" dest="${download.dir}/Buildcraft_api.zip" />
+			<get src="http://machinemuse.net/Buildcraft_api.zip" dest="${download.dir}/Buildcraft_api.zip" />
 
 	</target>
 	
