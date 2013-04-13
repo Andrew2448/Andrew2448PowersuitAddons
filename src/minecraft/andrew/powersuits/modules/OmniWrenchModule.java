@@ -9,8 +9,10 @@ import java.util.List;
 import thermalexpansion.api.tileentity.IReconfigurableFacing;
 
 import net.machinemuse.api.IModularItem;
+import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.MuseCommonStrings;
 import net.machinemuse.api.MuseItemUtils;
+import net.machinemuse.api.electricity.ElectricItemUtils;
 import net.machinemuse.api.moduletrigger.IRightClickModule;
 import net.machinemuse.powersuits.item.ItemComponent;
 import net.machinemuse.powersuits.powermodule.PowerModuleBase;
@@ -67,7 +69,7 @@ public class OmniWrenchModule extends PowerModuleBase implements IRightClickModu
 		int meta = world.getBlockMetadata(x, y, z);
 		TileEntity tile = world.getBlockTileEntity(x, y, z);
 		
-		if ((tile instanceof IWrenchable))
+		if ((tile instanceof IWrenchable) && ElectricItemUtils.getPlayerEnergy(player) > 99)
 	    {
 	      IWrenchable wrenchTile = (IWrenchable)tile;
 
@@ -93,6 +95,8 @@ public class OmniWrenchModule extends PowerModuleBase implements IRightClickModu
 	            world.spawnEntityInWorld(entity);
 	          }
 	        }
+	        
+	        ElectricItemUtils.drainPlayerEnergy(player, ModuleManager.computeModularProperty(itemStack, OMNI_WRENCH_ENERGY_CONSUMPTION));
 
 	        return AddonUtils.isServerWorld(world);
 	      }
@@ -103,6 +107,7 @@ public class OmniWrenchModule extends PowerModuleBase implements IRightClickModu
 	        {
 	          if (((wrenchTile instanceof IEnergySource)) && ((wrenchTile instanceof IEnergySink))) {
 	            wrenchTile.setFacing((short)side);
+	            ElectricItemUtils.drainPlayerEnergy(player, ModuleManager.computeModularProperty(itemStack, OMNI_WRENCH_ENERGY_CONSUMPTION));
 	          }
 	        }
 	        else {
@@ -114,6 +119,7 @@ public class OmniWrenchModule extends PowerModuleBase implements IRightClickModu
 		
 		if ((tile instanceof IReconfigurableFacing)) {
 		      if (AddonUtils.isServerWorld(world)) {
+		    	ElectricItemUtils.drainPlayerEnergy(player, ModuleManager.computeModularProperty(itemStack, OMNI_WRENCH_ENERGY_CONSUMPTION));
 		        return ((IReconfigurableFacing)tile).rotateBlock();
 		      }
 		      return false;
