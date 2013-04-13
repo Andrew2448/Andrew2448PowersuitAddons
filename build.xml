@@ -16,6 +16,7 @@
 	<property name="icbmapi.version" value="1.1.1.26" />
 	<property name="thermexapi.version" value="2.3.0" />
 	<property name="galacticraftapi.version" value="1" />
+	<property name="forestryapi.version" value="2.1.2.9" />
 
 
 	<!-- Directories -->
@@ -55,6 +56,7 @@
 	            <available file="${download.dir}/AtomicScience_v${asapi.version}.zip" />
 				<available file="${download.dir}/Galacticraft API.zip" />
 	        	<available file="${download.dir}/Buildcraft_api.zip" />
+	        	<available file="${download.dir}/forestry-api-${forestryapi.version}.zip" />
 	        </and>
 	</condition>
 	
@@ -156,6 +158,9 @@
 		
 		    <echo message="Downloading Buildcraft API..." />
 			<get src="http://machinemuse.net/Buildcraft_api.zip" dest="${download.dir}/Buildcraft_api.zip" />
+		
+		    <echo message="Downloading Forestry API..." />
+		    <get src="http://machinemuse.net/forestry-api-${forestryapi.version}.zip" dest="${download.dir}/forestry-api-${forestryapi.version}.zip" />
 
 	</target>
 	
@@ -206,6 +211,13 @@
 		    <unzip src="${download.dir}/Buildcraft_api.zip" dest="${download.dir}" />
 		    <mkdir dir="${mcpsrc.dir}/buildcraft/api/tools" />
 		    <move file="${download.dir}/buildcraft/api/tools/IToolWrench.java" todir="${mcpsrc.dir}/buildcraft/api/tools" />
+		
+		    <echo message="Extracting Forestry API... " />
+		    <unzip src="${download.dir}/forestry-api-${forestryapi.version}.zip" dest="${download.dir}" />
+		    <mkdir dir="${mcpsrc.dir}/forestry/api/apiculture" />
+		    <mkdir dir="${mcpsrc.dir}/forestry/api/arboriculture" />
+		    <move file="${download.dir}/forestry/api/apiculture/IArmorApiarist.java" todir="${mcpsrc.dir}/forestry/api/apiculture" />
+		    <move file="${download.dir}/forestry/api/arboriculture/IToolGrafter.java" todir="${mcpsrc.dir}/forestry/api/arboriculture" />
 
 	</target>
 	
