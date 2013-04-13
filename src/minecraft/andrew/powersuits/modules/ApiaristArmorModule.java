@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 
 public class ApiaristArmorModule extends PowerModuleBase implements IArmorApiarist {
 	
-	public static final String MODULE_APIARIST_ARMOR = "Grafter";
+	public static final String MODULE_APIARIST_ARMOR = "Apiarist Armor";
 	public static final String APIARIST_ARMOR_ENERGY_CONSUMPTION = "Apiarist Armor Energy Consumption";
 	
 	public ApiaristArmorModule(List<IModularItem> validItems) {
@@ -44,6 +44,7 @@ public class ApiaristArmorModule extends PowerModuleBase implements IArmorApiari
 
 	@Override
 	public boolean protectPlayer(EntityPlayer player, ItemStack armor, String cause, boolean doProtect) {
+		System.out.println("Apiarist Armor");
 		return true;
 	}
 }

@@ -47,6 +47,7 @@ public class GrafterModule extends PowerModuleBase implements IToolGrafter {
 
 	@Override
 	public float getSaplingModifier(ItemStack stack, World world, int x, int y, int z) {
+		System.out.println("Grafter");
 		return 100;
 	}
 }
