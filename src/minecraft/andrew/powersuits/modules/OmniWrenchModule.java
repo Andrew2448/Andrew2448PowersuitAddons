@@ -39,7 +39,7 @@ public class OmniWrenchModule extends PowerModuleBase implements IRightClickModu
 	
 	@Override
 	public String getTextureFile() {
-		return "torchplacer";
+		return "omniwrench";
 	}
 
 	@Override
