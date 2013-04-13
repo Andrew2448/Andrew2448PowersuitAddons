@@ -107,12 +107,12 @@ public class OmniWrenchModule extends PowerModuleBase implements IRightClickModu
 	        {
 	          if (((wrenchTile instanceof IEnergySource)) && ((wrenchTile instanceof IEnergySink))) {
 	            wrenchTile.setFacing((short)side);
-	            ElectricItemUtils.drainPlayerEnergy(player, ModuleManager.computeModularProperty(itemStack, OMNI_WRENCH_ENERGY_CONSUMPTION));
 	          }
 	        }
 	        else {
 	          wrenchTile.setFacing((short)side);
 	        }
+	        ElectricItemUtils.drainPlayerEnergy(player, ModuleManager.computeModularProperty(itemStack, OMNI_WRENCH_ENERGY_CONSUMPTION));
 	      }
 	      return AddonUtils.isServerWorld(world);
 	    }
