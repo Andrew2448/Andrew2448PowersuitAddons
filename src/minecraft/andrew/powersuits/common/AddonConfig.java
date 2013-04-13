@@ -12,6 +12,7 @@ import andrew.powersuits.modules.EUReaderModule;
 import andrew.powersuits.modules.InPlaceAssemblerModule;
 import andrew.powersuits.modules.KineticGeneratorModule;
 import andrew.powersuits.modules.MagnetModule;
+import andrew.powersuits.modules.OmniWrenchModule;
 import andrew.powersuits.modules.SolarGeneratorModule;
 import andrew.powersuits.modules.TorchPlacerModule;
 
@@ -32,6 +33,7 @@ public class AddonConfig extends Config {
 		addModule(new AutoFeederModule(HEADONLY));
 		addModule(new MagnetModule(TORSOONLY));
 		addModule(new TorchPlacerModule(TOOLONLY));
+		addModule(new OmniWrenchModule(TOOLONLY));
 		
 		if (ModCompatability.isIndustrialCraftLoaded()) {
 			addModule(new EUReaderModule(TOOLONLY));

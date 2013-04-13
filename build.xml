@@ -54,6 +54,7 @@
 	            <available file="${download.dir}/ThermalExpansion-API-${thermexapi.version}.zip" />
 	            <available file="${download.dir}/AtomicScience_v${asapi.version}.zip" />
 				<available file="${download.dir}/Galacticraft API.zip" />
+	        	<available file="${download.dir}/Buildcraft_api.zip" />
 	        </and>
 	</condition>
 	
@@ -152,6 +153,9 @@
 			
 			<echo message="Downloading Galacticraft API..." />
 			<get src="http://machinemuse.net/Galacticraft API.zip" dest="${download.dir}/Galacticraft API.zip" />
+		
+		    <echo message="Downloading Buildcraft API..." />
+		    <get src="https://dl.dropboxusercontent.com/u/66472801/Buildcraft_api.zip" dest="${download.dir}/Buildcraft_api.zip" />
 
 	</target>
 	
@@ -190,12 +194,18 @@
 	        <mkdir dir="${mcpsrc.dir}/thermalexpansion/api/core" />
 	        <move file="${download.dir}/thermalexpansion/api/item/ItemRegistry.java" todir="${mcpsrc.dir}/thermalexpansion/api/item" />
 	        <move file="${download.dir}/thermalexpansion/api/item/IChargeableItem.java" todir="${mcpsrc.dir}/thermalexpansion/api/item" />
+		    <move file="${download.dir}/thermalexpansion/api/tileentity/IReconfigurableFacing.java" todir="${mcpsrc.dir}/thermalexpansion/api/tileentity" />
 			
 			<echo message="Extracting Galacticraft API... " />
 			<unzip src="${download.dir}/Galacticraft API.zip" dest="${download.dir}" />
 			<mkdir dir="${mcpsrc.dir}/micdoodle8/mods/galacticraft/API" />
 			<move file="${download.dir}/micdoodle8/mods/galacticraft/API/EnumGearType.java" todir="${mcpsrc.dir}/micdoodle8/mods/galacticraft/API" />
 			<move file="${download.dir}/micdoodle8/mods/galacticraft/API/IBreathableArmor.java" todir="${mcpsrc.dir}/micdoodle8/mods/galacticraft/API" />
+		
+		    <echo message="Extracting Buildcraft API... " />
+		    <unzip src="${download.dir}/Buildcraft_api.zip" dest="${download.dir}" />
+		    <mkdir dir="${mcpsrc.dir}/buildcraft/api/tools" />
+		    <move file="${download.dir}/buildcraft/api/tools/IToolWrench.java" todir="${mcpsrc.dir}/buildcraft/api/tools" />
 
 	</target>
 	

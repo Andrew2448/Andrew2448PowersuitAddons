@@ -25,7 +25,7 @@ public class TorchPlacerModule extends PowerModuleBase implements IToggleableMod
 	public static final String MODULE_TORCH_PLACER = "Torch Placer";
 	public static final String TORCH_ENERGY_CONSUMPTION = "Torch Placement Energy Consumption";
 	public static final String MAX_TORCH_STORAGE = "Maximum Storage Amount";
-	public static final ItemStack torch = new ItemStack(Block.blockGold);
+	
 	public TorchPlacerModule(List<IModularItem> validItems) {
 		super(validItems);
 		addBaseProperty(TORCH_ENERGY_CONSUMPTION, 50);

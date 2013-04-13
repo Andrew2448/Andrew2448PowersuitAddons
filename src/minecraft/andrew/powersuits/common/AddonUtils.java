@@ -5,6 +5,7 @@ import net.machinemuse.api.MuseItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 
 public class AddonUtils {
 	public static boolean canItemFitInInventory(EntityPlayer player, ItemStack itemstack)
@@ -95,5 +96,13 @@ public class AddonUtils {
 	    }
 
 	    return tag;
-	  }
+	}
+	
+	public static boolean isClientWorld(World world) {
+		return world.isRemote;
+	}
+	
+	public static boolean isServerWorld(World world) {
+		return !world.isRemote;
+	}
 }
