@@ -6,7 +6,7 @@
 	<!-- Versions -->
 	<property name="build.ver" value="0.2.1" />
     <property name="fullversion" value="${build.ver}-${env.BUILD_NUMBER}" />
-	<property name="mpsrecommended" value="317" />
+	<property name="mpsrecommended" value="326" />
 	<property name="mcp.version" value="742" />
 	<property name="forgebuild" value="651" />
 	<property name="forge.version" value="1.5.1-7.7.1.${forgebuild}" />
@@ -281,7 +281,7 @@
 	<!-- ============================================================Release=================================================================================== -->
 	<target name="release" depends="clean, download forge, setup forge, download MPS, download apis, extract apis, build, recompile, reobfuscate">
 		
-		<jar destfile="${dist.dir}/MPSA-${fullversion}_MPS-${mpsrecommended}+.jar">
+		<jar destfile="${dist.dir}/MPSA-${fullversion}_MPS-${mpsrecommended}.jar">
 		   <fileset dir="${mcp.dir}/reobf/minecraft" includes="andrew/**" />
 		   <fileset file="${main.dir}/mcmod.info" />
 		   <fileset file="${main.dir}/Changelog.txt" />

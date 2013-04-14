@@ -71,6 +71,7 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 	}
 	
 	public int getValue(String name, int blockID, int meta) {
+		System.out.println(name);
 		if (name.equals("thermalexpansion.ore")) {
 			System.out.println("Thermal Expansion Ore Found");
 		}
