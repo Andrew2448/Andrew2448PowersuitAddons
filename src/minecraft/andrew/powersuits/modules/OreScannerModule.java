@@ -23,7 +23,7 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 	public static final String ORE_SCANNER_RADIUS_X = "X Radius";
 	public static final String ORE_SCANNER_RADIUS_Y = "Y Radius";
 	public static final String ORE_SCANNER_RADIUS_Z = "Z Radius";
-	ArrayList<Integer> valuablesFound = new ArrayList<Integer>();
+	//String[] oreNames = {"oreCopper", "oreTin", "oreSilver", "oreLead", "ore"
 	
 	public OreScannerModule(List<IModularItem> validItems) {
 		super(validItems);
@@ -54,25 +54,26 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 		int cY = y + (fdSide.offsetY * yRadius);
 		int cZ = z + (fdSide.offsetZ * zRadius);
 		
-		for (int sX = cX - xRadius; sX <= cX + xRadius; sX++)
-		{
-		  for (int sY = cY - yRadius; sY <= cY + yRadius; sY++)
-		  {
-		    for (int sZ = cZ - zRadius; sZ <= cZ + zRadius; sZ++)
-		    {
-		      totalBlocks++;
-		      totalValue += getValue(world.getBlockId(sX, sY, sZ), world.getBlockMetadata(sX, sY, sZ));
-		    }
-		  }
+		for (String s : OreDictionary.getOreNames()) {
+			System.out.println(s);
+		}
+		
+		for (int sX = cX - xRadius; sX <= cX + xRadius; sX++) {
+			for (int sY = cY - yRadius; sY <= cY + yRadius; sY++) {
+				for (int sZ = cZ - zRadius; sZ <= cZ + zRadius; sZ++) {
+					totalBlocks++;
+					totalValue += getValue(world.getBlockId(sX, sY, sZ), world.getBlockMetadata(sX, sY, sZ));
+				}
+			}
 		}
 		System.out.println("Total Blocks: "+totalBlocks);
 	}
 	
 	public int getValue(int blockID, int meta) {
-		ArrayList<ItemStack> copperOres = OreDictionary.getOres("oreCopper");
-		for (ItemStack stack : copperOres) {
-			System.out.println(stack.itemID);
-		}
+		ArrayList<ArrayList<ItemStack>> ores = new ArrayList<ArrayList<ItemStack>>(); //OreDictionary.getOres("oreCopper");
+//		for (ItemStack stack : copperOres) {
+//			System.out.println(stack.itemID);
+//		}
 		return 0;
 	}
 	
