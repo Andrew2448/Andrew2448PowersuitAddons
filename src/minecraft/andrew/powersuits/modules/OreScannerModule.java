@@ -55,7 +55,9 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 		int cZ = z + (fdSide.offsetZ * zRadius);
 		
 		for (String s : OreDictionary.getOreNames()) {
-			System.out.println(s);
+			if (s.contains("ore")) {
+				System.out.println(s);
+			}
 		}
 		
 		for (int sX = cX - xRadius; sX <= cX + xRadius; sX++) {
