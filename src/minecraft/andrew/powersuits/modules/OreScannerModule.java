@@ -14,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class OreScannerModule extends PowerModuleBase implements IRightClickModule {
 	
@@ -48,7 +49,6 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 		int zRadius = (int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_Z);
 		
 		int totalValue = 0, totalBlocks = 0;
-		String name = "";
 		ForgeDirection fdSide = ForgeDirection.getOrientation(side).getOpposite();
 		int cX = x + (fdSide.offsetX * xRadius);
 		int cY = y + (fdSide.offsetY * yRadius);
@@ -61,19 +61,17 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 		    for (int sZ = cZ - zRadius; sZ <= cZ + zRadius; sZ++)
 		    {
 		      totalBlocks++;
-		      name = Block.blocksList[world.getBlockId(sX, sY, sZ)].getUnlocalizedName();
-		      totalValue += getValue(name, world.getBlockId(sX, sY, sZ), world.getBlockMetadata(sX, sY, sZ));
-		      //world.setBlock(sX, sY, sZ, 0);
+		      totalValue += getValue(world.getBlockId(sX, sY, sZ), world.getBlockMetadata(sX, sY, sZ));
 		    }
 		  }
 		}
 		System.out.println("Total Blocks: "+totalBlocks);
 	}
 	
-	public int getValue(String name, int blockID, int meta) {
-		System.out.println(name);
-		if (name.equals("thermalexpansion.ore")) {
-			System.out.println("Thermal Expansion Ore Found");
+	public int getValue(int blockID, int meta) {
+		ArrayList<ItemStack> copperOres = OreDictionary.getOres("oreCopper");
+		for (ItemStack stack : copperOres) {
+			System.out.println(stack.itemID);
 		}
 		return 0;
 	}
