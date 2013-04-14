@@ -42,8 +42,8 @@ public class AddonConfig extends Config {
 		}
 		
 		if (ModCompatability.isForestryLoaded()) {
-			addModule(new GrafterModule(TOOLONLY));
-			addModule(new ApiaristArmorModule(ARMORONLY));
+			//addModule(new GrafterModule(TOOLONLY));
+			//addModule(new ApiaristArmorModule(ARMORONLY));
 		}
 	}
 }
