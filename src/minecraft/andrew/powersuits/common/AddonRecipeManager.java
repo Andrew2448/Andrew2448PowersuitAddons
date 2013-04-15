@@ -59,8 +59,8 @@ public class AddonRecipeManager {
 		}
 		
 		if (ModCompatability.GregTechRecipesEnabled() && ModCompatability.isIndustrialCraftLoaded() && ModCompatability.isGregTechLoaded()) {
-			String energyFlowCircuit = "circuitTier07";
-			String superConductor = "itemSuperconductor";
+			String energyFlowCircuit = "craftingCircuitTier07";
+			String superConductor = "craftingSuperconductor";
 			ItemStack reinforcedGlass = ModCompatability.getIC2Item("reinforcedGlass");
 			
 			//===========================================================================================================================

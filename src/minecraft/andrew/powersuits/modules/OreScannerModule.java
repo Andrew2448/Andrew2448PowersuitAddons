@@ -23,7 +23,8 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 	public static final String ORE_SCANNER_RADIUS_X = "X Radius";
 	public static final String ORE_SCANNER_RADIUS_Y = "Y Radius";
 	public static final String ORE_SCANNER_RADIUS_Z = "Z Radius";
-	//String[] oreNames = {"oreCopper", "oreTin", "oreSilver", "oreLead", "ore"
+	String[] oreNames = {"oreCopper", "oreTin", "oreSilver", "oreLead", "oreNickel", "orePlatinum", "oreZing", "oreApatite", "oreUranium"};
+	ArrayList<ArrayList<ItemStack>> ores = new ArrayList<ArrayList<ItemStack>>(); 
 	
 	public OreScannerModule(List<IModularItem> validItems) {
 		super(validItems);
@@ -36,6 +37,10 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 		addIntTradeoffProperty("Z Radius", ORE_SCANNER_RADIUS_Z, 3, "", 1, 0);
 		//addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.controlCircuit, 1));
 	    //addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.servoMotor, 2));
+		
+		for (int i = 0; i < oreNames.length; i++) {
+			ores.set(i, OreDictionary.getOres(oreNames[i]));
+		}
 	}
 	
 	public PowerModuleBase addIntTradeoffProperty(String tradeoffName, String propertyName, double multiplier, String unit, int roundTo, int offset) {
@@ -72,7 +77,11 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 	}
 	
 	public int getValue(int blockID, int meta) {
-		ArrayList<ArrayList<ItemStack>> ores = new ArrayList<ArrayList<ItemStack>>(); //OreDictionary.getOres("oreCopper");
+		for (int a = 0; a < ores.size(); a++) {
+			for (int b = 0; b < ores.get(a).size(); b++) {
+				
+			}
+		}
 //		for (ItemStack stack : copperOres) {
 //			System.out.println(stack.itemID);
 //		}
