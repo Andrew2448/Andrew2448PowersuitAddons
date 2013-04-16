@@ -77,6 +77,7 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 			}
 		}
 		System.out.println("Total Blocks: "+totalBlocks);
+		System.out.println(oreMap);
 	}
 	
 	public static int getValue(int blockID, int meta) {
@@ -109,7 +110,6 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 				oreMap.put(Arrays.asList(ores.get(a).get(b).itemID, ores.get(a).get(b).getItemDamage()), oreNames[a]);
 			}
 		}
-		System.out.println(oreMap);
 		
 //		oreMap.put("oreCopper", OreDictionary.getOres("oreCopper"));
 //		oreMap.put("oreTin", OreDictionary.getOres("oreTin"));
