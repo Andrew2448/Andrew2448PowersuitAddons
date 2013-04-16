@@ -71,14 +71,14 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 			for (int sY = cY - yRadius; sY <= cY + yRadius; sY++) {
 				for (int sZ = cZ - zRadius; sZ <= cZ + zRadius; sZ++) {
 					totalBlocks++;
-					totalValue += getValue(world.getBlockId(sX, sY, sZ), world.getBlockMetadata(sX, sY, sZ));
+					//totalValue += getValue(world.getBlockId(sX, sY, sZ), world.getBlockMetadata(sX, sY, sZ));
 				}
 			}
 		}
 		if (AddonUtils.isServerWorld(world)) {
-			System.out.println("Total Blocks: "+totalBlocks);
-			System.out.println(oreMap);
-			System.out.println("Total value: "+totalValue);
+			//System.out.println("Total Blocks: "+totalBlocks);
+			//System.out.println(oreMap);
+			//System.out.println("Total value: "+totalValue);
 		}
 	}
 	
@@ -95,6 +95,22 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 				oreMap.put(Arrays.asList(ores.get(a).get(b).itemID, ores.get(a).get(b).getItemDamage()), oreNames[a]);
 			}
 		}
+		oreMap.put(Arrays.asList(Block.oreCoal.blockID, 0), "oreCoal");
+		oreMap.put(Arrays.asList(Block.oreIron.blockID, 0), "oreIron");
+		oreMap.put(Arrays.asList(Block.oreGold.blockID, 0), "oreGold");
+		oreMap.put(Arrays.asList(Block.oreRedstone.blockID, 0), "oreRedstone");
+		oreMap.put(Arrays.asList(Block.oreDiamond.blockID, 0), "oreDiamond");
+		oreMap.put(Arrays.asList(Block.oreEmerald.blockID, 0), "oreEmerald");
+		oreMap.put(Arrays.asList(Block.oreLapis.blockID, 0), "oreLapis");
+		oreMap.put(Arrays.asList(Block.oreNetherQuartz.blockID, 0), "oreNetherQuartz");
+		valueMap.put("oreCoal", 1);
+		valueMap.put("oreIron", 1);
+		valueMap.put("oreGold", 1);
+		valueMap.put("oreRedstone", 1);
+		valueMap.put("oreDiamond", 1);
+		valueMap.put("oreEmerald", 1);
+		valueMap.put("oreLapis", 1);
+		valueMap.put("oreNetherQuartz", 1);
 		valueMap.put("oreCopper", 1);
 		valueMap.put("oreTin", 1);
 		valueMap.put("oreSilver", 1);
