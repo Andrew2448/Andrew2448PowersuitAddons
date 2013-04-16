@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import andrew.powersuits.common.AddonUtils;
+
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.MuseCommonStrings;
@@ -24,9 +26,11 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 	public static final String ORE_SCANNER_RADIUS_X = "X Radius";
 	public static final String ORE_SCANNER_RADIUS_Y = "Y Radius";
 	public static final String ORE_SCANNER_RADIUS_Z = "Z Radius";
-	static String[] oreNames = {"oreCopper", "oreTin", "oreSilver", "oreLead", "oreNickel", "orePlatinum", "oreZinc", "oreApatite", "oreUranium"};
-	static ArrayList<ArrayList<ItemStack>> ores = new ArrayList<ArrayList<ItemStack>>(); 
-	static HashMap<List, String> oreMap = new HashMap();
+	
+	private static String[] oreNames = {"oreCopper", "oreTin", "oreSilver", "oreLead", "oreNickel", "orePlatinum", "oreZinc", "oreApatite", "oreUranium"};
+	private static ArrayList<ArrayList<ItemStack>> ores = new ArrayList<ArrayList<ItemStack>>(); 
+	private static HashMap<List, String> oreMap = new HashMap();
+	private static HashMap<String, Integer> valueMap = new HashMap();
 	
 	public OreScannerModule(List<IModularItem> validItems) {
 		super(validItems);
@@ -63,27 +67,43 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 		int cY = y + (fdSide.offsetY * yRadius);
 		int cZ = z + (fdSide.offsetZ * zRadius);
 		
-//		for (String s : OreDictionary.getOreNames()) {
-//			if (s.contains("ore")) {
-//				System.out.println(s);
-//			}
-//		}
-		
 		for (int sX = cX - xRadius; sX <= cX + xRadius; sX++) {
 			for (int sY = cY - yRadius; sY <= cY + yRadius; sY++) {
 				for (int sZ = cZ - zRadius; sZ <= cZ + zRadius; sZ++) {
 					totalBlocks++;
-					//name = Block.blocksList[world.getBlockId(sX, sY, sZ)].getUnlocalizedName();
 					totalValue += getValue(world.getBlockId(sX, sY, sZ), world.getBlockMetadata(sX, sY, sZ));
 				}
 			}
 		}
-		System.out.println("Total Blocks: "+totalBlocks);
-		System.out.println(oreMap);
+		if (AddonUtils.isServerWorld(world)) {
+			System.out.println("Total Blocks: "+totalBlocks);
+			System.out.println(oreMap);
+			System.out.println("Total value: "+totalValue);
+		}
 	}
 	
 	public static int getValue(int blockID, int meta) {
+		if (oreMap.containsKey(Arrays.asList(blockID, meta))) {
+			return valueMap.get(oreMap.get(Arrays.asList(blockID, meta)));
+		}
 		return 0;
+	}
+	
+	public static void fillMap() {
+		for (int a = 0; a < ores.size(); a++) {
+			for (int b = 0; b < ores.get(a).size(); b++) {
+				oreMap.put(Arrays.asList(ores.get(a).get(b).itemID, ores.get(a).get(b).getItemDamage()), oreNames[a]);
+			}
+		}
+		valueMap.put("oreCopper", 1);
+		valueMap.put("oreTin", 1);
+		valueMap.put("oreSilver", 1);
+		valueMap.put("oreLead", 1);
+		valueMap.put("oreNickel", 1);
+		valueMap.put("orePlatinum", 1);
+		valueMap.put("oreZinc", 1);
+		valueMap.put("oreApatite", 1);
+		valueMap.put("oreUranium", 1);
 	}
 	
 	@Override
@@ -104,27 +124,6 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 	@Override
 	public String getDescription() {
 		return "DON'T USE THIS RIGHT NOW IT WILL DO BAD THINGS";//"A way to see how valuable the land around you is.";
-	}
-	
-	public static void fillMap() {
-		for (int a = 0; a < ores.size(); a++) {
-			for (int b = 0; b < ores.get(a).size(); b++) {
-				oreMap.put(Arrays.asList(ores.get(a).get(b).itemID, ores.get(a).get(b).getItemDamage()), oreNames[a]);
-			}
-		}
-		
-//		oreMap.put("oreCopper", OreDictionary.getOres("oreCopper"));
-//		oreMap.put("oreTin", OreDictionary.getOres("oreTin"));
-//		oreMap.put("oreSilver", OreDictionary.getOres("oreSilver"));
-//		oreMap.put("oreLead", OreDictionary.getOres("oreLead"));
-//		oreMap.put("oreNickel", OreDictionary.getOres("oreNickel"));
-//		oreMap.put("orePlatinum", OreDictionary.getOres("orePlatinum"));
-//		oreMap.put("oreZinc", OreDictionary.getOres("oreZinc"));
-//		oreMap.put("oreApatite", OreDictionary.getOres("oreApatite"));
-//		oreMap.put("oreUranium", OreDictionary.getOres("oreUranium"));
-		
-		// <King_Lemming> What you need is Map<List, String>
-		// <King_Lemming> and the list is Arrays.asList(blockId, blockMeta)
 	}
 
 	@Override
