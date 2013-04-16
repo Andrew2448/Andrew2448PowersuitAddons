@@ -23,7 +23,9 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 	public static final String ORE_SCANNER_RADIUS_X = "X Radius";
 	public static final String ORE_SCANNER_RADIUS_Y = "Y Radius";
 	public static final String ORE_SCANNER_RADIUS_Z = "Z Radius";
-	String[] oreNames = {"oreCopper", "oreTin", "oreSilver", "oreLead", "oreNickel", "orePlatinum", "oreZing", "oreApatite", "oreUranium"};
+	String name;
+	String[] oreNames = {"oreCopper", "oreTin", "oreSilver", "oreLead", "oreNickel", "orePlatinum", "oreZinc", "oreApatite", "oreUranium"};
+	int[] values = {1, 1, 1, 1, 1, 1, 1, 1, 1};
 	ArrayList<ArrayList<ItemStack>> ores = new ArrayList<ArrayList<ItemStack>>(); 
 	
 	public OreScannerModule(List<IModularItem> validItems) {
@@ -59,31 +61,37 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 		int cY = y + (fdSide.offsetY * yRadius);
 		int cZ = z + (fdSide.offsetZ * zRadius);
 		
-		for (String s : OreDictionary.getOreNames()) {
-			if (s.contains("ore")) {
-				System.out.println(s);
-			}
-		}
+//		for (String s : OreDictionary.getOreNames()) {
+//			if (s.contains("ore")) {
+//				System.out.println(s);
+//			}
+//		}
 		
 		for (int sX = cX - xRadius; sX <= cX + xRadius; sX++) {
 			for (int sY = cY - yRadius; sY <= cY + yRadius; sY++) {
 				for (int sZ = cZ - zRadius; sZ <= cZ + zRadius; sZ++) {
 					totalBlocks++;
-					totalValue += getValue(world.getBlockId(sX, sY, sZ), world.getBlockMetadata(sX, sY, sZ));
+					name = Block.blocksList[world.getBlockId(sX, sY, sZ)].getUnlocalizedName();
+					System.out.println("Name: "+name);
+					totalValue += getValue(name, world.getBlockId(sX, sY, sZ), world.getBlockMetadata(sX, sY, sZ));
 				}
 			}
 		}
 		System.out.println("Total Blocks: "+totalBlocks);
 	}
 	
-	public int getValue(int blockID, int meta) {
-		for (int a = 0; a < ores.size(); a++) {
-			for (int b = 0; b < ores.get(a).size(); b++) {
-				
-			}
-		}
-//		for (ItemStack stack : copperOres) {
-//			System.out.println(stack.itemID);
+	public int getValue(String name, int blockID, int meta) {
+//		for (int a = 0; a < ores.size(); a++) {
+//			for (int b = 0; b < ores.get(a).size(); b++) {
+//				if (ores.get(a).get(b).itemID == blockID) {
+//					if (name.equals("tile.thermalexpansion.ore")) {
+//						return values[meta];
+//					}
+//					else {
+//						return values[a];
+//					}
+//				}
+//			}
 //		}
 		return 0;
 	}

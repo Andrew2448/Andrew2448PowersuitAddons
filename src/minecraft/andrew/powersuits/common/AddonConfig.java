@@ -37,7 +37,7 @@ public class AddonConfig extends Config {
 		addModule(new MagnetModule(TORSOONLY));
 		addModule(new TorchPlacerModule(TOOLONLY));
 		addModule(new OmniWrenchModule(TOOLONLY));
-		//addModule(new OreScannerModule(TOOLONLY));
+		addModule(new OreScannerModule(TOOLONLY));
 		
 		if (ModCompatability.isIndustrialCraftLoaded()) {
 			addModule(new EUReaderModule(TOOLONLY));
