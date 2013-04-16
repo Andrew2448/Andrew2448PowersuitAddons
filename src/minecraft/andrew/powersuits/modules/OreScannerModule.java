@@ -41,7 +41,7 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 	    //addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.servoMotor, 2));
 		
 		for (int i = 0; i < oreNames.length; i++) {
-			ores.set(i, OreDictionary.getOres(oreNames[i]));
+			ores.add(i, OreDictionary.getOres(oreNames[i]));
 	    }
 	}
 	
