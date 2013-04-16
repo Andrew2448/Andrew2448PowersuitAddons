@@ -24,9 +24,7 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 	public static final String ORE_SCANNER_RADIUS_X = "X Radius";
 	public static final String ORE_SCANNER_RADIUS_Y = "Y Radius";
 	public static final String ORE_SCANNER_RADIUS_Z = "Z Radius";
-	//String name;
 	static String[] oreNames = {"oreCopper", "oreTin", "oreSilver", "oreLead", "oreNickel", "orePlatinum", "oreZinc", "oreApatite", "oreUranium"};
-	//int[] values = {1, 1, 1, 1, 1, 1, 1, 1, 1};
 	static ArrayList<ArrayList<ItemStack>> ores = new ArrayList<ArrayList<ItemStack>>(); 
 	static HashMap<List, String> oreMap = new HashMap();
 	
@@ -42,9 +40,9 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 		//addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.controlCircuit, 1));
 	    //addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.servoMotor, 2));
 		
-//		for (int i = 0; i < oreNames.length; i++) {
-//			ores.set(i, OreDictionary.getOres(oreNames[i]));
-//		}
+		for (int i = 0; i < oreNames.length; i++) {
+			ores.set(i, OreDictionary.getOres(oreNames[i]));
+	    }
 	}
 	
 	public PowerModuleBase addIntTradeoffProperty(String tradeoffName, String propertyName, double multiplier, String unit, int roundTo, int offset) {
@@ -74,7 +72,6 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 				for (int sZ = cZ - zRadius; sZ <= cZ + zRadius; sZ++) {
 					totalBlocks++;
 					//name = Block.blocksList[world.getBlockId(sX, sY, sZ)].getUnlocalizedName();
-					//System.out.println("Name: "+name);
 					totalValue += getValue(world.getBlockId(sX, sY, sZ), world.getBlockMetadata(sX, sY, sZ));
 				}
 			}
@@ -83,18 +80,6 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 	}
 	
 	public static int getValue(int blockID, int meta) {
-//		for (int a = 0; a < ores.size(); a++) {
-//			for (int b = 0; b < ores.get(a).size(); b++) {
-//				if (ores.get(a).get(b).itemID == blockID) {
-//					if (name.equals("tile.thermalexpansion.ore")) {
-//						return values[meta];
-//					}
-//					else {
-//						return values[a];
-//					}
-//				}
-//			}
-//		}
 		return 0;
 	}
 	
@@ -119,14 +104,6 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 	}
 	
 	static {
-		for (int i = 0; i < oreNames.length; i++) {
-			ores.set(i, OreDictionary.getOres(oreNames[i]));
-	    }
-//		for (ArrayList<ItemStack> list : ores) {
-//			for (ItemStack stack : list) {
-//				
-//			}
-//		}
 		for (int a = 0; a < ores.size(); a++) {
 			for (int b = 0; b < ores.get(a).size(); b++) {
 				oreMap.put(Arrays.asList(ores.get(a).get(b).itemID, ores.get(a).get(b).getItemDamage()), oreNames[a]);
@@ -144,8 +121,8 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 //		oreMap.put("oreApatite", OreDictionary.getOres("oreApatite"));
 //		oreMap.put("oreUranium", OreDictionary.getOres("oreUranium"));
 		
-		// What you need is Map<List, String>
-		// and the list is Arrays.asList(blockId, blockMeta)
+		// <King_Lemming> What you need is Map<List, String>
+		// <King_Lemming> and the list is Arrays.asList(blockId, blockMeta)
 	}
 
 	@Override
