@@ -43,6 +43,8 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 		for (int i = 0; i < oreNames.length; i++) {
 			ores.add(i, OreDictionary.getOres(oreNames[i]));
 	    }
+		
+		fillMap();
 	}
 	
 	public PowerModuleBase addIntTradeoffProperty(String tradeoffName, String propertyName, double multiplier, String unit, int roundTo, int offset) {
@@ -104,7 +106,7 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 		return "DON'T USE THIS RIGHT NOW IT WILL DO BAD THINGS";//"A way to see how valuable the land around you is.";
 	}
 	
-	static {
+	public static void fillMap() {
 		for (int a = 0; a < ores.size(); a++) {
 			for (int b = 0; b < ores.get(a).size(); b++) {
 				oreMap.put(Arrays.asList(ores.get(a).get(b).itemID, ores.get(a).get(b).getItemDamage()), oreNames[a]);
