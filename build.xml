@@ -53,6 +53,7 @@
 	            <available file="${download.dir}/UniversalElectricity_v${ueapi.version}.zip" />
 	            <available file="${download.dir}/ICBM_API_v${icbmapi.version}_api.zip" />
 	            <available file="${download.dir}/ThermalExpansion-API-${thermexapi.version}.zip" />
+                <available file="${download.dir}/CoFHCore-API.zip" />
 	            <available file="${download.dir}/AtomicScience_v${asapi.version}.zip" />
 				<available file="${download.dir}/GalacticraftAPIB.zip" />
 	        	<available file="${download.dir}/Buildcraft_api.zip" />
