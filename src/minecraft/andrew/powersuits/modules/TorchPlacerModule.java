@@ -1,7 +1,6 @@
 package andrew.powersuits.modules;
 
-import java.util.List;
-
+import andrew.powersuits.common.AddonUtils;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.MuseCommonStrings;
@@ -15,11 +14,10 @@ import net.machinemuse.powersuits.powermodule.PowerModuleBase;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
 import net.minecraft.world.World;
-import andrew.powersuits.common.AddonUtils;
+
+import java.util.List;
 
 public class TorchPlacerModule extends PowerModuleBase implements IToggleableModule, IPlayerTickModule, IRightClickModule {
 	public static final String MODULE_TORCH_PLACER = "Torch Placer";

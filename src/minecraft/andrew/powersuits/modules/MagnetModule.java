@@ -1,8 +1,7 @@
 package andrew.powersuits.modules;
 
-import java.util.Iterator;
-import java.util.List;
-
+import andrew.powersuits.common.AddonComponent;
+import andrew.powersuits.common.AddonUtils;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.MuseCommonStrings;
@@ -16,8 +15,9 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import andrew.powersuits.common.AddonComponent;
-import andrew.powersuits.common.AddonUtils;
+
+import java.util.Iterator;
+import java.util.List;
 
 public class MagnetModule extends PowerModuleBase implements IPlayerTickModule, IToggleableModule {
 	public static final String MODULE_MAGNET = "Magnet";

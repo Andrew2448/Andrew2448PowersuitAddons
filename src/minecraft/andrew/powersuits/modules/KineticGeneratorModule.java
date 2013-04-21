@@ -1,11 +1,6 @@
 package andrew.powersuits.modules;
 
-import java.util.List;
-
-import net.machinemuse.api.IModularItem;
-import net.machinemuse.api.ModuleManager;
-import net.machinemuse.api.MuseCommonStrings;
-import net.machinemuse.api.MuseItemUtils;
+import net.machinemuse.api.*;
 import net.machinemuse.api.electricity.ElectricItemUtils;
 import net.machinemuse.api.moduletrigger.IPlayerTickModule;
 import net.machinemuse.powersuits.item.ItemComponent;
@@ -13,6 +8,8 @@ import net.machinemuse.powersuits.powermodule.PowerModuleBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+
+import java.util.List;
 
 public class KineticGeneratorModule extends PowerModuleBase implements IPlayerTickModule {
 	public static final String MODULE_KINETIC_GENERATOR = "Kinetic Generator";
@@ -61,6 +58,7 @@ public class KineticGeneratorModule extends PowerModuleBase implements IPlayerTi
 				tag.setInteger("x", (int) player.posX);
 				tag.setInteger("z", (int) player.posZ);
 				ElectricItemUtils.givePlayerEnergy(player, ModuleManager.computeModularProperty(item, KINETIC_ENERGY_GENERATION));
+                MuseHeatUtils.heatPlayer(player, 2);
 			}
 		}
 	}

@@ -1,7 +1,6 @@
 package andrew.powersuits.modules;
 
-import java.util.List;
-
+import andrew.powersuits.common.ModularPowersuitsAddons;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.MuseCommonStrings;
 import net.machinemuse.api.MuseItemUtils;
@@ -12,7 +11,8 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import andrew.powersuits.common.ModularPowersuitsAddons;
+
+import java.util.List;
 
 public class InPlaceAssemblerModule extends PowerModuleBase implements IRightClickModule {
 	

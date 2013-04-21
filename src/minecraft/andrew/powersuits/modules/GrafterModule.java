@@ -1,16 +1,10 @@
 package andrew.powersuits.modules;
 
-import java.util.List;
-
-import forestry.api.arboriculture.IToolGrafter;
-
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.MuseCommonStrings;
-import net.machinemuse.api.MuseItemUtils;
 import net.machinemuse.api.electricity.ElectricItemUtils;
 import net.machinemuse.api.moduletrigger.IBlockBreakingModule;
-import net.machinemuse.powersuits.item.ItemComponent;
 import net.machinemuse.powersuits.powermodule.PowerModuleBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -19,6 +13,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.event.entity.player.PlayerEvent.BreakSpeed;
+
+import java.util.List;
 
 public class GrafterModule extends PowerModuleBase implements IBlockBreakingModule {
 	

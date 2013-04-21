@@ -1,13 +1,11 @@
 package andrew.powersuits.modules;
 
+import andrew.powersuits.common.AddonUtils;
+import buildcraft.api.tools.IToolWrench;
+import cofh.api.tileentity.IReconfigurableFacing;
 import ic2.api.IWrenchable;
 import ic2.api.energy.tile.IEnergySink;
 import ic2.api.energy.tile.IEnergySource;
-
-import java.util.List;
-
-import thermalexpansion.api.tileentity.IReconfigurableFacing;
-
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.MuseCommonStrings;
@@ -21,8 +19,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import andrew.powersuits.common.AddonUtils;
-import buildcraft.api.tools.IToolWrench;
+
+import java.util.List;
 
 public class OmniWrenchModule extends PowerModuleBase implements IRightClickModule, IToolWrench {
 	

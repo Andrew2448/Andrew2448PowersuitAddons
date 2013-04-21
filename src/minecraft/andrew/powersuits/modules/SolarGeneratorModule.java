@@ -1,7 +1,6 @@
 package andrew.powersuits.modules;
 
-import java.util.List;
-
+import andrew.powersuits.common.AddonComponent;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.MuseCommonStrings;
@@ -14,7 +13,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import andrew.powersuits.common.AddonComponent;
+
+import java.util.List;
 
 public class SolarGeneratorModule extends PowerModuleBase implements IPlayerTickModule {
 	public static final String MODULE_SOLAR_GENERATOR = "Solar Generator";

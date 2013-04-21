@@ -1,14 +1,10 @@
 package andrew.powersuits.modules;
 
-import java.util.List;
-
-import forestry.api.apiculture.IArmorApiarist;
-
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.MuseCommonStrings;
 import net.machinemuse.powersuits.powermodule.PowerModuleBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
+
+import java.util.List;
 
 public class ApiaristArmorModule extends PowerModuleBase {
 	

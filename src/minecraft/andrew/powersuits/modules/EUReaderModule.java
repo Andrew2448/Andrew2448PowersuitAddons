@@ -1,19 +1,11 @@
 package andrew.powersuits.modules;
 
+import andrew.powersuits.common.AddonUtils;
+import cpw.mods.fml.common.FMLCommonHandler;
 import ic2.api.energy.EnergyNet;
 import ic2.api.energy.tile.IEnergyConductor;
 import ic2.api.energy.tile.IEnergySink;
 import ic2.api.energy.tile.IEnergySource;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.text.DecimalFormat;
-import java.util.List;
-
-import cpw.mods.fml.common.FMLCommonHandler;
-
-import andrew.powersuits.common.AddonUtils;
-import andrew.powersuits.common.ModularPowersuitsAddons;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.MuseCommonStrings;
 import net.machinemuse.api.MuseItemUtils;
@@ -21,12 +13,14 @@ import net.machinemuse.api.moduletrigger.IRightClickModule;
 import net.machinemuse.powersuits.common.ModCompatability;
 import net.machinemuse.powersuits.item.ItemComponent;
 import net.machinemuse.powersuits.powermodule.PowerModuleBase;
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import java.text.DecimalFormat;
+import java.util.List;
 
 public class EUReaderModule extends PowerModuleBase implements IRightClickModule {
 	

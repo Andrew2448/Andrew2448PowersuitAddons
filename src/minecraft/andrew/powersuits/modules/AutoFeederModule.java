@@ -1,7 +1,6 @@
 package andrew.powersuits.modules;
 
-import java.util.List;
-
+import andrew.powersuits.common.AddonUtils;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.MuseCommonStrings;
@@ -16,7 +15,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.FoodStats;
-import andrew.powersuits.common.AddonUtils;
+
+import java.util.List;
 
 public class AutoFeederModule extends PowerModuleBase implements IToggleableModule, IPlayerTickModule {
 	public static final String MODULE_AUTO_FEEDER = "Auto-Feeder";
