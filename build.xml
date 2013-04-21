@@ -161,7 +161,7 @@
 			<get src="http://machinemuse.minecraftforge.net/GalacticraftAPIB.zip" dest="${download.dir}/GalacticraftAPIB.zip" />
 		
 		    <echo message="Downloading Buildcraft API..." />
-			<get src="http://machinemuse.mineacraftforge.net/Buildcraft_api.zip" dest="${download.dir}/Buildcraft_api.zip" />
+			<get src="http://machinemuse.minecraftforge.net/Buildcraft_api.zip" dest="${download.dir}/Buildcraft_api.zip" />
 		
 		    <echo message="Downloading Forestry API..." />
 		    <get src="http://machinemuse.minecraftforge.net/forestry-api-${forestryapi.version}.zip" dest="${download.dir}/forestry-api-${forestryapi.version}.zip" />
