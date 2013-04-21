@@ -8,7 +8,7 @@
     <property name="fullversion" value="${build.ver}-${env.BUILD_NUMBER}" />
 	<property name="mpsrecommended" value="326" />
 	<property name="mcp.version" value="742" />
-	<property name="forgebuild" value="651" />
+	<property name="forgebuild" value="661" />
 	<property name="forge.version" value="1.5.1-7.7.1.${forgebuild}" />
 	<property name="ic2api.version" value="1.115.280-lf" />
 	<property name="ueapi.version" value="1.3.1.56" />
@@ -54,7 +54,7 @@
 	            <available file="${download.dir}/ICBM_API_v${icbmapi.version}_api.zip" />
 	            <available file="${download.dir}/ThermalExpansion-API-${thermexapi.version}.zip" />
 	            <available file="${download.dir}/AtomicScience_v${asapi.version}.zip" />
-				<available file="${download.dir}/Galacticraft API.zip" />
+				<available file="${download.dir}/GalacticraftAPIB.zip" />
 	        	<available file="${download.dir}/Buildcraft_api.zip" />
 	        	<available file="${download.dir}/forestry-api-${forestryapi.version}.zip" />
 	        </and>
@@ -154,7 +154,7 @@
 	        <get src="http://machinemuse.net/ThermalExpansion-API-${thermexapi.version}.zip" dest="${download.dir}/ThermalExpansion-API-${thermexapi.version}.zip" />
 			
 			<echo message="Downloading Galacticraft API..." />
-			<get src="http://machinemuse.net/Galacticraft API.zip" dest="${download.dir}/Galacticraft API.zip" />
+			<get src="http://machinemuse.minecraftforge.net/GalacticraftAPIB.zip" dest="${download.dir}/GalacticraftAPIB.zip" />
 		
 		    <echo message="Downloading Buildcraft API..." />
 			<get src="http://machinemuse.net/Buildcraft_api.zip" dest="${download.dir}/Buildcraft_api.zip" />
@@ -202,7 +202,7 @@
 		    <move file="${download.dir}/thermalexpansion/api/tileentity/IReconfigurableFacing.java" todir="${mcpsrc.dir}/thermalexpansion/api/tileentity" />
 			
 			<echo message="Extracting Galacticraft API... " />
-			<unzip src="${download.dir}/Galacticraft API.zip" dest="${download.dir}" />
+			<unzip src="${download.dir}/GalacticraftAPIB.zip" dest="${download.dir}" />
 			<mkdir dir="${mcpsrc.dir}/micdoodle8/mods/galacticraft/API" />
 			<move file="${download.dir}/micdoodle8/mods/galacticraft/API/EnumGearType.java" todir="${mcpsrc.dir}/micdoodle8/mods/galacticraft/API" />
 			<move file="${download.dir}/micdoodle8/mods/galacticraft/API/IBreathableArmor.java" todir="${mcpsrc.dir}/micdoodle8/mods/galacticraft/API" />
@@ -254,6 +254,10 @@
 		</copy>
 		<replace dir="${mcpsrc.dir}/andrew/powersuits/common" token="@VERSION@" value="${fullversion}" />
 		<replace dir="${main.dir}" token="@VERSION@" value="${fullversion}" />
+		
+		<echo message="Applying Scala patches..." />
+		<get src="http://overminddl1.com/minecraft/mcp_update_scala3.zip" dest="${download.dir}/scalapatch.zip" />
+		<unzip src="${download.dir}/scalapatch.zip" dest="${mcp.dir}" />
 	</target>
 	
 	<!-- ============================================================Recompile================================================================================= -->

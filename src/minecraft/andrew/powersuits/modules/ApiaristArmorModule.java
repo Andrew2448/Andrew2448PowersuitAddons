@@ -10,7 +10,7 @@ import net.machinemuse.powersuits.powermodule.PowerModuleBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
-public class ApiaristArmorModule extends PowerModuleBase implements IArmorApiarist {
+public class ApiaristArmorModule extends PowerModuleBase {
 	
 	public static final String MODULE_APIARIST_ARMOR = "Apiarist Armor";
 	public static final String APIARIST_ARMOR_ENERGY_CONSUMPTION = "Apiarist Armor Energy Consumption";
@@ -27,7 +27,6 @@ public class ApiaristArmorModule extends PowerModuleBase implements IArmorApiari
 		return "torchplacer";
 	}
 
-	@Override
 	public String getCategory() {
 		return MuseCommonStrings.CATEGORY_SPECIAL;
 	}
@@ -40,11 +39,5 @@ public class ApiaristArmorModule extends PowerModuleBase implements IArmorApiari
 	@Override
 	public String getDescription() {
 		return "A set of Forestry apiarist armor integrated with your modular armor.";
-	}
-
-	@Override
-	public boolean protectPlayer(EntityPlayer player, ItemStack armor, String cause, boolean doProtect) {
-		System.out.println("Apiarist Armor");
-		return true;
 	}
 }

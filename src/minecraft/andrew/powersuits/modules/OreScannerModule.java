@@ -10,6 +10,7 @@ import andrew.powersuits.common.AddonUtils;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.MuseCommonStrings;
+import net.machinemuse.api.electricity.ElectricItemUtils;
 import net.machinemuse.api.moduletrigger.IRightClickModule;
 import net.machinemuse.powersuits.powermodule.PowerModuleBase;
 import net.minecraft.block.Block;
@@ -61,7 +62,8 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 		int yRadius = (int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_Y);
 		int zRadius = (int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_Z);
 		
-		int totalValue = 0, totalBlocks = 0;
+		int totalValue = 0, totalEnergy = 0;
+		// int totalBlocks = 0;
 		ForgeDirection fdSide = ForgeDirection.getOrientation(side).getOpposite();
 		int cX = x + (fdSide.offsetX * xRadius);
 		int cY = y + (fdSide.offsetY * yRadius);
@@ -70,12 +72,15 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 		for (int sX = cX - xRadius; sX <= cX + xRadius; sX++) {
 			for (int sY = cY - yRadius; sY <= cY + yRadius; sY++) {
 				for (int sZ = cZ - zRadius; sZ <= cZ + zRadius; sZ++) {
-					totalBlocks++;
-					//totalValue += getValue(world.getBlockId(sX, sY, sZ), world.getBlockMetadata(sX, sY, sZ));
+					//totalBlocks++;
+					totalValue += getValue(world.getBlockId(sX, sY, sZ), world.getBlockMetadata(sX, sY, sZ));
+					ElectricItemUtils.drainPlayerEnergy(player, ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_ENERGY_CONSUMPTION));
+					totalEnergy += ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_ENERGY_CONSUMPTION);
 				}
 			}
 		}
 		if (AddonUtils.isServerWorld(world)) {
+			System.out.println("Total Energy: "+totalEnergy);
 			//System.out.println("Total Blocks: "+totalBlocks);
 			//System.out.println(oreMap);
 			//System.out.println("Total value: "+totalValue);
@@ -83,7 +88,7 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 	}
 	
 	public static int getValue(int blockID, int meta) {
-		if (oreMap.containsKey(Arrays.asList(blockID, meta))) {
+		if ((oreMap.containsKey(Arrays.asList(blockID, meta))) && (valueMap.containsKey(oreMap.get(Arrays.asList(blockID, meta))))) {
 			return valueMap.get(oreMap.get(Arrays.asList(blockID, meta)));
 		}
 		return 0;
@@ -104,22 +109,25 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 		oreMap.put(Arrays.asList(Block.oreLapis.blockID, 0), "oreLapis");
 		oreMap.put(Arrays.asList(Block.oreNetherQuartz.blockID, 0), "oreNetherQuartz");
 		valueMap.put("oreCoal", 1);
-		valueMap.put("oreIron", 1);
-		valueMap.put("oreGold", 1);
-		valueMap.put("oreRedstone", 1);
-		valueMap.put("oreDiamond", 1);
-		valueMap.put("oreEmerald", 1);
-		valueMap.put("oreLapis", 1);
-		valueMap.put("oreNetherQuartz", 1);
-		valueMap.put("oreCopper", 1);
-		valueMap.put("oreTin", 1);
-		valueMap.put("oreSilver", 1);
-		valueMap.put("oreLead", 1);
-		valueMap.put("oreNickel", 1);
-		valueMap.put("orePlatinum", 1);
+		valueMap.put("oreIron", 4);
+		valueMap.put("oreGold", 6);
+		valueMap.put("oreRedstone", 3);
+		valueMap.put("oreDiamond", 16);
+		valueMap.put("oreEmerald", 18);
+		valueMap.put("oreLapis", 12);
+		valueMap.put("oreNetherQuartz", 8);
+		valueMap.put("oreCopper", 4);
+		valueMap.put("oreTin", 5);
+		valueMap.put("oreSilver", 5);
+		valueMap.put("oreLead", 6);
+		valueMap.put("oreNickel", 14);
+		valueMap.put("orePlatinum", 8);
 		valueMap.put("oreZinc", 1);
-		valueMap.put("oreApatite", 1);
-		valueMap.put("oreUranium", 1);
+		valueMap.put("oreApatite", 2);
+		valueMap.put("oreUranium", 14);
+		valueMap.put("oreXychorium", 2);
+		valueMap.put("oreNaturalAluminum", 3);
+		valueMap.put("oreCertusQuartz", 5);
 	}
 	
 	@Override
