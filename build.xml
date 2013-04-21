@@ -139,19 +139,19 @@
 	<!-- ============================================================Download APIs============================================================================= -->
 	<target name="download apis" unless="${have-apis}">
 	        <echo message="Downloading IC2 API... " />
-	        <get src="http://machinemuse.net/industrialcraft-2-api_${ic2api.version}.zip" dest="${download.dir}/industrialcraft-2-api_${ic2api.version}.zip" />
+	        <get src="http://machinemuse.minecraftforge.net/industrialcraft-2-api_${ic2api.version}.zip" dest="${download.dir}/industrialcraft-2-api_${ic2api.version}.zip" />
 
 	        <echo message="Downloading Universal Electricity API..." />
-	        <get src="http://machinemuse.net/UniversalElectricity_v${ueapi.version}.zip" dest="${download.dir}/UniversalElectricity_v${ueapi.version}.zip" />
+	        <get src="http://machinemuse.minecraftforge.net/UniversalElectricity_v${ueapi.version}.zip" dest="${download.dir}/UniversalElectricity_v${ueapi.version}.zip" />
 
 	        <echo message="Downloading ICBM API..." />
-	        <get src="http://machinemuse.net/ICBM_API_v${icbmapi.version}.zip" dest="${download.dir}/ICBM_API_v${icbmapi.version}.zip" />
+	        <get src="http://machinemuse.minecraftforge.net/ICBM_API_v${icbmapi.version}.zip" dest="${download.dir}/ICBM_API_v${icbmapi.version}.zip" />
 
 	        <echo message="Downloading Atomic Science API..." />
-	        <get src="http://machinemuse.net/AtomicScience_v${asapi.version}_api.zip" dest="${download.dir}/AtomicScience_v${asapi.version}_api.zip" />
+	        <get src="http://machinemuse.minecraftforge.net/AtomicScience_v${asapi.version}_api.zip" dest="${download.dir}/AtomicScience_v${asapi.version}_api.zip" />
 
 	        <echo message="Downloading ThermEx API..." />
-	        <get src="http://machinemuse.net/ThermalExpansion-API-${thermexapi.version}.zip" dest="${download.dir}/ThermalExpansion-API-${thermexapi.version}.zip" />
+	        <get src="http://machinemuse.minecraftforge.net/ThermalExpansion-API-${thermexapi.version}.zip" dest="${download.dir}/ThermalExpansion-API-${thermexapi.version}.zip" />
 
             <echo message="Downloading CoFH API..." />
             <get src="http://machinemuse.minecraftforge.net/CoFHCore-API.zip" dest="${download.dir}/CoFHCore-API.zip" />
@@ -160,10 +160,10 @@
 			<get src="http://machinemuse.minecraftforge.net/GalacticraftAPIB.zip" dest="${download.dir}/GalacticraftAPIB.zip" />
 		
 		    <echo message="Downloading Buildcraft API..." />
-			<get src="http://machinemuse.net/Buildcraft_api.zip" dest="${download.dir}/Buildcraft_api.zip" />
+			<get src="http://machinemuse.mineacraftforge.net/Buildcraft_api.zip" dest="${download.dir}/Buildcraft_api.zip" />
 		
 		    <echo message="Downloading Forestry API..." />
-		    <get src="http://machinemuse.net/forestry-api-${forestryapi.version}.zip" dest="${download.dir}/forestry-api-${forestryapi.version}.zip" />
+		    <get src="http://machinemuse.minecraftforge.net/forestry-api-${forestryapi.version}.zip" dest="${download.dir}/forestry-api-${forestryapi.version}.zip" />
 
 	</target>
 	
