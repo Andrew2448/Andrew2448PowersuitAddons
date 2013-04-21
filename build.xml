@@ -203,7 +203,11 @@
 	        <mkdir dir="${mcpsrc.dir}/thermalexpansion/api/core" />
 	        <move file="${download.dir}/thermalexpansion/api/item/ItemRegistry.java" todir="${mcpsrc.dir}/thermalexpansion/api/item" />
 	        <move file="${download.dir}/thermalexpansion/api/item/IChargeableItem.java" todir="${mcpsrc.dir}/thermalexpansion/api/item" />
-		    <move file="${download.dir}/cofh/api/tileentity/IReconfigurableFacing.java" todir="${mcpsrc.dir}/cofh/api/tileentity" />
+
+            <echo message="Extracting CoFH API..." />
+            <unzip src="${download.dir}/CoFHCore-API.zip" dest="${download.dir}" />
+            <mkdir dir="${mcpsrc.dir}/cofh/api/tileentity" />
+            <move file="${download.dir}/cofh/api/tileentity/IReconfigurableFacing.java" todir="${mcpsrc.dir}/cofh/api/tileentity" />
 			
 			<echo message="Extracting Galacticraft API... " />
 			<unzip src="${download.dir}/GalacticraftAPIB.zip" dest="${download.dir}" />
