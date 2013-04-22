@@ -21,6 +21,6 @@ public class PropertyModifierIntLinearAdditive extends PropertyModifierLinearAdd
 	}
 
 	public long roundWithOffset(double input, int roundTo, int offset){
-		return Math.round((input + offset)/roundTo)*roundTo - offset; 
+		return Math.round((input + offset)/roundTo)*roundTo - offset;
 	}
 }

@@ -1,11 +1,14 @@
 package andrew.powersuits.modules;
 
+import andrew.powersuits.common.AddonComponent;
 import andrew.powersuits.common.AddonUtils;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.MuseCommonStrings;
+import net.machinemuse.api.MuseItemUtils;
 import net.machinemuse.api.electricity.ElectricItemUtils;
 import net.machinemuse.api.moduletrigger.IRightClickModule;
+import net.machinemuse.powersuits.item.ItemComponent;
 import net.machinemuse.powersuits.powermodule.PowerModuleBase;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,11 +41,11 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 		addBaseProperty(ORE_SCANNER_RADIUS_X, 1);
 		addBaseProperty(ORE_SCANNER_RADIUS_Y, 1);
 		addBaseProperty(ORE_SCANNER_RADIUS_Z, 1);
-		addIntTradeoffProperty("X Radius", ORE_SCANNER_RADIUS_X, 3, "", 1, 0);
-		addIntTradeoffProperty("Y Radius", ORE_SCANNER_RADIUS_Y, 3, "", 1, 0);
-		addIntTradeoffProperty("Z Radius", ORE_SCANNER_RADIUS_Z, 3, "", 1, 0);
-		//addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.controlCircuit, 1));
-	    //addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.servoMotor, 2));
+		addIntTradeoffProperty("X Radius", ORE_SCANNER_RADIUS_X, 3, "m", 1, 0);
+		addIntTradeoffProperty("Y Radius", ORE_SCANNER_RADIUS_Y, 3, "m", 1, 0);
+		addIntTradeoffProperty("Z Radius", ORE_SCANNER_RADIUS_Z, 3, "m", 1, 0);
+		addInstallCost(MuseItemUtils.copyAndResize(AddonComponent.computerChip, 1));
+	    addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.controlCircuit, 2));
 		
 		for (int i = 0; i < oreNames.length; i++) {
 			ores.add(i, OreDictionary.getOres(oreNames[i]));
