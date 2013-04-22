@@ -1,4 +1,4 @@
-<project name="ModularPowersuitsAddons" default="clean">
+<project name="ModularPowersuitsAddons" default="release">
 	
     <property environment="env" />
 
