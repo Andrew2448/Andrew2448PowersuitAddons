@@ -1,10 +1,8 @@
 package andrew.powersuits.container;
 
-import net.machinemuse.api.MuseItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ContainerWorkbench;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class PortableCraftingContainer extends ContainerWorkbench {

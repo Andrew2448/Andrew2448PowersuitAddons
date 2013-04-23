@@ -1,7 +1,7 @@
 package andrew.powersuits.common;
 
 import net.machinemuse.api.IModularItem;
-import net.machinemuse.api.MuseItemUtils;
+import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

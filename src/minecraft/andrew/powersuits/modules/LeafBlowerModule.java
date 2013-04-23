@@ -2,12 +2,12 @@ package andrew.powersuits.modules;
 
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
-import net.machinemuse.api.MuseCommonStrings;
-import net.machinemuse.api.MuseItemUtils;
-import net.machinemuse.api.electricity.ElectricItemUtils;
 import net.machinemuse.api.moduletrigger.IBlockBreakingModule;
 import net.machinemuse.powersuits.item.ItemComponent;
 import net.machinemuse.powersuits.powermodule.PowerModuleBase;
+import net.machinemuse.utils.ElectricItemUtils;
+import net.machinemuse.utils.MuseCommonStrings;
+import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockLeaves;
@@ -90,14 +90,14 @@ public class LeafBlowerModule extends PowerModuleBase implements IBlockBreakingM
                 for (int j = -leaf; j < leaf; j++) {
                     for (int k = -leaf; k < leaf; k++) {
                         int id = world.getBlockId(x+i, y+j, z+k);
-                        int meta = world.getBlockId(x+i, y+j, z+k);
+                        int meta = world.getBlockMetadata(x + i, y + j, z + k);
                         Block tempBlock = Block.blocksList[id];
                         if (tempBlock != null && tempBlock.isLeaves(world, x+i, y+j, z+k)) {
                             if (block.canHarvestBlock(player, meta)) {
                                 block.harvestBlock(world, player, x+i, y+j, z+k, meta);
                                 totalEnergyDrain += ModuleManager.computeModularProperty(stack, LEAF_BLOWER_ENERGY_CONSUMPTION);
                             }
-                            world.setBlock(x+i, y+j, z+k, 0);
+                            world.setBlockToAir(x+i, y+j, z+k);
                             b = true;
                         }
                     }
@@ -109,14 +109,14 @@ public class LeafBlowerModule extends PowerModuleBase implements IBlockBreakingM
             for (int j = -plant; j < plant; j++) {
                 for (int k = -plant; k < plant; k++) {
                     int id = world.getBlockId(x + i, y + j, z + k);
-                    int meta = world.getBlockId(x + i, y + j, z + k);
+                    int meta = world.getBlockMetadata(x + i, y + j, z + k);
                     Block tempBlock = Block.blocksList[id];
                     if (tempBlock != null && tempBlock instanceof BlockFlower) {
                         if (block.canHarvestBlock(player, meta)) {
                             block.harvestBlock(world, player, x + i, y + j, z + k, meta);
                             totalEnergyDrain += ModuleManager.computeModularProperty(stack, LEAF_BLOWER_ENERGY_CONSUMPTION);
                         }
-                        world.setBlock(x + i, y + j, z + k, 0);
+                        world.setBlockToAir(x + i, y + j, z + k);
                         b = true;
                     }
                 }

@@ -1,7 +1,7 @@
 package andrew.powersuits.modules;
 
-import net.machinemuse.api.MuseItemUtils;
 import net.machinemuse.powersuits.powermodule.PropertyModifierLinearAdditive;
+import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class PropertyModifierIntLinearAdditive extends PropertyModifierLinearAdditive {

@@ -3,12 +3,12 @@ package andrew.powersuits.modules;
 import andrew.powersuits.common.AddonComponent;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
-import net.machinemuse.api.MuseCommonStrings;
-import net.machinemuse.api.MuseItemUtils;
-import net.machinemuse.api.electricity.ElectricItemUtils;
 import net.machinemuse.api.moduletrigger.IPlayerTickModule;
 import net.machinemuse.powersuits.item.ItemComponent;
 import net.machinemuse.powersuits.powermodule.PowerModuleBase;
+import net.machinemuse.utils.ElectricItemUtils;
+import net.machinemuse.utils.MuseCommonStrings;
+import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
@@ -64,12 +64,10 @@ public class SolarGeneratorModule extends PowerModuleBase implements IPlayerTick
 		boolean moonVisible = !world.isDaytime() && !isRaining && world.canBlockSeeTheSky(xCoord, MathHelper.floor_double(player.posY) + 1, zCoord);
 		if (!world.isRemote && !world.provider.hasNoSky && (world.getTotalWorldTime() % 80) == 0) {
 			if (sunVisible) {
-				ElectricItemUtils.givePlayerEnergy(player,
-						ModuleManager.computeModularProperty(item, SOLAR_ENERGY_GENERATION_DAY));
+				ElectricItemUtils.givePlayerEnergy(player, ModuleManager.computeModularProperty(item, SOLAR_ENERGY_GENERATION_DAY));
 			}
 			else if (moonVisible) {
-				ElectricItemUtils.givePlayerEnergy(player,
-						ModuleManager.computeModularProperty(item, SOLAR_ENERGY_GENERATION_NIGHT));
+				ElectricItemUtils.givePlayerEnergy(player, ModuleManager.computeModularProperty(item, SOLAR_ENERGY_GENERATION_NIGHT));
 			}
 		}
 	}

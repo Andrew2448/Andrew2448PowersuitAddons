@@ -1,25 +1,24 @@
 package andrew.powersuits.tick;
 
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.EnumSet;
-
-import net.machinemuse.api.ModuleManager;
-import net.machinemuse.api.MuseItemUtils;
-import net.machinemuse.general.MuseRenderer;
-import net.machinemuse.general.MuseStringUtils;
-import net.machinemuse.powersuits.item.ItemPowerArmorHelmet;
-import net.machinemuse.powersuits.item.ItemPowerGauntlet;
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import andrew.powersuits.common.AddonUtils;
 import andrew.powersuits.modules.AutoFeederModule;
 import andrew.powersuits.modules.TorchPlacerModule;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
+import net.machinemuse.api.ModuleManager;
+import net.machinemuse.powersuits.item.ItemPowerArmorHelmet;
+import net.machinemuse.powersuits.item.ItemPowerGauntlet;
+import net.machinemuse.utils.MuseItemUtils;
+import net.machinemuse.utils.MuseRenderer;
+import net.machinemuse.utils.MuseStringUtils;
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import java.util.ArrayList;
+import java.util.EnumSet;
 
 public class RenderTickHandler implements ITickHandler {
 	
