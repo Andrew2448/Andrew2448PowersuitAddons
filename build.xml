@@ -182,6 +182,7 @@
         <move file="${download.dir}/ic2/api/Items.java" todir="${mcpsrc.dir}/ic2/api/" />
         <move file="${download.dir}/ic2/api/Direction.java" todir="${mcpsrc.dir}/ic2/api/" />
         <move file="${download.dir}/ic2/api/IWrenchable.java" todir="${mcpsrc.dir}/ic2/api/" />
+        <move file="${download.dir}/ic2/api/energy/EnergyNet.java" todir="${mcpsrc.dir}/ic2/api/energy" />
         <move todir="${mcpsrc.dir}/ic2/api/energy/tile/" >
             <fileset dir="${download.dir}/ic2/api/energy/tile/" />
         </move>
