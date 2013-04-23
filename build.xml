@@ -1,4 +1,4 @@
-<project name="ModularPowersuitsAddons" default="release">
+<project name="ModularPowersuitsAddons" default="fullclean">
 	
     <property environment="env" />
 
@@ -316,6 +316,11 @@
 		
 		<antcall target="clean" />
 	</target>
+
+    <target name="fullclean" >
+        <delete dir="${build.dir}" />
+        <delete dir="${download.dir}" />
+    </target>
 </project>
 		
 		
