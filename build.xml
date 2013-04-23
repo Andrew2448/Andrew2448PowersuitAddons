@@ -68,6 +68,8 @@
 		<delete dir="${mcpsrc.dir}/andrew" />
 	    <delete dir="${mcpsrc.dir}/net/machinemuse" />
 	    <delete dir="${download.dir}/MachineMusePowersuits" />
+        <delete dir="${download.dir}" />
+        <mkdir dir="${download.dir" />
 	</target>
 	
 	<!-- ============================================================Download forge============================================================================ -->
