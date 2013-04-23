@@ -67,9 +67,9 @@
 	<target name="clean">
 		<delete dir="${mcpsrc.dir}/andrew" />
 	    <delete dir="${mcpsrc.dir}/net/machinemuse" />
+        <delete file="${mcpsrc.dir}/atomicscience/api/IAntiPoisonArmor.java" />
+        <delete file="${mcpsrc.dir}/atomicscience/api/poison/Poison.java" />
 	    <delete dir="${download.dir}/MachineMusePowersuits" />
-        <delete dir="${download.dir}" />
-        <mkdir dir="${download.dir}" />
 	</target>
 	
 	<!-- ============================================================Download forge============================================================================ -->
