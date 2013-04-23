@@ -18,8 +18,10 @@ import java.util.List;
 public class KineticGeneratorModule extends PowerModuleBase implements IPlayerTickModule {
 	public static final String MODULE_KINETIC_GENERATOR = "Kinetic Generator";
 	public static final String KINETIC_ENERGY_GENERATION = "Energy Generation Per 5 Blocks";
+    public static final String KINETIC_HEAT_GENERATION = "Heat Generation";
 	public KineticGeneratorModule(List<IModularItem> validItems) {
 		super(validItems);
+        addBaseProperty(KINETIC_HEAT_GENERATION, 5);
 		addBaseProperty(MuseCommonStrings.WEIGHT, 1000);
 		addBaseProperty(KINETIC_ENERGY_GENERATION, 200);
 		addTradeoffProperty("Energy Generated", KINETIC_ENERGY_GENERATION, 600, " Joules");
@@ -62,7 +64,7 @@ public class KineticGeneratorModule extends PowerModuleBase implements IPlayerTi
 				tag.setInteger("x", (int) player.posX);
 				tag.setInteger("z", (int) player.posZ);
 				ElectricItemUtils.givePlayerEnergy(player, ModuleManager.computeModularProperty(item, KINETIC_ENERGY_GENERATION));
-                MuseHeatUtils.heatPlayer(player, 2);
+                MuseHeatUtils.heatPlayer(player, ModuleManager.computeModularProperty(item, KINETIC_HEAT_GENERATION));
 			}
 		}
 	}
