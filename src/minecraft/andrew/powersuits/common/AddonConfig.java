@@ -26,7 +26,6 @@ public class AddonConfig extends Config {
 		addModule(new AutoFeederModule(HEADONLY));
 		addModule(new MagnetModule(TORSOONLY));
 		addModule(new TorchPlacerModule(TOOLONLY));
-		addModule(new OmniWrenchModule(TOOLONLY));
 		//addModule(new OreScannerModule(TOOLONLY));
         addModule(new LeafBlowerModule(TOOLONLY));
 		
