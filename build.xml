@@ -263,6 +263,7 @@
 	
 	<!-- ============================================================Build===================================================================================== -->
 	<target name="build" depends="update names">
+        <delete dir="${mcpsrc.dir}/andrew" />
 		<mkdir dir="${mcpsrc.dir}/andrew" />
 		<copy todir="${mcpsrc.dir}/andrew">
 		   <fileset dir="${src.dir}/andrew" />
