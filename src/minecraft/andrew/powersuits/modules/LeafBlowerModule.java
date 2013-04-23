@@ -57,7 +57,7 @@ public class LeafBlowerModule extends PowerModuleBase implements IBlockBreakingM
 
     @Override
     public String getDescription() {
-        return "Shearing air based device with Intense Cutting Kinetic force, for Leaf Elimination.       HINT: Read capital letters.";
+        return "Create a torrent of air to knock plants out of the ground and leaves off of trees.";
     }
 
     @Override
