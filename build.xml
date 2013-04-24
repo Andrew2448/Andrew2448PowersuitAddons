@@ -350,10 +350,7 @@
 
         <jar destfile="${dist.dir}/MPSA-${fullversion}_MPS-${mpsrecommended}.jar">
             <fileset dir="${mcp.dir}/reobf/minecraft" includes="andrew/**"/>
-            <fileset dir="${mcp.dir}/reobf/minecraft" includes="buildcraft/**"/>
-            <fileset dir="${mcp.dir}/reobf/minecraft" includes="forestry/**"/>
             <fileset file="${main.dir}/mcmod.info"/>
-            <fileset file="${main.dir}/Changelog.txt"/>
             <fileset file="${main.dir}/MODLICENSE.txt"/>
             <fileset dir="${main.dir}" includes="mods/**"/>
         </jar>
