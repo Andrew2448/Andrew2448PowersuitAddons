@@ -1,5 +1,6 @@
 package andrew.powersuits.common;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
@@ -105,4 +106,12 @@ public class AddonUtils {
 	public static boolean isServerWorld(World world) {
 		return !world.isRemote;
 	}
+
+    public static boolean isClientSide() {
+        return FMLCommonHandler.instance().getEffectiveSide().isClient();
+    }
+
+    public static boolean isServerSide() {
+        return FMLCommonHandler.instance().getEffectiveSide().isServer();
+    }
 }
