@@ -32,8 +32,7 @@ public class ThermalGeneratorModule extends PowerModuleBase implements IPlayerTi
         if (ModCompatability.isIndustrialCraftLoaded()) {
             addInstallCost(ModCompatability.getIC2Item("geothermalGenerator"));
             addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.controlCircuit, 1));
-        }
-        else {
+        } else {
             addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.controlCircuit, 2));
             addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.basicPlating, 1));
         }
@@ -65,17 +64,15 @@ public class ThermalGeneratorModule extends PowerModuleBase implements IPlayerTi
         double currentHeat = MuseHeatUtils.getPlayerHeat(player);
         double maxHeat = MuseHeatUtils.getMaxHeat(player);
         if (player.worldObj.getTotalWorldTime() % 20 == 0) {
-            System.out.println("Current heat: "+currentHeat+" | Max heat: "+maxHeat);
-            System.out.println("Percentile: "+(currentHeat/maxHeat)*100+"%");
+            System.out.println("Current heat: " + currentHeat + " | Max heat: " + maxHeat);
+            System.out.println("Percentile: " + (currentHeat / maxHeat) * 100 + "%");
             if (player.isBurning()) {
-                ElectricItemUtils.givePlayerEnergy(player, 4*ModuleManager.computeModularProperty(item, THERMAL_ENERGY_GENERATION));
+                ElectricItemUtils.givePlayerEnergy(player, 4 * ModuleManager.computeModularProperty(item, THERMAL_ENERGY_GENERATION));
                 System.out.println("Is Burning");
-            }
-            else if (currentHeat >= 400) {
-                ElectricItemUtils.givePlayerEnergy(player, 2*ModuleManager.computeModularProperty(item, THERMAL_ENERGY_GENERATION));
+            } else if (currentHeat >= 400) {
+                ElectricItemUtils.givePlayerEnergy(player, 2 * ModuleManager.computeModularProperty(item, THERMAL_ENERGY_GENERATION));
                 System.out.println("Is Above 400");
-            }
-            else if ((currentHeat/maxHeat) >= 0.9) {
+            } else if ((currentHeat / maxHeat) >= 0.9) {
                 ElectricItemUtils.givePlayerEnergy(player, ModuleManager.computeModularProperty(item, THERMAL_ENERGY_GENERATION));
                 System.out.println("Is Above 90%");
             }
@@ -83,5 +80,6 @@ public class ThermalGeneratorModule extends PowerModuleBase implements IPlayerTi
     }
 
     @Override
-    public void onPlayerTickInactive(EntityPlayer player, ItemStack item) {}
+    public void onPlayerTickInactive(EntityPlayer player, ItemStack item) {
+    }
 }

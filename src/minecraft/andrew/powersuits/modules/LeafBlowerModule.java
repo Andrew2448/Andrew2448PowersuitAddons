@@ -80,8 +80,8 @@ public class LeafBlowerModule extends PowerModuleBase implements IBlockBreakingM
     public boolean onBlockDestroyed(ItemStack stack, World world, int blockID, int x, int y, int z, EntityPlayer player) {
         boolean b = false;
         Block block = Block.blocksList[blockID];
-        int plant = (int)ModuleManager.computeModularProperty(stack, PLANT_RADIUS);
-        int leaf = (int)ModuleManager.computeModularProperty(stack, LEAF_RADIUS);
+        int plant = (int) ModuleManager.computeModularProperty(stack, PLANT_RADIUS);
+        int leaf = (int) ModuleManager.computeModularProperty(stack, LEAF_RADIUS);
         int totalEnergyDrain = 0;
 
         // Leaves
@@ -89,15 +89,15 @@ public class LeafBlowerModule extends PowerModuleBase implements IBlockBreakingM
             for (int i = -leaf; i < leaf; i++) {
                 for (int j = -leaf; j < leaf; j++) {
                     for (int k = -leaf; k < leaf; k++) {
-                        int id = world.getBlockId(x+i, y+j, z+k);
+                        int id = world.getBlockId(x + i, y + j, z + k);
                         int meta = world.getBlockMetadata(x + i, y + j, z + k);
                         Block tempBlock = Block.blocksList[id];
-                        if (tempBlock != null && tempBlock.isLeaves(world, x+i, y+j, z+k)) {
+                        if (tempBlock != null && tempBlock.isLeaves(world, x + i, y + j, z + k)) {
                             if (block.canHarvestBlock(player, meta)) {
-                                block.harvestBlock(world, player, x+i, y+j, z+k, meta);
+                                block.harvestBlock(world, player, x + i, y + j, z + k, meta);
                                 totalEnergyDrain += ModuleManager.computeModularProperty(stack, LEAF_BLOWER_ENERGY_CONSUMPTION);
                             }
-                            world.setBlockToAir(x+i, y+j, z+k);
+                            world.setBlockToAir(x + i, y + j, z + k);
                             b = true;
                         }
                     }

@@ -15,53 +15,53 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class InPlaceAssemblerModule extends PowerModuleBase implements IRightClickModule {
-	
-	public static final String MODULE_PORTABLE_CRAFTING = "In-Place Assembler";
-	
-	public InPlaceAssemblerModule(List<IModularItem> validItems) {
-		super(validItems);
-		addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.controlCircuit, 1));
-		addInstallCost(new ItemStack(Block.workbench, 1));
-	}
 
-	@Override
-	public String getTextureFile() {
-		return "portablecrafting";
-	}
+    public static final String MODULE_PORTABLE_CRAFTING = "In-Place Assembler";
 
-	@Override
-	public String getCategory() {
-		return MuseCommonStrings.CATEGORY_SPECIAL;
-	}
+    public InPlaceAssemblerModule(List<IModularItem> validItems) {
+        super(validItems);
+        addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.controlCircuit, 1));
+        addInstallCost(new ItemStack(Block.workbench, 1));
+    }
 
-	@Override
-	public String getName() {
-		return MODULE_PORTABLE_CRAFTING;
-	}
+    @Override
+    public String getTextureFile() {
+        return "portablecrafting";
+    }
 
-	@Override
-	public String getDescription() {
-		return "A larger crafting grid, on the go.";
-	}
+    @Override
+    public String getCategory() {
+        return MuseCommonStrings.CATEGORY_SPECIAL;
+    }
 
-	@Override
-	public void onRightClick(EntityPlayer player, World world, ItemStack item) {
-		player.openGui(ModularPowersuitsAddons.instance, 0, world, (int)player.posX, (int)player.posY, (int)player.posZ);
-	}
+    @Override
+    public String getName() {
+        return MODULE_PORTABLE_CRAFTING;
+    }
 
-	@Override
-	public void onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-		
-	}
+    @Override
+    public String getDescription() {
+        return "A larger crafting grid, on the go.";
+    }
 
-	@Override
-	public boolean onItemUseFirst(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-		return false;
-	}
+    @Override
+    public void onRightClick(EntityPlayer player, World world, ItemStack item) {
+        player.openGui(ModularPowersuitsAddons.instance, 0, world, (int) player.posX, (int) player.posY, (int) player.posZ);
+    }
 
-	@Override
-	public void onPlayerStoppedUsing(ItemStack itemStack, World world, EntityPlayer player, int par4) {
-		
-	}
+    @Override
+    public void onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+
+    }
+
+    @Override
+    public boolean onItemUseFirst(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+        return false;
+    }
+
+    @Override
+    public void onPlayerStoppedUsing(ItemStack itemStack, World world, EntityPlayer player, int par4) {
+
+    }
 
 }

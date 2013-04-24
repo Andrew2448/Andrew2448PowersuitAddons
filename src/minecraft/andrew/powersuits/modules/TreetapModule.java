@@ -79,8 +79,7 @@ public class TreetapModule extends PowerModuleBase implements IRightClickModule 
                     ItemStack tempResin = resin.copy();
                     tempResin.stackSize = world.rand.nextInt(3);
                     stacks.add(tempResin);
-                }
-                else {
+                } else {
                     eject(world, x, y, z, side, world.rand.nextInt(3) + 1);
                 }
                 world.scheduleBlockUpdate(x, y, z, rubber.itemID, Block.blocksList[rubber.itemID].tickRate(world));
@@ -96,8 +95,7 @@ public class TreetapModule extends PowerModuleBase implements IRightClickModule 
                     ItemStack tempResin = resin.copy();
                     tempResin.stackSize = world.rand.nextInt(3);
                     stacks.add(tempResin);
-                }
-                else {
+                } else {
                     eject(world, x, y, z, side, 1);
                 }
             }
