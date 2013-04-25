@@ -5,6 +5,7 @@ import andrew.powersuits.common.AddonUtils;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.moduletrigger.IRightClickModule;
+import net.machinemuse.general.geometry.Colour;
 import net.machinemuse.powersuits.common.ModCompatability;
 import net.machinemuse.powersuits.item.ItemComponent;
 import net.machinemuse.powersuits.powermodule.PowerModuleBase;
@@ -87,8 +88,12 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 				}
 			}
 		}
+        ElectricItemUtils.drainPlayerEnergy(player, totalEnergy);
+        if (AddonUtils.isClientSide()) {
+            getColour(totalValue);
+        }
 		if (AddonUtils.isServerWorld(world)) {
-			System.out.println("Total Energy: "+totalEnergy);
+			//System.out.println("Total Energy: "+totalEnergy);
 			//System.out.println("Total Blocks: "+totalBlocks);
 			//System.out.println(oreMap);
 			//System.out.println("Total value: "+totalValue);
@@ -137,6 +142,23 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 		valueMap.put("oreNaturalAluminum", 3);
 		valueMap.put("oreCertusQuartz", 5);
 	}
+
+    public Colour getColour(int value) {
+        if (value > 0 && value <= 8) {
+            return new Colour(0.4, 0.4, 0.4, 1.0);
+        } else if (value > 8 && value <= 16) {
+            return Colour.WHITE;
+        } else if (value > 16 && value <= 24) {
+            return new Colour(0.14, 0.64, 0.12, 1.0);
+        } else if (value > 24 && value <= 32) {
+            return Colour.DARKBLUE;
+        } else if (value > 32 && value <= 40) {
+            return new Colour(0.3, 0.0, 0.5, 1.0);
+        } else if (value > 40) {
+            return Colour.YELLOW;
+        }
+        return Colour.BLACK;
+    }
 	
 	@Override
 	public String getTextureFile() {
