@@ -18,6 +18,7 @@
     <property name="galacticraftapi.version" value="1"/>
     <property name="mfrapi.version" value="2.4.0-478"/>
     <property name="forestryapi.version" value="2.1.2.19"/>
+    <property name="scala.version" value="2.10.1"/>
 
 
     <!-- Directories -->
@@ -61,6 +62,7 @@
             <available file="${download.dir}/Railcraft_API_latest.zip"/>
             <available file="${download.dir}/MFR-API-${mfrapi.version}.zip"/>
             <available file="${download.dir}/forestry-api-${forestryapi.version}.zip"/>
+            <available file="${download.dir}/scalalib-${scala.version}.zip"/>
         </and>
     </condition>
 
@@ -186,6 +188,10 @@
         <get src="http://machinemuse.minecraftforge.net/forestry-api-${forestryapi.version}.zip"
              dest="${download.dir}/forestry-api-${forestryapi.version}.zip"/>
 
+        <echo message="Downloading Scala Libraries..."/>
+        <get src="http://machinemuse.minecraftforge.net/scalalib-${scala.version}.zip"
+             dest="${download.dir}/scalalib-${scala.version}.zip"/>
+
     </target>
 
     <!-- ============================================================Extract APIs============================================================================== -->
@@ -279,6 +285,9 @@
         <move file="${download.dir}/forestry/api/arboriculture/IToolGrafter.java"
               todir="${mcpsrc.dir}/forestry/api/arboriculture"/>
         <move file="${download.dir}/forestry/api/core/ItemInterface.java" todir="${mcpsrc.dir}/forestry/api/core"/>
+
+        <echo message="Extracting Scala Libraries..."/>
+        <unzip src="${download.dir}/scalalib-${scala.version}.zip" dest="${mcp.dir}"/>
 
     </target>
 
