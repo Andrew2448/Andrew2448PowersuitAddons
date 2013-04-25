@@ -119,8 +119,9 @@ public class MagnetModule extends PowerModuleBase implements IPlayerTickModule, 
                 if (absvxz < 0.2 && absxz < 0.2 && world.isRemote) {
                     item.setDead();
                 }
-
-                item.setVelocity(vx, vy, vz);
+                if (AddonUtils.isClientSide()) {
+                    item.setVelocity(vx, vy, vz);
+                }
             }
         }
     }
