@@ -64,17 +64,17 @@ public class ThermalGeneratorModule extends PowerModuleBase implements IPlayerTi
         double currentHeat = MuseHeatUtils.getPlayerHeat(player);
         double maxHeat = MuseHeatUtils.getMaxHeat(player);
         if (player.worldObj.getTotalWorldTime() % 20 == 0) {
-            System.out.println("Current heat: " + currentHeat + " | Max heat: " + maxHeat);
-            System.out.println("Percentile: " + (currentHeat / maxHeat) * 100 + "%");
+            //System.out.println("Current heat: " + currentHeat + " | Max heat: " + maxHeat);
+            //System.out.println("Percentile: " + (currentHeat / maxHeat) * 100 + "%");
             if (player.isBurning()) {
                 ElectricItemUtils.givePlayerEnergy(player, 4 * ModuleManager.computeModularProperty(item, THERMAL_ENERGY_GENERATION));
-                System.out.println("Is Burning");
+                //System.out.println("Is Burning");
             } else if (currentHeat >= 400) {
                 ElectricItemUtils.givePlayerEnergy(player, 2 * ModuleManager.computeModularProperty(item, THERMAL_ENERGY_GENERATION));
-                System.out.println("Is Above 400");
+                //System.out.println("Is Above 400");
             } else if ((currentHeat / maxHeat) >= 0.9) {
                 ElectricItemUtils.givePlayerEnergy(player, ModuleManager.computeModularProperty(item, THERMAL_ENERGY_GENERATION));
-                System.out.println("Is Above 90%");
+                //System.out.println("Is Above 90%");
             }
         }
     }
