@@ -72,7 +72,6 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 		int zRadius = (int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_Z);
 		
 		int totalValue = 0, totalEnergy = 0;
-		// int totalBlocks = 0;
 		ForgeDirection fdSide = ForgeDirection.getOrientation(side).getOpposite();
 		int cX = x + (fdSide.offsetX * xRadius);
 		int cY = y + (fdSide.offsetY * yRadius);
@@ -92,11 +91,9 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
         if (AddonUtils.isClientSide()) {
             getColour(totalValue);
         }
-		if (AddonUtils.isServerWorld(world)) {
-			//System.out.println("Total Energy: "+totalEnergy);
-			//System.out.println("Total Blocks: "+totalBlocks);
-			//System.out.println(oreMap);
+		if (AddonUtils.isServerSide()) {
 			//System.out.println("Total value: "+totalValue);
+            player.sendChatToPlayer("[Ore Scanner] Total ore value: "+totalValue);
 		}
 	}
 	
@@ -162,7 +159,7 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 	
 	@Override
 	public String getTextureFile() {
-		return "torchplacer";
+		return "redfield";
 	}
 
 	@Override
@@ -177,7 +174,7 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 
 	@Override
 	public String getDescription() {
-		return "DON'T USE THIS RIGHT NOW IT WILL DO BAD THINGS";//"A way to see how valuable the land around you is.";
+		return "Creative mode only for the moment. Temporary texture. Still in testing.";//"A way to see how valuable the land around you is.";
 	}
 
 	@Override
