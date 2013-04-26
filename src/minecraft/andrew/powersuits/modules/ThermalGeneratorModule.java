@@ -40,8 +40,7 @@ public class ThermalGeneratorModule extends PowerModuleBase implements IPlayerTi
 
     @Override
     public String getTextureFile() {
-        //return "solarhelmet";
-        return "redstar";
+        return "heatgenerator";
     }
 
     @Override

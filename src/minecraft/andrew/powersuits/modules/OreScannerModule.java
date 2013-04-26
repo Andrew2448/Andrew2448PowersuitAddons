@@ -159,7 +159,7 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 	
 	@Override
 	public String getTextureFile() {
-		return "redfield";
+		return "orescanner";
 	}
 
 	@Override

@@ -62,8 +62,7 @@ public class LeafBlowerModule extends PowerModuleBase implements IBlockBreakingM
 
     @Override
     public String getTextureFile() {
-        //return "sickle";
-        return "bluestar";
+        return "leafblower";
     }
 
     @Override
