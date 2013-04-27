@@ -9,10 +9,8 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import net.machinemuse.powersuits.item.ItemPowerArmorChestplate;
 import net.machinemuse.utils.MuseItemUtils;
-import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 
 import java.util.EnumSet;
@@ -31,10 +29,10 @@ public class CommonTickHandler implements ITickHandler {
         if(type.contains(TickType.PLAYER)) {
             EntityPlayer player;
             if (AddonUtils.isClientSide()) {
-                player = (EntityClientPlayerMP)tickData[0];
+                player = (EntityPlayer)tickData[0];
             }
             else {
-                player = (EntityPlayerMP)tickData[0];
+                player = (EntityPlayer)tickData[0];
             }
             ItemStack torso = player.getCurrentArmor(2);
             if (torso != null && torso.getItem() instanceof ItemPowerArmorChestplate) {
