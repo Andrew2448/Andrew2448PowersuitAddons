@@ -16,12 +16,17 @@ public class AddonRecipeManager {
         ItemStack lapis = new ItemStack(Item.dyePowder, 1, 4);
         ItemStack lapisBlock = new ItemStack(Block.blockLapis);
         ItemStack ironIngot = new ItemStack(Item.ingotIron);
+        ItemStack redstoneBlock = new ItemStack(Block.blockRedstone);
+        ItemStack diamond = new ItemStack(Item.diamond);
+        ItemStack comparator = new ItemStack(Block.redstoneComparatorIdle);
+        ItemStack goldIngot = new ItemStack(Item.ingotGold);
 
         if (ModCompatability.vanillaRecipesEnabled()) {
 
             //===========================================================================================================================
             GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.solarPanel, "PPP", "PLP", "PPP", 'P', glassPane, 'L', lapisBlock));
             GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.magnet, "III", "SSS", "III", 'I', ironIngot, 'S', ItemComponent.solenoid));
+            GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.computerChip, "RCR", "GDG", 'R', redstoneBlock, 'C', comparator, 'G', goldIngot, 'D', diamond));
             //===========================================================================================================================
         }
 
@@ -33,6 +38,7 @@ public class AddonRecipeManager {
             //===========================================================================================================================
             GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.solarPanel, true, "GGG", "CLC", "SSS", 'G', glass, 'C', basicCircuit, 'L', lapisBlock, 'S', "plateSteel"));
             GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.magnet, "ICI", "SSS", "ICI", 'I', ironIngot, 'C', advancedCircuit, 'S', ItemComponent.solenoid));
+            GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.computerChip, "CRC", "GDG", 'C', eliteCircuit, 'R', redstoneBlock, 'G', goldIngot, 'D', diamond));
             //===========================================================================================================================
         }
 
@@ -51,21 +57,28 @@ public class AddonRecipeManager {
             ItemStack machine = ModCompatability.getIC2Item("machine");
             ItemStack advMachine = ModCompatability.getIC2Item("advancedMachine");
             ItemStack gen = ModCompatability.getIC2Item("generator");
+            ItemStack ovscanner = ModCompatability.getIC2Item("ovScanner");
+            ItemStack goldCable = ModCompatability.getIC2Item("doubleInsulatedGoldCableItem");
 
             //===========================================================================================================================
             GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.solarPanel, true, "LGL", "GLG", "CBC", 'L', lapis, 'G', glass, 'C', circuit, 'B', gen));
             GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.magnet, "ICI", "SSS", "ICI", 'I', ironIngot, 'C', advCircuit, 'S', ItemComponent.solenoid));
+            GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.computerChip, "CSC", "GGG", 'C', advCircuit, 'S', ovscanner, 'G', goldCable));
             //===========================================================================================================================
         }
 
         if (ModCompatability.GregTechRecipesEnabled() && ModCompatability.isIndustrialCraftLoaded() && ModCompatability.isGregTechLoaded()) {
             String energyFlowCircuit = "craftingCircuitTier07";
             String superConductor = "craftingSuperconductor";
+            String dataStorageCircuit = "craftingCircuitTier05";
             ItemStack reinforcedGlass = ModCompatability.getIC2Item("reinforcedGlass");
+            ItemStack advCircuit = ModCompatability.getIC2Item("advancedCircuit");
+            ItemStack ovscanner = ModCompatability.getIC2Item("ovScanner");
 
             //===========================================================================================================================
             GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.solarPanel, true, "GGG", "PCP", 'G', reinforcedGlass, 'P', "plateAlloyIridium", 'C', energyFlowCircuit));
             GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.magnet, true, "ICI", "SSS", "ICI", 'I', "ingotTitanium", 'C', superConductor, 'S', ItemComponent.solenoid));
+            GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.computerChip, true, "ADA", "DOD", "ADA", 'A', advCircuit, 'D', dataStorageCircuit, 'O', ovscanner));
             //===========================================================================================================================
         }
 
@@ -82,10 +95,12 @@ public class AddonRecipeManager {
             ItemStack energyFrameFull = ModCompatability.getThermexItem("energyFrameFull", 1);
             ItemStack conduitEnergy = ModCompatability.getThermexItem("energyConduitEmpty", 1);
             ItemStack teleportFrameFull = ModCompatability.getThermexItem("teleportBase", 1);
+            ItemStack multimeter = ModCompatability.getThermexItem("multimeter", 1);
 
             //===========================================================================================================================
             GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.solarPanel, true, "GGG", "CLC", " E ", 'G', glass, 'L', new ItemStack(Block.blockLapis), 'C', conduitEnergy, 'E', powerCoilSilver));
             GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.magnet, "ICI", "SSS", "ICI", 'I', ironIngot, 'C', powerCoilGold, 'S', ItemComponent.solenoid));
+            GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.computerChip, "PMP", " S ", 'P', powerCoilElectrum, 'M', multimeter, 'S', pneumaticServo));
             //===========================================================================================================================
         }
     }

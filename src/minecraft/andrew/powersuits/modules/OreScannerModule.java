@@ -5,8 +5,6 @@ import andrew.powersuits.common.AddonUtils;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.moduletrigger.IRightClickModule;
-import net.machinemuse.general.geometry.Colour;
-import net.machinemuse.powersuits.common.ModCompatability;
 import net.machinemuse.powersuits.item.ItemComponent;
 import net.machinemuse.powersuits.powermodule.PowerModuleBase;
 import net.machinemuse.utils.ElectricItemUtils;
@@ -46,14 +44,8 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 		addIntTradeoffProperty("X Radius", ORE_SCANNER_RADIUS_X, 3, "m", 1, 0);
 		addIntTradeoffProperty("Y Radius", ORE_SCANNER_RADIUS_Y, 3, "m", 1, 0);
 		addIntTradeoffProperty("Z Radius", ORE_SCANNER_RADIUS_Z, 3, "m", 1, 0);
-        if (ModCompatability.isIndustrialCraftLoaded()) {
-            addInstallCost(ModCompatability.getIC2Item("ovScanner"));
-            addInstallCost(MuseItemUtils.copyAndResize(AddonComponent.computerChip, 1));
-        }
-        else {
-            addInstallCost(MuseItemUtils.copyAndResize(AddonComponent.computerChip, 1));
-            addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.controlCircuit, 2));
-        }
+        addInstallCost(MuseItemUtils.copyAndResize(AddonComponent.computerChip, 1));
+        addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.controlCircuit, 2));
 		for (int i = 0; i < oreNames.length; i++) {
 			ores.add(i, OreDictionary.getOres(oreNames[i]));
 	    }
@@ -87,12 +79,10 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 				}
 			}
 		}
+
         ElectricItemUtils.drainPlayerEnergy(player, totalEnergy);
-        if (AddonUtils.isClientSide()) {
-            getColour(totalValue);
-        }
+
 		if (AddonUtils.isServerSide()) {
-			//System.out.println("Total value: "+totalValue);
             player.sendChatToPlayer("[Ore Scanner] Total ore value: "+totalValue);
 		}
 	}
@@ -139,23 +129,6 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 		valueMap.put("oreNaturalAluminum", 3);
 		valueMap.put("oreCertusQuartz", 5);
 	}
-
-    public Colour getColour(int value) {
-        if (value > 0 && value <= 8) {
-            return new Colour(0.4, 0.4, 0.4, 1.0);
-        } else if (value > 8 && value <= 16) {
-            return Colour.WHITE;
-        } else if (value > 16 && value <= 24) {
-            return new Colour(0.14, 0.64, 0.12, 1.0);
-        } else if (value > 24 && value <= 32) {
-            return Colour.DARKBLUE;
-        } else if (value > 32 && value <= 40) {
-            return new Colour(0.3, 0.0, 0.5, 1.0);
-        } else if (value > 40) {
-            return Colour.YELLOW;
-        }
-        return Colour.BLACK;
-    }
 	
 	@Override
 	public String getTextureFile() {
@@ -174,7 +147,7 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 
 	@Override
 	public String getDescription() {
-		return "Creative mode only for the moment. Temporary texture. Still in testing.";//"A way to see how valuable the land around you is.";
+		return "A way to see how valuable the land around you is.";
 	}
 
 	@Override
