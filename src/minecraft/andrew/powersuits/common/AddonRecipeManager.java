@@ -64,7 +64,7 @@ public class AddonRecipeManager {
             ItemStack reinforcedGlass = ModCompatability.getIC2Item("reinforcedGlass");
 
             //===========================================================================================================================
-            GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.solarPanel, true, "GGG", "PCP", 'G', reinforcedGlass, 'P', "plateIridium", 'C', energyFlowCircuit));
+            GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.solarPanel, true, "GGG", "PCP", 'G', reinforcedGlass, 'P', "plateAlloyIridium", 'C', energyFlowCircuit));
             GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.magnet, true, "ICI", "SSS", "ICI", 'I', "ingotTitanium", 'C', superConductor, 'S', ItemComponent.solenoid));
             //===========================================================================================================================
         }

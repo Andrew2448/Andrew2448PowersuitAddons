@@ -1,5 +1,6 @@
 package andrew.powersuits.common;
 
+import andrew.powersuits.network.AndrewPacketHandler;
 import andrew.powersuits.tick.CommonTickHandler;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;

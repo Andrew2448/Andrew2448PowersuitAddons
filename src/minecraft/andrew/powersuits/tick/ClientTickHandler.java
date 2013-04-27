@@ -33,8 +33,6 @@ public class ClientTickHandler implements ITickHandler {
         Minecraft mc = Minecraft.getMinecraft();
 
         if(type.contains(TickType.CLIENT) && mc.theWorld != null) {
-            //if(mc.theWorld != lastworld)
-            //    onWorldChange(mc.theWorld);
 
             EntityClientPlayerMP player = mc.thePlayer;
             ItemStack torso = player.getCurrentArmor(2);

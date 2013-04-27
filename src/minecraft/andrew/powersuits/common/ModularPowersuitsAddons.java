@@ -1,5 +1,6 @@
 package andrew.powersuits.common;
 
+import andrew.powersuits.network.AndrewPacketHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;

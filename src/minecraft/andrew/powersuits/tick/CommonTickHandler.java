@@ -1,7 +1,7 @@
 package andrew.powersuits.tick;
 
 import andrew.powersuits.common.AddonUtils;
-import andrew.powersuits.common.AndrewPacketMagnetMode;
+import andrew.powersuits.network.AndrewPacketMagnetMode;
 import andrew.powersuits.modules.MagnetModule;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
@@ -29,12 +29,6 @@ public class CommonTickHandler implements ITickHandler {
         if(type.contains(TickType.PLAYER)) {
             EntityPlayer player;
             player = (EntityPlayer)tickData[0];
-            /*if (AddonUtils.isClientSide()) {
-                player = (EntityPlayer)tickData[0];
-            }
-            else {
-                player = (EntityPlayer)tickData[0];
-            }*/
             ItemStack torso = player.getCurrentArmor(2);
             if (torso != null && torso.getItem() instanceof ItemPowerArmorChestplate) {
                 if (MuseItemUtils.itemHasActiveModule(torso, MagnetModule.MODULE_MAGNET)) {
@@ -48,10 +42,6 @@ public class CommonTickHandler implements ITickHandler {
 
         float distancexz = 16;
         float distancey = 8;
-        double maxspeedxz = 0.5;
-        double maxspeedy = 0.5;
-        double speedxz = 0.05;
-        double speedy = 0.07;
 
         @SuppressWarnings("unchecked")
         List<EntityItem> items = player.worldObj.getEntitiesWithinAABB(EntityItem.class, player.boundingBox.expand(distancexz, distancey, distancexz));
@@ -70,10 +60,8 @@ public class CommonTickHandler implements ITickHandler {
             }
 
             double dx = player.posX - item.posX;
-            double dy = player.posY+player.getEyeHeight() - item.posY;
             double dz = player.posZ - item.posZ;
-            double absxz = Math.sqrt(dx*dx+dz*dz);
-            double absy = Math.abs(dy);
+            double absxz = Math.sqrt(dx * dx + dz * dz);
 
             if(absxz > distancexz) {
                 continue;
@@ -81,37 +69,6 @@ public class CommonTickHandler implements ITickHandler {
             if(absxz < 1) {
                 item.onCollideWithPlayer(player);
             }
-
-            if(absxz > 1) {
-                dx /= absxz;
-                dz /= absxz;
-            }
-
-            if(absy > 1) {
-                dy /= absy;
-            }
-
-            double vx = item.motionX + speedxz*dx;
-            double vy = item.motionY + speedy*dy;
-            double vz = item.motionZ + speedxz*dz;
-
-            double absvxz = Math.sqrt(vx*vx+vz*vz);
-            double absvy = Math.abs(vy);
-
-            double rationspeedxz = absvxz / maxspeedxz;
-            if(rationspeedxz > 1) {
-                vx/=rationspeedxz;
-                vz/=rationspeedxz;
-            }
-
-            double rationspeedy = absvy / maxspeedy;
-            if(rationspeedy > 1) {
-                vy/=rationspeedy;
-            }
-
-            item.motionX = vx;
-            item.motionY = vy;
-            item.motionZ = vz;
         }
     }
 

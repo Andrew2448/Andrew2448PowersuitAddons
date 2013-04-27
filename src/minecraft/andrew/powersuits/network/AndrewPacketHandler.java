@@ -1,4 +1,4 @@
-package andrew.powersuits.common;
+package andrew.powersuits.network;
 
 import cpw.mods.fml.common.network.NetworkRegistry;
 import net.machinemuse.powersuits.network.MusePacketHandler;

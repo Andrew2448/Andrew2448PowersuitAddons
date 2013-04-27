@@ -1,4 +1,4 @@
-package andrew.powersuits.common;
+package andrew.powersuits.network;
 
 import andrew.powersuits.tick.ClientTickHandler;
 import cpw.mods.fml.common.network.Player;
