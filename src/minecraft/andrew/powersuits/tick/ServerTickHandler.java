@@ -26,7 +26,6 @@ public class ServerTickHandler implements ITickHandler {
 
     @Override
     public void tickStart(EnumSet<TickType> type, Object... tickData) {
-        System.out.println("ServerTick");
         if(type.contains(TickType.PLAYER)) {
             System.out.println("Server");
             EntityPlayerMP player = (EntityPlayerMP)tickData[0];
@@ -48,8 +47,10 @@ public class ServerTickHandler implements ITickHandler {
         double speedxz = 0.05;
         double speedy = 0.07;
 
+        System.out.println("Derp1");
         @SuppressWarnings("unchecked")
         List<EntityItem> items = player.worldObj.getEntitiesWithinAABB(EntityItem.class, player.boundingBox.expand(distancexz, distancey, distancexz));
+        System.out.println("Derp2");
         for(EntityItem item : items) {
             if(item.delayBeforeCanPickup > 0) {
                 continue;
@@ -60,8 +61,7 @@ public class ServerTickHandler implements ITickHandler {
             }
 
             if(item.delayBeforeCanPickup == 0) {
-                //NEISPH.sendAddMagneticItemTo(player, item);
-                PacketDispatcher.sendPacketToPlayer(new AndrewPacketMagnetMode((Player)player, item.entityId).getPacket250(), (Player)player);
+                PacketDispatcher.sendPacketToPlayer(new AndrewPacketMagnetMode((Player)player, item.entityId).getPacket250(), (Player) player);
             }
 
             double dx = player.posX - item.posX;

@@ -29,6 +29,7 @@ public class AndrewPacketMagnetMode extends MusePacket {
 
     public void handleClient(EntityClientPlayerMP player) {
         Minecraft mc = Minecraft.getMinecraft();
+        System.out.println("Handle Client");
         ClientTickHandler.instance().addSMPMagneticItem(entityID, mc.theWorld);
     }
 
