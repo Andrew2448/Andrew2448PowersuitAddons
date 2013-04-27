@@ -18,7 +18,7 @@ public class AddonRecipeManager {
         ItemStack ironIngot = new ItemStack(Item.ingotIron);
         ItemStack redstoneBlock = new ItemStack(Block.blockRedstone);
         ItemStack diamond = new ItemStack(Item.diamond);
-        ItemStack comparator = new ItemStack(Block.redstoneComparatorIdle);
+        ItemStack comparator = new ItemStack(Item.comparator);
         ItemStack goldIngot = new ItemStack(Item.ingotGold);
 
         if (ModCompatability.vanillaRecipesEnabled()) {
