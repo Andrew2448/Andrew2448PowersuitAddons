@@ -11,10 +11,12 @@ import net.machinemuse.utils.ElectricItemUtils;
 import net.machinemuse.utils.MuseCommonStrings;
 import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityFireball;
+import net.minecraft.entity.projectile.EntityPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
@@ -74,24 +76,28 @@ public class MobRepulsorModule extends PowerModuleBase implements IPlayerTickMod
 
     public void repulse(World world, int i, int j, int k) {
         float distance = 5.0F;
+        Entity entity;
+        Iterator iterator;
         List list = world.getEntitiesWithinAABB(EntityMob.class, AxisAlignedBB.getBoundingBox(i - distance, j - distance, k - distance, i + distance, j + distance, k + distance));
-        Entity eentity;
-        for (Iterator iterator1 = list.iterator(); iterator1.hasNext(); push(eentity, i, j, k)) {
-            eentity = (Entity)iterator1.next();
+        for (iterator = list.iterator(); iterator.hasNext(); push(entity, i, j, k)) {
+            entity = (Entity)iterator.next();
         }
-        List lista = world.getEntitiesWithinAABB(EntityArrow.class, AxisAlignedBB.getBoundingBox(i - distance, j - distance, k - distance, i + distance, j + distance, k + distance));
-        Entity aentity;
-        for (Iterator iterator2 = lista.iterator(); iterator2.hasNext(); push(aentity, i, j, k)) {
-            aentity = (Entity)iterator2.next();
+        list = world.getEntitiesWithinAABB(EntityArrow.class, AxisAlignedBB.getBoundingBox(i - distance, j - distance, k - distance, i + distance, j + distance, k + distance));
+        for (iterator = list.iterator(); iterator.hasNext(); push(entity, i, j, k)) {
+            entity = (Entity)iterator.next();
         }
-        List listb = world.getEntitiesWithinAABB(EntityFireball.class, AxisAlignedBB.getBoundingBox(i - distance, j - distance, k - distance, i + distance, j + distance, k + distance));
-        Entity bentity;
-        for (Iterator iterator3 = listb.iterator(); iterator3.hasNext(); push(bentity, i, j, k))
-            bentity = (Entity)iterator3.next();
+        list = world.getEntitiesWithinAABB(EntityFireball.class, AxisAlignedBB.getBoundingBox(i - distance, j - distance, k - distance, i + distance, j + distance, k + distance));
+        for (iterator = list.iterator(); iterator.hasNext(); push(entity, i, j, k)) {
+            entity = (Entity)iterator.next();
+        }
+        list = world.getEntitiesWithinAABB(EntityPotion.class, AxisAlignedBB.getBoundingBox(i - distance, j - distance, k - distance, i + distance, j + distance, k + distance));
+        for (iterator = list.iterator(); iterator.hasNext(); push(entity, i, j, k)) {
+            entity = (Entity)iterator.next();
+        }
     }
 
     private void push(Entity entity, int i, int j, int k) {
-        if (!(entity instanceof EntityPlayer)) {
+        if (!(entity instanceof EntityPlayer) && !(entity instanceof EntityDragon)) {
             Entity entity2 = entity;
             double d = i - entity2.posX;
             double d1 = j - entity2.posY;
