@@ -11,7 +11,7 @@ public class AndrewPacketHandler extends MusePacketHandler {
 
     @Override
     public MusePacketHandler register() {
-        addPacketType(1, AndrewPacketMagnetMode.class);
+        addPacketType(10, AndrewPacketMagnetMode.class);
 
         NetworkRegistry.instance().registerChannel(this, "psa");
         return this;
