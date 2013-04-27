@@ -9,7 +9,6 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import net.machinemuse.powersuits.item.ItemPowerArmorChestplate;
 import net.machinemuse.utils.MuseItemUtils;
-import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -20,22 +19,16 @@ import java.util.List;
 
 /**
  * Created by User: Andrew2448
- * 12:46 PM 4/27/13
+ * 5:27 PM 4/27/13
  */
-public class CommonTickHandler implements ITickHandler {
+public class ServerTickHandler implements ITickHandler {
 
-    private static CommonTickHandler instance;
+    private static ServerTickHandler instance;
 
     @Override
     public void tickStart(EnumSet<TickType> type, Object... tickData) {
         if(type.contains(TickType.PLAYER)) {
-            EntityPlayer player;
-            if (AddonUtils.isClientSide()) {
-                player = (EntityClientPlayerMP)tickData[0];
-            }
-            else {
-                player = (EntityPlayerMP)tickData[0];
-            }
+            EntityPlayer player = (EntityPlayerMP)tickData[0];
             ItemStack torso = player.getCurrentArmor(2);
             if (torso != null && torso.getItem() instanceof ItemPowerArmorChestplate) {
                 if (MuseItemUtils.itemHasActiveModule(torso, MagnetModule.MODULE_MAGNET)) {
@@ -65,7 +58,7 @@ public class CommonTickHandler implements ITickHandler {
                 continue;
             }
 
-            if(item.delayBeforeCanPickup == 0 && AddonUtils.isServerSide()) {
+            if(item.delayBeforeCanPickup == 0) {
                 AndrewPacketMagnetMode packet = new AndrewPacketMagnetMode((Player)player, item.entityId);
                 PacketDispatcher.sendPacketToPlayer(packet.getPacket250(), (Player) player);
             }
@@ -122,7 +115,7 @@ public class CommonTickHandler implements ITickHandler {
     }
 
     public static void load() {
-        instance = new CommonTickHandler();
+        instance = new ServerTickHandler();
     }
 
     @Override
@@ -132,10 +125,10 @@ public class CommonTickHandler implements ITickHandler {
 
     @Override
     public String getLabel() {
-        return "MPSA: Common Tick";
+        return "MPSA: Server Tick";
     }
 
-    public static CommonTickHandler instance() {
+    public static ServerTickHandler instance() {
         return instance;
     }
 }
