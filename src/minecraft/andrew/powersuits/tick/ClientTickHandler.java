@@ -9,7 +9,6 @@ import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
@@ -48,8 +47,7 @@ public class ClientTickHandler implements ITickHandler {
     }
 
     public void addSMPMagneticItem(int i, World world) {
-        WorldClient cworld = (WorldClient)world;
-        Entity entity = cworld.getEntityByID(i);
+        Entity entity = world.getEntityByID(i);
         if(entity == null || !(entity instanceof EntityItem)) {
             return;
         }

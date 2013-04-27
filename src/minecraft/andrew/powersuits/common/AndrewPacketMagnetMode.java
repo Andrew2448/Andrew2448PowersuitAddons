@@ -6,6 +6,7 @@ import net.machinemuse.powersuits.network.MusePacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.world.World;
 
 import java.io.DataInputStream;
 
@@ -29,8 +30,7 @@ public class AndrewPacketMagnetMode extends MusePacket {
 
     public void handleClient(EntityClientPlayerMP player) {
         Minecraft mc = Minecraft.getMinecraft();
-        System.out.println("Handle Client");
-        ClientTickHandler.instance().addSMPMagneticItem(entityID, mc.theWorld);
+        ClientTickHandler.instance().addSMPMagneticItem(entityID, (World)mc.theWorld);
     }
 
     public void handleServer(EntityPlayerMP player) {
