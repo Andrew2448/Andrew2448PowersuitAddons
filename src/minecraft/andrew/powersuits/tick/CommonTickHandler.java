@@ -54,10 +54,8 @@ public class CommonTickHandler implements ITickHandler {
         double speedxz = 0.05;
         double speedy = 0.07;
 
-        System.out.println("Derp1");
         @SuppressWarnings("unchecked")
         List<EntityItem> items = player.worldObj.getEntitiesWithinAABB(EntityItem.class, player.boundingBox.expand(distancexz, distancey, distancexz));
-        System.out.println("Derp2");
         for(EntityItem item : items) {
             if(item.delayBeforeCanPickup > 0) {
                 continue;
@@ -68,7 +66,8 @@ public class CommonTickHandler implements ITickHandler {
             }
 
             if(item.delayBeforeCanPickup == 0 && AddonUtils.isServerSide()) {
-                PacketDispatcher.sendPacketToPlayer(new AndrewPacketMagnetMode((Player)player, item.entityId).getPacket250(), (Player) player);
+                AndrewPacketMagnetMode packet = new AndrewPacketMagnetMode((Player)player, item.entityId);
+                PacketDispatcher.sendPacketToPlayer(packet.getPacket250(), (Player) player);
             }
 
             double dx = player.posX - item.posX;
@@ -133,7 +132,7 @@ public class CommonTickHandler implements ITickHandler {
 
     @Override
     public String getLabel() {
-        return "MPSA: Server Tick";
+        return "MPSA: Common Tick";
     }
 
     public static CommonTickHandler instance() {

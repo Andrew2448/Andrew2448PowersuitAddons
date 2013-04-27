@@ -6,13 +6,13 @@ import cpw.mods.fml.relauncher.Side;
 
 public class CommonProxy {
 
-    private static CommonTickHandler serverTickHandler;
+    private static CommonTickHandler commonTickHandler;
     public static AndrewPacketHandler packetHandler;
 
 
     public void registerHandlers() {
-        serverTickHandler = new CommonTickHandler();
-        TickRegistry.registerTickHandler(serverTickHandler, Side.SERVER);
+        commonTickHandler = new CommonTickHandler();
+        TickRegistry.registerTickHandler(commonTickHandler, Side.SERVER);
         CommonTickHandler.load();
 
         packetHandler = new AndrewPacketHandler();

@@ -1,6 +1,7 @@
 package andrew.powersuits.common;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
@@ -108,10 +109,10 @@ public class AddonUtils {
 	}
 
     public static boolean isClientSide() {
-        return FMLCommonHandler.instance().getEffectiveSide().isClient();
+        return FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT;
     }
 
     public static boolean isServerSide() {
-        return FMLCommonHandler.instance().getEffectiveSide().isServer();
+        return FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER;
     }
 }
