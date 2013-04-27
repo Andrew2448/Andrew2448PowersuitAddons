@@ -9,7 +9,9 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import net.machinemuse.powersuits.item.ItemPowerArmorChestplate;
 import net.machinemuse.utils.MuseItemUtils;
+import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 
@@ -20,15 +22,20 @@ import java.util.List;
  * Created by User: Andrew2448
  * 12:46 PM 4/27/13
  */
-public class ServerTickHandler implements ITickHandler {
+public class CommonTickHandler implements ITickHandler {
 
-    private static ServerTickHandler instance;
+    private static CommonTickHandler instance;
 
     @Override
     public void tickStart(EnumSet<TickType> type, Object... tickData) {
         if(type.contains(TickType.PLAYER)) {
-            System.out.println("Server");
-            EntityPlayerMP player = (EntityPlayerMP)tickData[0];
+            EntityPlayer player;
+            if (AddonUtils.isClientSide()) {
+                player = (EntityClientPlayerMP)tickData[0];
+            }
+            else {
+                player = (EntityPlayerMP)tickData[0];
+            }
             ItemStack torso = player.getCurrentArmor(2);
             if (torso != null && torso.getItem() instanceof ItemPowerArmorChestplate) {
                 if (MuseItemUtils.itemHasActiveModule(torso, MagnetModule.MODULE_MAGNET)) {
@@ -38,7 +45,7 @@ public class ServerTickHandler implements ITickHandler {
         }
     }
 
-    private void updateMagneticPlayer(EntityPlayerMP player) {
+    private void updateMagneticPlayer(EntityPlayer player) {
 
         float distancexz = 16;
         float distancey = 8;
@@ -60,7 +67,7 @@ public class ServerTickHandler implements ITickHandler {
                 continue;
             }
 
-            if(item.delayBeforeCanPickup == 0) {
+            if(item.delayBeforeCanPickup == 0 && AddonUtils.isServerSide()) {
                 PacketDispatcher.sendPacketToPlayer(new AndrewPacketMagnetMode((Player)player, item.entityId).getPacket250(), (Player) player);
             }
 
@@ -116,7 +123,7 @@ public class ServerTickHandler implements ITickHandler {
     }
 
     public static void load() {
-        instance = new ServerTickHandler();
+        instance = new CommonTickHandler();
     }
 
     @Override
@@ -129,7 +136,7 @@ public class ServerTickHandler implements ITickHandler {
         return "MPSA: Server Tick";
     }
 
-    public static ServerTickHandler instance() {
+    public static CommonTickHandler instance() {
         return instance;
     }
 }
