@@ -100,7 +100,7 @@ public class AddonRecipeManager {
             //===========================================================================================================================
             GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.solarPanel, true, "GGG", "CLC", " E ", 'G', glass, 'L', new ItemStack(Block.blockLapis), 'C', conduitEnergy, 'E', powerCoilSilver));
             GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.magnet, "ICI", "SSS", "ICI", 'I', ironIngot, 'C', powerCoilGold, 'S', ItemComponent.solenoid));
-            GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.computerChip, "PMP", " S ", 'P', powerCoilElectrum, 'M', multimeter, 'S', pneumaticServo));
+            GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.computerChip, " O ", "GMS", " E ", 'E', powerCoilElectrum, 'S', powerCoilSilver, 'G', powerCoilGold, 'M', multimeter, 'O', ItemComponent.solenoid));
             //===========================================================================================================================
         }
     }
