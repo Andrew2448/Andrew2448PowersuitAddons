@@ -3,10 +3,8 @@ package andrew.powersuits.common;
 import andrew.powersuits.tick.ClientTickHandler;
 import cpw.mods.fml.common.network.Player;
 import net.machinemuse.powersuits.network.MusePacket;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.world.World;
 
 import java.io.DataInputStream;
 
@@ -29,8 +27,7 @@ public class AndrewPacketMagnetMode extends MusePacket {
     }
 
     public void handleClient(EntityClientPlayerMP player) {
-        Minecraft mc = Minecraft.getMinecraft();
-        ClientTickHandler.instance().addSMPMagneticItem(entityID, (World)mc.theWorld);
+        ClientTickHandler.instance().addSMPMagneticItem(entityID, player.worldObj);
     }
 
     public void handleServer(EntityPlayerMP player) {

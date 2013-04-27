@@ -28,12 +28,13 @@ public class CommonTickHandler implements ITickHandler {
     public void tickStart(EnumSet<TickType> type, Object... tickData) {
         if(type.contains(TickType.PLAYER)) {
             EntityPlayer player;
-            if (AddonUtils.isClientSide()) {
+            player = (EntityPlayer)tickData[0];
+            /*if (AddonUtils.isClientSide()) {
                 player = (EntityPlayer)tickData[0];
             }
             else {
                 player = (EntityPlayer)tickData[0];
-            }
+            }*/
             ItemStack torso = player.getCurrentArmor(2);
             if (torso != null && torso.getItem() instanceof ItemPowerArmorChestplate) {
                 if (MuseItemUtils.itemHasActiveModule(torso, MagnetModule.MODULE_MAGNET)) {
