@@ -12,12 +12,11 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import net.machinemuse.powersuits.network.MusePacketHandler;
 
 @Mod(modid = "PowersuitAddons", name = "Andrew's Modular Powersuits Addons", version = "@VERSION@", dependencies = "required-after:mmmPowersuits", acceptedMinecraftVersions = "[1.5,)")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false,
-        clientPacketHandlerSpec = @SidedPacketHandler(channels = {"psa"}, packetHandler = MusePacketHandler.class),
-        serverPacketHandlerSpec = @SidedPacketHandler(channels = {"psa"}, packetHandler = MusePacketHandler.class))
+        clientPacketHandlerSpec = @SidedPacketHandler(channels = {"psa"}, packetHandler = AndrewPacketHandler.class),
+        serverPacketHandlerSpec = @SidedPacketHandler(channels = {"psa"}, packetHandler = AndrewPacketHandler.class))
 public class ModularPowersuitsAddons {
 
     public static GuiHandler guiHandler = new GuiHandler();
