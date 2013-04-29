@@ -64,8 +64,14 @@ public class KineticGeneratorModule extends PowerModuleBase implements IPlayerTi
             if (distance >= 5.0) {
                 tag.setInteger("x", (int) player.posX);
                 tag.setInteger("z", (int) player.posZ);
-                ElectricItemUtils.givePlayerEnergy(player, ModuleManager.computeModularProperty(item, KINETIC_ENERGY_GENERATION));
-                MuseHeatUtils.heatPlayer(player, ModuleManager.computeModularProperty(item, KINETIC_HEAT_GENERATION));
+                if (player.isSprinting()) {
+                    ElectricItemUtils.givePlayerEnergy(player, ModuleManager.computeModularProperty(item, KINETIC_ENERGY_GENERATION));
+                    MuseHeatUtils.heatPlayer(player, ModuleManager.computeModularProperty(item, KINETIC_HEAT_GENERATION));
+                }
+                else {
+                    ElectricItemUtils.givePlayerEnergy(player, ModuleManager.computeModularProperty(item, KINETIC_ENERGY_GENERATION)/2);
+                    MuseHeatUtils.heatPlayer(player, ModuleManager.computeModularProperty(item, KINETIC_HEAT_GENERATION)/2);
+                }
             }
         }
     }
