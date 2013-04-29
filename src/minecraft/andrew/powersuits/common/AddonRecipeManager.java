@@ -58,6 +58,7 @@ public class AddonRecipeManager {
             ItemStack advMachine = ModCompatability.getIC2Item("advancedMachine");
             ItemStack gen = ModCompatability.getIC2Item("generator");
             ItemStack ovscanner = ModCompatability.getIC2Item("ovScanner");
+            ovscanner.setItemDamage(27);
             ItemStack goldCable = ModCompatability.getIC2Item("doubleInsulatedGoldCableItem");
 
             //===========================================================================================================================
@@ -74,6 +75,7 @@ public class AddonRecipeManager {
             ItemStack reinforcedGlass = ModCompatability.getIC2Item("reinforcedGlass");
             ItemStack advCircuit = ModCompatability.getIC2Item("advancedCircuit");
             ItemStack ovscanner = ModCompatability.getIC2Item("ovScanner");
+            ovscanner.setItemDamage(27);
 
             //===========================================================================================================================
             GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.solarPanel, true, "GGG", "PCP", 'G', reinforcedGlass, 'P', "plateAlloyIridium", 'C', energyFlowCircuit));
