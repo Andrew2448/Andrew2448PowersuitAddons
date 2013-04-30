@@ -4,6 +4,7 @@ import andrew.powersuits.common.AddonUtils;
 import andrew.powersuits.modules.MagnetModule;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
+import net.machinemuse.general.MuseLogger;
 import net.machinemuse.powersuits.item.ItemPowerArmorChestplate;
 import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.client.Minecraft;
@@ -38,6 +39,7 @@ public class ClientTickHandler implements ITickHandler {
             ItemStack torso = player.getCurrentArmor(2);
             if (torso != null && torso.getItem() instanceof ItemPowerArmorChestplate) {
                 if (MuseItemUtils.itemHasActiveModule(torso, MagnetModule.MODULE_MAGNET)) {
+                    MuseLogger.logDebug("Module Installed, client.");
                     updateMagnetMode(mc.theWorld, player);
                 }
             }
@@ -50,10 +52,12 @@ public class ClientTickHandler implements ITickHandler {
             return;
         }
         SMPmagneticItems.add((EntityItem)entity);
+        MuseLogger.logDebug("Packet Recieved.");
     }
 
     @SuppressWarnings("unchecked")
     private void updateMagnetMode(World world, EntityPlayerSP player) {
+        MuseLogger.logDebug("Magnet method entered, client.");
         float distancexz = 16;
         float distancey = 8;
         double maxspeedxz = 0.5;

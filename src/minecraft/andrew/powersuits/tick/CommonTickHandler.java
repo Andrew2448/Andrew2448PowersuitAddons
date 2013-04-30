@@ -7,6 +7,7 @@ import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
+import net.machinemuse.general.MuseLogger;
 import net.machinemuse.powersuits.item.ItemPowerArmorChestplate;
 import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.entity.item.EntityItem;
@@ -32,6 +33,7 @@ public class CommonTickHandler implements ITickHandler {
             ItemStack torso = player.getCurrentArmor(2);
             if (torso != null && torso.getItem() instanceof ItemPowerArmorChestplate) {
                 if (MuseItemUtils.itemHasActiveModule(torso, MagnetModule.MODULE_MAGNET)) {
+                    MuseLogger.logDebug("Module Installed, server.");
                     updateMagneticPlayer(player);
                 }
             }
@@ -39,7 +41,7 @@ public class CommonTickHandler implements ITickHandler {
     }
 
     private void updateMagneticPlayer(EntityPlayer player) {
-
+        MuseLogger.logDebug("Magnet method entered, server.");
         float distancexz = 16;
         float distancey = 8;
 
@@ -57,6 +59,7 @@ public class CommonTickHandler implements ITickHandler {
             if(item.delayBeforeCanPickup == 0 && AddonUtils.isServerSide()) {
                 AndrewPacketMagnetMode packet = new AndrewPacketMagnetMode((Player)player, item.entityId);
                 PacketDispatcher.sendPacketToPlayer(packet.getPacket250(), (Player) player);
+                MuseLogger.logDebug("Packet Sent.");
             }
 
             double dx = player.posX - item.posX;
