@@ -66,6 +66,7 @@
             <available file="${download.dir}/scalalib-${scala.version}.zip"/>
             <available file="${download.dir}/ThaumcraftApi ${thaumcraftapi.version}.zip"/>
             <available file="${download.dir}/MFFS2_API.zip"/>
+            <available file="${download.dir}/slick-util.jar"/>
         </and>
     </condition>
 
@@ -203,6 +204,10 @@
         <get src="http://machinemuse.minecraftforge.net/scalalib-${scala.version}.zip"
              dest="${download.dir}/scalalib-${scala.version}.zip"/>
 
+        <echo message="Downloading Slick-Util..."/>
+        <get src="http://machinemuse.minecraftforge.net/slick-util.jar"
+             dest="${download.dir}/slick-util.jar"/>
+
     </target>
 
     <!-- ============================================================Extract APIs============================================================================== -->
@@ -314,6 +319,9 @@
 
         <echo message="Extracting Scala Libraries..."/>
         <unzip src="${download.dir}/scalalib-${scala.version}.zip" dest="${mcp.dir}"/>
+
+        <echo message="Importing Slick-Util..." />
+        <copy file="${download.dir}/slick-util.jar" todir="${mcp.dir}/lib"/>
 
     </target>
 
