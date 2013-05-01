@@ -54,13 +54,12 @@ public class SolarGeneratorModule extends PowerModuleBase implements IPlayerTick
         World world = player.worldObj;
         int xCoord = MathHelper.floor_double(player.posX);
         int zCoord = MathHelper.floor_double(player.posZ);
-        boolean isRaining = false, canRain = true;
+        boolean isRaining, canRain = true;
         if (world.getTotalWorldTime() % 20 == 0) {
             canRain = world.getWorldChunkManager().getBiomeGenAt(xCoord, zCoord).getIntRainfall() > 0;
         }
 
         isRaining = canRain && (world.isRaining() || world.isThundering());
-        // Make sure you're not in desert - Thanks cpw :P
         boolean sunVisible = world.isDaytime() && !isRaining && world.canBlockSeeTheSky(xCoord, MathHelper.floor_double(player.posY) + 1, zCoord);
         boolean moonVisible = !world.isDaytime() && !isRaining && world.canBlockSeeTheSky(xCoord, MathHelper.floor_double(player.posY) + 1, zCoord);
         if (!world.isRemote && !world.provider.hasNoSky && (world.getTotalWorldTime() % 80) == 0) {

@@ -63,7 +63,7 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 		int yRadius = (int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_Y);
 		int zRadius = (int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_Z);
 		
-		int totalValue = 0, totalEnergy = 0;
+		int totalValue = 0, totalEnergy = 0, highestValue = 0, value;
 		ForgeDirection fdSide = ForgeDirection.getOrientation(side).getOpposite();
 		int cX = x + (fdSide.offsetX * xRadius);
 		int cY = y + (fdSide.offsetY * yRadius);
@@ -73,9 +73,13 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 			for (int sY = cY - yRadius; sY <= cY + yRadius; sY++) {
 				for (int sZ = cZ - zRadius; sZ <= cZ + zRadius; sZ++) {
 					//totalBlocks++;
-					totalValue += getValue(world.getBlockId(sX, sY, sZ), world.getBlockMetadata(sX, sY, sZ));
+                    value = getValue(world.getBlockId(sX, sY, sZ), world.getBlockMetadata(sX, sY, sZ));
+					totalValue += value;
 					ElectricItemUtils.drainPlayerEnergy(player, ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_ENERGY_CONSUMPTION));
 					totalEnergy += ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_ENERGY_CONSUMPTION);
+                    if (value > highestValue) {
+                        highestValue = value;
+                    }
 				}
 			}
 		}
@@ -83,7 +87,10 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
         ElectricItemUtils.drainPlayerEnergy(player, totalEnergy);
 
 		if (AddonUtils.isServerSide()) {
-            player.sendChatToPlayer("[Ore Scanner] Total ore value: "+totalValue);
+            player.sendChatToPlayer("[Ore Scanner] Total ore value: "+totalValue+" --- Most valuable: "+highestValue+"\nSearch radius: "+
+                    (2*(int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_X)+1)+"x"+
+                    (2*(int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_Y)+1)+"x"+
+                    (2*(int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_Z)+1));
 		}
 	}
 	

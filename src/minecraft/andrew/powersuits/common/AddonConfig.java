@@ -30,7 +30,6 @@ public class AddonConfig extends Config {
         addModule(new LeafBlowerModule(TOOLONLY));
         addModule(new ThermalGeneratorModule(TORSOONLY));
         addModule(new MobRepulsorModule(TORSOONLY));
-        //addModule(new PortableTinkerTableModule(TOOLONLY));
 
         if (ModCompatability.isIndustrialCraftLoaded()) {
             addModule(new EUReaderModule(TOOLONLY));
