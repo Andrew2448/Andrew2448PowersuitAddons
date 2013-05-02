@@ -11,6 +11,11 @@ import java.util.List;
 
 public class AddonConfig extends Config {
 
+    public static String category = "Modular Powersuits Addons";
+
+    public static boolean useAdvancedOreScannerMessage;
+    public static boolean useOldAutoFeeder;
+
     public static void loadPowerModules() {
         List<IModularItem> ARMORONLY = Arrays.asList((IModularItem) ModularPowersuits.powerArmorHead, ModularPowersuits.powerArmorTorso, ModularPowersuits.powerArmorLegs, ModularPowersuits.powerArmorFeet);
         List<IModularItem> ALLITEMS = Arrays.asList((IModularItem) ModularPowersuits.powerArmorHead, ModularPowersuits.powerArmorTorso, ModularPowersuits.powerArmorLegs, ModularPowersuits.powerArmorFeet, ModularPowersuits.powerTool);
@@ -35,5 +40,10 @@ public class AddonConfig extends Config {
             addModule(new EUReaderModule(TOOLONLY));
             addModule(new TreetapModule(TOOLONLY));
         }
+    }
+
+    public static void loadOptions() {
+        useAdvancedOreScannerMessage = getConfig().get(category, "Use Detailed Ore Scanner Message", true).getBoolean(true);
+        useOldAutoFeeder = getConfig().get(category, "Use Old Auto Feeder Method", false).getBoolean(false);
     }
 }

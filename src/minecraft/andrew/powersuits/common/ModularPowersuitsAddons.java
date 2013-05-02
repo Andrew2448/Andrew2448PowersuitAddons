@@ -36,6 +36,7 @@ public class ModularPowersuitsAddons {
     public void load(FMLInitializationEvent event) {
         AddonComponent.populate();
         AddonConfig.loadPowerModules();
+        AddonConfig.loadOptions();
         proxy.registerHandlers();
         NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
     }

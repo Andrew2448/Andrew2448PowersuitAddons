@@ -1,6 +1,7 @@
 package andrew.powersuits.modules;
 
 import andrew.powersuits.common.AddonComponent;
+import andrew.powersuits.common.AddonConfig;
 import andrew.powersuits.common.AddonUtils;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
@@ -10,6 +11,7 @@ import net.machinemuse.powersuits.powermodule.PowerModuleBase;
 import net.machinemuse.utils.ElectricItemUtils;
 import net.machinemuse.utils.MuseCommonStrings;
 import net.machinemuse.utils.MuseItemUtils;
+import net.machinemuse.utils.MuseStringUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -25,7 +27,7 @@ import java.util.List;
 public class OreScannerModule extends PowerModuleBase implements IRightClickModule {
 	
 	public static final String MODULE_ORE_SCANNER = "Ore Scanner";
-	public static final String ORE_SCANNER_ENERGY_CONSUMPTION = "Scanning Energy Consumption Per Block";
+	public static final String ORE_SCANNER_ENERGY_CONSUMPTION = "Energy Consumption Per Block";
 	public static final String ORE_SCANNER_RADIUS_X = "X Radius";
 	public static final String ORE_SCANNER_RADIUS_Y = "Y Radius";
 	public static final String ORE_SCANNER_RADIUS_Z = "Z Radius";
@@ -72,7 +74,6 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 		for (int sX = cX - xRadius; sX <= cX + xRadius; sX++) {
 			for (int sY = cY - yRadius; sY <= cY + yRadius; sY++) {
 				for (int sZ = cZ - zRadius; sZ <= cZ + zRadius; sZ++) {
-					//totalBlocks++;
                     value = getValue(world.getBlockId(sX, sY, sZ), world.getBlockMetadata(sX, sY, sZ));
 					totalValue += value;
 					ElectricItemUtils.drainPlayerEnergy(player, ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_ENERGY_CONSUMPTION));
@@ -84,14 +85,21 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 			}
 		}
 
-        ElectricItemUtils.drainPlayerEnergy(player, totalEnergy);
-
-		if (AddonUtils.isServerSide()) {
-            player.sendChatToPlayer("[Ore Scanner] Total ore value: "+totalValue+" --- Most valuable: "+highestValue+"\nSearch radius: "+
-                    (2*(int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_X)+1)+"x"+
-                    (2*(int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_Y)+1)+"x"+
-                    (2*(int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_Z)+1));
-		}
+        if (ElectricItemUtils.getPlayerEnergy(player) > totalEnergy) {
+            ElectricItemUtils.drainPlayerEnergy(player, totalEnergy);
+            if (AddonUtils.isServerSide()) {
+                if (AddonConfig.useAdvancedOreScannerMessage) {
+                    player.sendChatToPlayer("[Ore Scanner] Total ore value: "+totalValue+" --- Most valuable: "+highestValue+"\nSearch radius: "+
+                            (2*(int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_X)+1)+"x"+
+                            (2*(int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_Y)+1)+"x"+
+                            (2*(int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_Z)+1)+
+                            " --- Energy used: "+ MuseStringUtils.formatNumberFromUnits(totalEnergy, "J"));
+                }
+                else {
+                    player.sendChatToPlayer("[Ore Scanner] Total ore value: "+totalValue+" --- Most valuable: "+highestValue);
+                }
+            }
+        }
 	}
 	
 	public static int getValue(int blockID, int meta) {
