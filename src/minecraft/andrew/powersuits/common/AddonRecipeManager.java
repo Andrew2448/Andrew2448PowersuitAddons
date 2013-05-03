@@ -23,9 +23,10 @@ public class AddonRecipeManager {
         ItemStack goldIngot = new ItemStack(Item.ingotGold);
         ItemStack leather = new ItemStack(Item.leather);
         ItemStack rottenFlesh = new ItemStack(Item.rottenFlesh);
-        rottenFlesh.stackSize = 8;
+        ItemStack sugar = new ItemStack(Item.sugar);
 
-        CraftingManagers.furnaceManager.addRecipe(80, rottenFlesh, leather); // Hehe ... a personal interest :)
+        // Hehe ... a personal interest :)
+        CraftingManagers.smelterManager.addRecipe(80, rottenFlesh, sugar, leather);
 
         if (ModCompatability.vanillaRecipesEnabled()) {
 
