@@ -25,8 +25,10 @@ public class AddonRecipeManager {
         ItemStack rottenFlesh = new ItemStack(Item.rottenFlesh);
         ItemStack sugar = new ItemStack(Item.sugar);
 
-        // Hehe ... a personal interest :)
-        CraftingManagers.smelterManager.addRecipe(80, rottenFlesh, sugar, leather);
+        if (AddonConfig.useCheatyLeatherRecipe && ModCompatability.isThermalExpansionLoaded()) {
+            // Hehe ... a personal interest :)
+            CraftingManagers.smelterManager.addRecipe(80, rottenFlesh, sugar, leather);
+        }
 
         if (ModCompatability.vanillaRecipesEnabled()) {
 
