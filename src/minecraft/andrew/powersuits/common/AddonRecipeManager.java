@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import thermalexpansion.api.crafting.CraftingManagers;
 
 public class AddonRecipeManager {
     public static void addRecipes() {
@@ -20,6 +21,11 @@ public class AddonRecipeManager {
         ItemStack diamond = new ItemStack(Item.diamond);
         ItemStack comparator = new ItemStack(Item.comparator);
         ItemStack goldIngot = new ItemStack(Item.ingotGold);
+        ItemStack leather = new ItemStack(Item.leather);
+        ItemStack rottenFlesh = new ItemStack(Item.rottenFlesh);
+        rottenFlesh.stackSize = 8;
+
+        CraftingManagers.furnaceManager.addRecipe(80, rottenFlesh, leather); // Hehe ... a personal interest :)
 
         if (ModCompatability.vanillaRecipesEnabled()) {
 

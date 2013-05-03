@@ -258,10 +258,15 @@
         <echo message="Extracting ThermalExpansion API... "/>
         <unzip src="${download.dir}/ThermalExpansion-API-${thermexapi.version}.zip" dest="${download.dir}"/>
         <mkdir dir="${mcpsrc.dir}/thermalexpansion/api/core"/>
+        <mkdir dir="${mcpsrc.dir}/thermalexpansion/api/crafting"/>
         <move file="${download.dir}/thermalexpansion/api/item/ItemRegistry.java"
               todir="${mcpsrc.dir}/thermalexpansion/api/item"/>
         <move file="${download.dir}/thermalexpansion/api/item/IChargeableItem.java"
               todir="${mcpsrc.dir}/thermalexpansion/api/item"/>
+        <move file="${download.dir}/thermalexpansion/api/crafting/CraftingManagers.java"
+              todir="${mcpsrc.dir}/thermalexpansion/api/crafting" />
+        <move file="${download.dir}/thermalexpansion/api/crafting/IFurnaceManager.java"
+              todir="${mcpsrc.dir}/thermalexpansion/api/crafting" />
 
         <echo message="Extracting CoFH API..."/>
         <unzip src="${download.dir}/CoFHCore-API.zip" dest="${download.dir}"/>
