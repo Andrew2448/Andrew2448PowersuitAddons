@@ -88,16 +88,19 @@ public class TorchPlacerModule extends PowerModuleBase implements IToggleableMod
     public void onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
         if (AddonUtils.getTorchLevel(itemStack) > 0) {
             if ((player.canPlayerEdit(x, y, z, side, itemStack)) && (Block.blocksList[Block.torchWood.blockID].canPlaceBlockAt(world, x, y, z))) {
-                int block = world.getBlockId(x, y, z);
-                if ((block != Block.vine.blockID) && (block != Block.tallGrass.blockID) && (block != Block.deadBush.blockID) && ((Block.blocksList[block] == null) || (!Block.blocksList[block].isBlockReplaceable(world, x, y, z)))) {
+                int blockID = world.getBlockId(x, y, z);
+                if ((blockID != Block.vine.blockID) && (blockID != Block.tallGrass.blockID) && (blockID != Block.deadBush.blockID) && ((Block.blocksList[blockID] == null) || (!Block.blocksList[blockID].isBlockReplaceable(world, x, y, z)))) {
                     x += (side == 5 ? 1 : side == 4 ? -1 : 0);
                     y += (side == 1 ? 1 : side == 0 ? -1 : 0);
                     z += (side == 3 ? 1 : side == 2 ? -1 : 0);
                 }
-                world.setBlock(x, y, z, Block.torchWood.blockID, getMetaForTorch(world, x, y, z, side), 2);
-                Block.blocksList[Block.torchWood.blockID].onBlockAdded(world, x, y, z);
-                AddonUtils.setTorchLevel(itemStack, AddonUtils.getTorchLevel(itemStack) - 1);
-                ElectricItemUtils.drainPlayerEnergy(player, ModuleManager.computeModularProperty(itemStack, TORCH_ENERGY_CONSUMPTION));
+                blockID = world.getBlockId(x, y, z);
+                if (world.isAirBlock(x, y, z) || Block.blocksList[blockID].isBlockReplaceable(world, x, y, z)) {
+                    world.setBlock(x, y, z, Block.torchWood.blockID, getMetaForTorch(world, x, y, z, side), 2);
+                    Block.blocksList[Block.torchWood.blockID].onBlockAdded(world, x, y, z);
+                    AddonUtils.setTorchLevel(itemStack, AddonUtils.getTorchLevel(itemStack) - 1);
+                    ElectricItemUtils.drainPlayerEnergy(player, ModuleManager.computeModularProperty(itemStack, TORCH_ENERGY_CONSUMPTION));
+                }
             }
         } else {
             player.sendChatToPlayer("[MPSA] No torches!");
