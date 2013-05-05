@@ -1,6 +1,7 @@
 package andrew.powersuits.tick;
 
 import andrew.powersuits.common.AddonConfig;
+import andrew.powersuits.common.AddonLogger;
 import andrew.powersuits.common.AddonUtils;
 import andrew.powersuits.modules.MagnetModule;
 import andrew.powersuits.network.AndrewPacketMagnetMode;
@@ -8,7 +9,6 @@ import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
-import net.machinemuse.general.MuseLogger;
 import net.machinemuse.powersuits.item.ItemPowerArmorChestplate;
 import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.entity.item.EntityItem;
@@ -35,7 +35,7 @@ public class CommonTickHandler implements ITickHandler {
             if (torso != null && torso.getItem() instanceof ItemPowerArmorChestplate) {
                 if (MuseItemUtils.itemHasActiveModule(torso, MagnetModule.MODULE_MAGNET)) {
                     if (AddonConfig.useDebugMode) {
-                        MuseLogger.logDebug("Entering server tick handler for magnet.");
+                        AddonLogger.logDebug("Entering server tick handler for magnet.");
                     }
                     updateMagneticPlayer(player);
                 }
@@ -62,7 +62,7 @@ public class CommonTickHandler implements ITickHandler {
                 AndrewPacketMagnetMode packet = new AndrewPacketMagnetMode((Player)player, item.entityId);
                 PacketDispatcher.sendPacketToPlayer(packet.getPacket250(), (Player) player);
                 if (AddonConfig.useDebugMode) {
-                    MuseLogger.logDebug("Packet sent for magnet mode..");
+                    AddonLogger.logDebug("Packet sent for magnet mode..");
                 }
             }
 

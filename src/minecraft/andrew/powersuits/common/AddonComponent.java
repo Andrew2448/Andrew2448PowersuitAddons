@@ -16,7 +16,7 @@ public class AddonComponent {
             computerChip = ModularPowersuits.components.addComponent("componentComputerChip", "Computer Chip", "An upgraded control circuit that contains a CPU which is capable of more advanced calculations.", "computerchip");
         }
         else {
-            MuseLogger.logError("MPS components were not initialized, MPSA componenets will not be activated.");
+            AddonLogger.logError("MPS components were not initialized, MPSA componenets will not be activated.");
         }
     }
 
