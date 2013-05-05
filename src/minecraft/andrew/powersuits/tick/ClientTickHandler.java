@@ -1,9 +1,11 @@
 package andrew.powersuits.tick;
 
+import andrew.powersuits.common.AddonConfig;
 import andrew.powersuits.common.AddonUtils;
 import andrew.powersuits.modules.MagnetModule;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
+import net.machinemuse.general.MuseLogger;
 import net.machinemuse.powersuits.item.ItemPowerArmorChestplate;
 import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.client.Minecraft;
@@ -38,6 +40,9 @@ public class ClientTickHandler implements ITickHandler {
             ItemStack torso = player.getCurrentArmor(2);
             if (torso != null && torso.getItem() instanceof ItemPowerArmorChestplate) {
                 if (MuseItemUtils.itemHasActiveModule(torso, MagnetModule.MODULE_MAGNET)) {
+                    if (AddonConfig.useDebugMode) {
+                        MuseLogger.logDebug("Entering client tick handler for magnet.");
+                    }
                     updateMagnetMode(mc.theWorld, player);
                 }
             }
@@ -50,6 +55,9 @@ public class ClientTickHandler implements ITickHandler {
             return;
         }
         SMPmagneticItems.add((EntityItem)entity);
+        if (AddonConfig.useDebugMode) {
+            MuseLogger.logDebug("Recieved magnet mode packet.");
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -125,7 +133,9 @@ public class ClientTickHandler implements ITickHandler {
             if(absvxz < 0.2 && absxz < 0.2 && world.isRemote) {
                 item.setDead();
             }
-
+            if (AddonConfig.useDebugMode) {
+                MuseLogger.logDebug("Set velocity "+vx+" "+vy+" "+vz+".");
+            }
             item.setVelocity(vx, vy, vz);
         }
     }

@@ -88,6 +88,24 @@ public class AddonUtils {
 			itemTag.setInteger("Torch", i);
 		}
 	}
+
+    public static void setLiquid(ItemStack stack, String name) {
+        if (stack != null && stack.getItem() instanceof IModularItem) {
+            NBTTagCompound itemTag = MuseItemUtils.getMuseItemTag(stack);
+            itemTag.setString("Liquid", name);
+        }
+    }
+
+    public static String getLiquid(ItemStack stack) {
+        if (stack != null && stack.getItem() instanceof IModularItem) {
+            NBTTagCompound itemTag = MuseItemUtils.getMuseItemTag(stack);
+            String s = itemTag.getString("Liquid");
+            if (s != null) {
+                return s;
+            }
+        }
+        return "";
+    }
 	
 	public static NBTTagCompound getNBTTag(ItemStack itemStack) {
 	    NBTTagCompound tag = itemStack.getTagCompound();

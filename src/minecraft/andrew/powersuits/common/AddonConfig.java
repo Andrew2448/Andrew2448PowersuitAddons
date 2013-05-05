@@ -17,6 +17,7 @@ public class AddonConfig extends Config {
     public static boolean useOldAutoFeeder;
     public static boolean useCheatyLeatherRecipe;
     public static boolean useHUDStuff;
+    public static boolean useDebugMode;
 
     public static void loadPowerModules() {
         List<IModularItem> ARMORONLY = Arrays.asList((IModularItem) ModularPowersuits.powerArmorHead, ModularPowersuits.powerArmorTorso, ModularPowersuits.powerArmorLegs, ModularPowersuits.powerArmorFeet);
@@ -37,6 +38,7 @@ public class AddonConfig extends Config {
         addModule(new LeafBlowerModule(TOOLONLY));
         addModule(new ThermalGeneratorModule(TORSOONLY));
         addModule(new MobRepulsorModule(TORSOONLY));
+        //addModule(new BucketModule(TOOLONLY));
 
         if (ModCompatability.isIndustrialCraftLoaded()) {
             addModule(new EUReaderModule(TOOLONLY));
@@ -49,5 +51,6 @@ public class AddonConfig extends Config {
         useOldAutoFeeder = getConfig().get(category, "Use Old Auto Feeder Method", false).getBoolean(false);
         useCheatyLeatherRecipe = getConfig().get(category, "Use Cheaty Leather Recipe", true).getBoolean(true);
         useHUDStuff = getConfig().get(category, "Use HUD for certain modules (Auto Feeder, Torch Placer, etc.", true).getBoolean(true);
+        useDebugMode = getConfig().get(category, "Use Debug mode. WARNING: WILL SPAM YOUR CONSOLE", false).getBoolean(false);
     }
 }
