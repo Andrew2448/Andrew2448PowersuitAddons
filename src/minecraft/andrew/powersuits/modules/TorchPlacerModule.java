@@ -12,6 +12,7 @@ import net.machinemuse.utils.ElectricItemUtils;
 import net.machinemuse.utils.MuseCommonStrings;
 import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockTorch;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -23,6 +24,7 @@ public class TorchPlacerModule extends PowerModuleBase implements IToggleableMod
     public static final String MODULE_TORCH_PLACER = "Torch Placer";
     public static final String TORCH_ENERGY_CONSUMPTION = "Torch Placement Energy Consumption";
     public static final String MAX_TORCH_STORAGE = "Maximum Storage Amount";
+    public BlockTorch torch = (BlockTorch)Block.blocksList[Block.torchWood.blockID];
 
     public TorchPlacerModule(List<IModularItem> validItems) {
         super(validItems);
@@ -95,11 +97,13 @@ public class TorchPlacerModule extends PowerModuleBase implements IToggleableMod
                     z += (side == 3 ? 1 : side == 2 ? -1 : 0);
                 }
                 blockID = world.getBlockId(x, y, z);
-                if (world.isAirBlock(x, y, z) || Block.blocksList[blockID].isBlockReplaceable(world, x, y, z)) {
-                    world.setBlock(x, y, z, Block.torchWood.blockID, getMetaForTorch(world, x, y, z, side), 2);
-                    Block.blocksList[Block.torchWood.blockID].onBlockAdded(world, x, y, z);
-                    AddonUtils.setTorchLevel(itemStack, AddonUtils.getTorchLevel(itemStack) - 1);
-                    ElectricItemUtils.drainPlayerEnergy(player, ModuleManager.computeModularProperty(itemStack, TORCH_ENERGY_CONSUMPTION));
+                if (world.isAirBlock(x, y, z) || (Block.blocksList[blockID].isBlockReplaceable(world, x, y, z))) {
+                    if (torch.canPlaceBlockAt(world, x, y, z)) {
+                        world.setBlock(x, y, z, Block.torchWood.blockID, getMetaForTorch(world, x, y, z, side), 2);
+                        Block.blocksList[Block.torchWood.blockID].onBlockAdded(world, x, y, z);
+                        AddonUtils.setTorchLevel(itemStack, AddonUtils.getTorchLevel(itemStack) - 1);
+                        ElectricItemUtils.drainPlayerEnergy(player, ModuleManager.computeModularProperty(itemStack, TORCH_ENERGY_CONSUMPTION));
+                    }
                 }
             }
         } else {
