@@ -22,10 +22,10 @@ import java.util.EnumSet;
 
 public class RenderTickHandler implements ITickHandler {
 
-    double yBaseIcon = 10.0;
-    int yBaseString = 14;
-    double yOffsetIcon = 12.0;
-    int yOffsetString = 15;
+    double yBaseIcon = 17.0;
+    int yBaseString = 23;
+    double yOffsetIcon = 16.0;
+    int yOffsetString = 18;
 
     ArrayList<String> modules;
 
@@ -47,8 +47,8 @@ public class RenderTickHandler implements ITickHandler {
                     MuseRenderer.drawString(num, 17, yBaseString);
                     MuseRenderer.drawItemAt(-1.0, yBaseIcon, new ItemStack(Item.beefCooked));
                 } else {
-                    MuseRenderer.drawString(num, 17, yOffsetString * (i + 1));
-                    MuseRenderer.drawItemAt(-1.0, yOffsetIcon * (i + 1), new ItemStack(Item.beefCooked));
+                    MuseRenderer.drawString(num, 17, yBaseString + (yOffsetString*i));
+                    MuseRenderer.drawItemAt(-1.0, yBaseIcon + (yOffsetIcon*i), new ItemStack(Item.beefCooked));
                 }
             } else if (modules.get(i).equals(TorchPlacerModule.MODULE_TORCH_PLACER)) {
                 int torchLevel = AddonUtils.getTorchLevel(player.getCurrentEquippedItem());
@@ -58,8 +58,8 @@ public class RenderTickHandler implements ITickHandler {
                     MuseRenderer.drawString(num, 17, yBaseString);
                     MuseRenderer.drawItemAt(-1.0, yBaseIcon, new ItemStack(Block.torchWood));
                 } else {
-                    MuseRenderer.drawString(num, 17, yOffsetString * (i + 1));
-                    MuseRenderer.drawItemAt(-1.0, yOffsetIcon * (i + 1), new ItemStack(Block.torchWood));
+                    MuseRenderer.drawString(num, 17, yBaseString + (yOffsetString*i));
+                    MuseRenderer.drawItemAt(-1.0, yBaseIcon + (yOffsetIcon*i), new ItemStack(Block.torchWood));
                 }
             }
         }
