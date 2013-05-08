@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class TreetapModule extends PowerModuleBase implements IRightClickModule {
     public static final String MODULE_TREETAP = "Treetap";
-    public static final String TREETAP_ENERGY_CONSUMPTION = "Treetap Energy Consumption";
+    public static final String TREETAP_ENERGY_CONSUMPTION = "Energy Consumption";
     private static ItemStack rubber = ModCompatability.getIC2Item("rubberWood");
     private static ItemStack resin = ModCompatability.getIC2Item("resin");
 

@@ -22,7 +22,7 @@ import java.util.List;
 
 public class TorchPlacerModule extends PowerModuleBase implements IToggleableModule, IPlayerTickModule, IRightClickModule {
     public static final String MODULE_TORCH_PLACER = "Torch Placer";
-    public static final String TORCH_ENERGY_CONSUMPTION = "Torch Placement Energy Consumption";
+    public static final String TORCH_ENERGY_CONSUMPTION = "Energy Consumption";
     public static final String MAX_TORCH_STORAGE = "Maximum Storage Amount";
     public BlockTorch torch = (BlockTorch)Block.blocksList[Block.torchWood.blockID];
 

@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class DimensionalRiftModule extends PowerModuleBase implements IPlayerTickModule {
     public static final String MODULE_DIMENSIONAL_RIFT = "Dimensional Tear Generator";
-    public static final String DIMENSIONAL_RIFT_ENERGY_GENERATION = "Dimensional Tear Energy Consumption";
+    public static final String DIMENSIONAL_RIFT_ENERGY_GENERATION = "Energy Consumption";
     public static final String DIMENSIONAL_RIFT_HEAT_GENERATION = "Heat Generation";
     private int timer = 0, cooldown = 0;
 

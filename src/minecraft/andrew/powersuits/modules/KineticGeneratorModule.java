@@ -17,7 +17,7 @@ import java.util.List;
 
 public class KineticGeneratorModule extends PowerModuleBase implements IPlayerTickModule {
     public static final String MODULE_KINETIC_GENERATOR = "Kinetic Generator";
-    public static final String KINETIC_ENERGY_GENERATION = "Energy Generation Per 5 Blocks";
+    public static final String KINETIC_ENERGY_GENERATION = "Energy Per 5 Blocks";
     public static final String KINETIC_HEAT_GENERATION = "Heat Generation";
 
     public KineticGeneratorModule(List<IModularItem> validItems) {

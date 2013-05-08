@@ -17,7 +17,7 @@ import java.util.List;
 
 public class MagnetModule extends PowerModuleBase implements IPlayerTickModule, IToggleableModule {
     public static final String MODULE_MAGNET = "Magnet";
-    public static final String MAGNET_ENERGY_CONSUMPTION = "Magnet Energy Consumption";
+    public static final String MAGNET_ENERGY_CONSUMPTION = "Energy Consumption";
 
     public MagnetModule(List<IModularItem> validItems) {
         super(validItems);

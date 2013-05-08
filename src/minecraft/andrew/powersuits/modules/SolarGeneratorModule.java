@@ -18,8 +18,8 @@ import java.util.List;
 
 public class SolarGeneratorModule extends PowerModuleBase implements IPlayerTickModule {
     public static final String MODULE_SOLAR_GENERATOR = "Solar Generator";
-    public static final String SOLAR_ENERGY_GENERATION_DAY = "Daytime Solar Energy Generation";
-    public static final String SOLAR_ENERGY_GENERATION_NIGHT = "Nighttime Solar Energy Generation";
+    public static final String SOLAR_ENERGY_GENERATION_DAY = "Daytime Energy Generation";
+    public static final String SOLAR_ENERGY_GENERATION_NIGHT = "Nighttime Energy Generation";
 
     public SolarGeneratorModule(List<IModularItem> validItems) {
         super(validItems);
