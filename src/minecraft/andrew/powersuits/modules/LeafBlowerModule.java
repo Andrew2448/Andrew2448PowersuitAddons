@@ -2,7 +2,7 @@ package andrew.powersuits.modules;
 
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
-import net.machinemuse.api.moduletrigger.IBlockBreakingModule;
+import net.machinemuse.api.moduletrigger.IRightClickModule;
 import net.machinemuse.powersuits.item.ItemComponent;
 import net.machinemuse.powersuits.powermodule.PowerModuleBase;
 import net.machinemuse.utils.ElectricItemUtils;
@@ -10,12 +10,10 @@ import net.machinemuse.utils.MuseCommonStrings;
 import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
-import net.minecraft.block.BlockLeaves;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 
 import java.util.List;
 
@@ -23,9 +21,9 @@ import java.util.List;
  * Created by User: Andrew2448
  * 7:13 PM 4/21/13
  */
-public class LeafBlowerModule extends PowerModuleBase implements IBlockBreakingModule {
+public class LeafBlowerModule extends PowerModuleBase implements IRightClickModule {
     private static final String MODULE_LEAF_BLOWER = "Leaf Blower";
-    private static final String LEAF_BLOWER_ENERGY_CONSUMPTION = "Leaf Blower Energy Consumption";
+    private static final String LEAF_BLOWER_ENERGY_CONSUMPTION = "Energy Consumption";
     private static final String PLANT_RADIUS = "Plant Radius";
     private static final String LEAF_RADIUS = "Leaf Radius";
 
@@ -66,21 +64,14 @@ public class LeafBlowerModule extends PowerModuleBase implements IBlockBreakingM
     }
 
     @Override
-    public boolean canHarvestBlock(ItemStack stack, Block block, int meta, EntityPlayer player) {
-        if (block instanceof BlockLeaves || block instanceof BlockFlower) {
-            if (ElectricItemUtils.getPlayerEnergy(player) > ModuleManager.computeModularProperty(stack, LEAF_BLOWER_ENERGY_CONSUMPTION)) {
-                return true;
-            }
-        }
-        return false;
-    }
+    public void onRightClick(EntityPlayer player, World world, ItemStack item) {}
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World world, int blockID, int x, int y, int z, EntityPlayer player) {
-        boolean b = false;
+    public void onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+        int blockID = world.getBlockId(x, y, z);
         Block block = Block.blocksList[blockID];
-        int plant = (int) ModuleManager.computeModularProperty(stack, PLANT_RADIUS);
-        int leaf = (int) ModuleManager.computeModularProperty(stack, LEAF_RADIUS);
+        int plant = (int) ModuleManager.computeModularProperty(itemStack, PLANT_RADIUS);
+        int leaf = (int) ModuleManager.computeModularProperty(itemStack, LEAF_RADIUS);
         int totalEnergyDrain = 0;
 
         // Leaves
@@ -94,16 +85,16 @@ public class LeafBlowerModule extends PowerModuleBase implements IBlockBreakingM
                         if (tempBlock != null && tempBlock.isLeaves(world, x + i, y + j, z + k)) {
                             if (block.canHarvestBlock(player, meta)) {
                                 block.harvestBlock(world, player, x + i, y + j, z + k, meta);
-                                totalEnergyDrain += ModuleManager.computeModularProperty(stack, LEAF_BLOWER_ENERGY_CONSUMPTION);
+                                totalEnergyDrain += ModuleManager.computeModularProperty(itemStack, LEAF_BLOWER_ENERGY_CONSUMPTION);
                             }
                             world.setBlockToAir(x + i, y + j, z + k);
-                            b = true;
                         }
                     }
                 }
             }
         }
 
+        // Plants
         for (int i = -plant; i < plant; i++) {
             for (int j = -plant; j < plant; j++) {
                 for (int k = -plant; k < plant; k++) {
@@ -113,19 +104,23 @@ public class LeafBlowerModule extends PowerModuleBase implements IBlockBreakingM
                     if (tempBlock != null && tempBlock instanceof BlockFlower) {
                         if (block.canHarvestBlock(player, meta)) {
                             block.harvestBlock(world, player, x + i, y + j, z + k, meta);
-                            totalEnergyDrain += ModuleManager.computeModularProperty(stack, LEAF_BLOWER_ENERGY_CONSUMPTION);
+                            totalEnergyDrain += ModuleManager.computeModularProperty(itemStack, LEAF_BLOWER_ENERGY_CONSUMPTION);
                         }
                         world.setBlockToAir(x + i, y + j, z + k);
-                        b = true;
                     }
                 }
             }
         }
         ElectricItemUtils.drainPlayerEnergy(player, totalEnergyDrain);
-        return b;
     }
 
     @Override
-    public void handleBreakSpeed(PlayerEvent.BreakSpeed event) {
+    public boolean onItemUseFirst(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+        return false;
+    }
+
+    @Override
+    public void onPlayerStoppedUsing(ItemStack itemStack, World world, EntityPlayer player, int par4) {
+
     }
 }
