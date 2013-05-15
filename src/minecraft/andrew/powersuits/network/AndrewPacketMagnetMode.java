@@ -1,8 +1,8 @@
 package andrew.powersuits.network;
 
+import andrew.powersuits.network.muse.MusePacketOld;
 import andrew.powersuits.tick.ClientTickHandler;
 import cpw.mods.fml.common.network.Player;
-import net.machinemuse.powersuits.network.MusePacket;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayerMP;
 
@@ -12,7 +12,7 @@ import java.io.DataInputStream;
  * Created by User: Andrew2448
  * 1:30 PM 4/27/13
  */
-public class AndrewPacketMagnetMode extends MusePacket {
+public class AndrewPacketMagnetMode extends MusePacketOld {
 
     protected int entityID;
 

@@ -53,4 +53,8 @@ public class AddonConfig extends Config {
         useHUDStuff = getConfig().get(category, "Use HUD for certain modules (Auto Feeder, Torch Placer, etc.", true).getBoolean(true);
         useDebugMode = getConfig().get(category, "Use Debug mode. WARNING: WILL SPAM YOUR CONSOLE", false).getBoolean(false);
     }
+
+    public static String getNetworkChannelName() {
+        return "psa";
+    }
 }
