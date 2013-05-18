@@ -9,7 +9,7 @@ import net.machinemuse.api.ModuleManager;
 import net.machinemuse.powersuits.item.ItemPowerArmorHelmet;
 import net.machinemuse.powersuits.item.ItemPowerGauntlet;
 import net.machinemuse.utils.MuseItemUtils;
-import net.machinemuse.utils.MuseRenderer;
+import net.machinemuse.utils.render.MuseRenderer;
 import net.machinemuse.utils.MuseStringUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
