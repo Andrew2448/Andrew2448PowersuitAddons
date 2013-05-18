@@ -51,22 +51,26 @@ public class SolarGeneratorModule extends PowerModuleBase implements IPlayerTick
 
     @Override
     public void onPlayerTickActive(EntityPlayer player, ItemStack item) {
-        World world = player.worldObj;
-        int xCoord = MathHelper.floor_double(player.posX);
-        int zCoord = MathHelper.floor_double(player.posZ);
-        boolean isRaining, canRain = true;
-        if (world.getTotalWorldTime() % 20 == 0) {
-            canRain = world.getWorldChunkManager().getBiomeGenAt(xCoord, zCoord).getIntRainfall() > 0;
-        }
+        ItemStack helmet = player.getCurrentArmor(3);
+        if (helmet != null && helmet.equals(item)) {
+            System.out.println("Helmet on");
+            World world = player.worldObj;
+            int xCoord = MathHelper.floor_double(player.posX);
+            int zCoord = MathHelper.floor_double(player.posZ);
+            boolean isRaining, canRain = true;
+            if (world.getTotalWorldTime() % 20 == 0) {
+                canRain = world.getWorldChunkManager().getBiomeGenAt(xCoord, zCoord).getIntRainfall() > 0;
+            }
 
-        isRaining = canRain && (world.isRaining() || world.isThundering());
-        boolean sunVisible = world.isDaytime() && !isRaining && world.canBlockSeeTheSky(xCoord, MathHelper.floor_double(player.posY) + 1, zCoord);
-        boolean moonVisible = !world.isDaytime() && !isRaining && world.canBlockSeeTheSky(xCoord, MathHelper.floor_double(player.posY) + 1, zCoord);
-        if (!world.isRemote && !world.provider.hasNoSky && (world.getTotalWorldTime() % 80) == 0) {
-            if (sunVisible) {
-                ElectricItemUtils.givePlayerEnergy(player, ModuleManager.computeModularProperty(item, SOLAR_ENERGY_GENERATION_DAY));
-            } else if (moonVisible) {
-                ElectricItemUtils.givePlayerEnergy(player, ModuleManager.computeModularProperty(item, SOLAR_ENERGY_GENERATION_NIGHT));
+            isRaining = canRain && (world.isRaining() || world.isThundering());
+            boolean sunVisible = world.isDaytime() && !isRaining && world.canBlockSeeTheSky(xCoord, MathHelper.floor_double(player.posY) + 1, zCoord);
+            boolean moonVisible = !world.isDaytime() && !isRaining && world.canBlockSeeTheSky(xCoord, MathHelper.floor_double(player.posY) + 1, zCoord);
+            if (!world.isRemote && !world.provider.hasNoSky && (world.getTotalWorldTime() % 80) == 0) {
+                if (sunVisible) {
+                    ElectricItemUtils.givePlayerEnergy(player, ModuleManager.computeModularProperty(item, SOLAR_ENERGY_GENERATION_DAY));
+                } else if (moonVisible) {
+                    ElectricItemUtils.givePlayerEnergy(player, ModuleManager.computeModularProperty(item, SOLAR_ENERGY_GENERATION_NIGHT));
+                }
             }
         }
     }

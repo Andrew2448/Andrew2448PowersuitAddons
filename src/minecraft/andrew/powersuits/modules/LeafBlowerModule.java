@@ -103,10 +103,13 @@ public class LeafBlowerModule extends PowerModuleBase implements IRightClickModu
                     Block tempBlock = Block.blocksList[id];
                     if (tempBlock != null && tempBlock instanceof BlockFlower) {
                         if (block.canHarvestBlock(player, meta)) {
+                            //AddonLogger.logDebug("X: "+Math.abs(x+i)+" Y: "+Math.abs(y+j)+" Z: "+Math.abs(z+k));
+                            //AddonLogger.logDebug("Block ID: "+id);
+                            //AddonLogger.logDebug("Block Meta: "+meta);
                             block.harvestBlock(world, player, x + i, y + j, z + k, meta);
                             totalEnergyDrain += ModuleManager.computeModularProperty(itemStack, LEAF_BLOWER_ENERGY_CONSUMPTION);
+                            world.setBlockToAir(x + i, y + j, z + k);
                         }
-                        world.setBlockToAir(x + i, y + j, z + k);
                     }
                 }
             }
