@@ -53,7 +53,6 @@ public class SolarGeneratorModule extends PowerModuleBase implements IPlayerTick
     public void onPlayerTickActive(EntityPlayer player, ItemStack item) {
         ItemStack helmet = player.getCurrentArmor(3);
         if (helmet != null && helmet.equals(item)) {
-            System.out.println("Helmet on");
             World world = player.worldObj;
             int xCoord = MathHelper.floor_double(player.posX);
             int zCoord = MathHelper.floor_double(player.posZ);
