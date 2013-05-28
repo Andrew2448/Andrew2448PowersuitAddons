@@ -7,10 +7,10 @@ import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.powersuits.item.ItemPowerArmorHelmet;
-import net.machinemuse.powersuits.item.ItemPowerGauntlet;
+import net.machinemuse.powersuits.item.ItemPowerFist;
 import net.machinemuse.utils.MuseItemUtils;
-import net.machinemuse.utils.render.MuseRenderer;
 import net.machinemuse.utils.MuseStringUtils;
+import net.machinemuse.utils.render.MuseRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
@@ -74,7 +74,7 @@ public class RenderTickHandler implements ITickHandler {
                 }
             }
             ItemStack tool = player.getCurrentEquippedItem();
-            if (tool != null && tool.getItem() instanceof ItemPowerGauntlet) {
+            if (tool != null && tool.getItem() instanceof ItemPowerFist) {
                 if (MuseItemUtils.itemHasActiveModule(tool, TorchPlacerModule.MODULE_TORCH_PLACER)) {
                     modules.add(TorchPlacerModule.MODULE_TORCH_PLACER);
                 }
