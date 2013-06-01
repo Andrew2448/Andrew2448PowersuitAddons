@@ -1,5 +1,6 @@
 package andrew.powersuits.modules;
 
+import andrew.powersuits.common.AddonConfig;
 import andrew.powersuits.common.AddonUtils;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
@@ -24,7 +25,7 @@ public class TorchPlacerModule extends PowerModuleBase implements IToggleableMod
     public static final String MODULE_TORCH_PLACER = "Torch Placer";
     public static final String TORCH_ENERGY_CONSUMPTION = "Energy Consumption";
     public static final String MAX_TORCH_STORAGE = "Maximum Storage Amount";
-    public BlockTorch torch = (BlockTorch)Block.blocksList[Block.torchWood.blockID];
+    public BlockTorch torch = AddonConfig.torch;
 
     public TorchPlacerModule(List<IModularItem> validItems) {
         super(validItems);

@@ -5,6 +5,8 @@ import net.machinemuse.api.IModularItem;
 import net.machinemuse.powersuits.common.Config;
 import net.machinemuse.powersuits.common.ModCompatability;
 import net.machinemuse.powersuits.common.ModularPowersuits;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockTorch;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,6 +14,8 @@ import java.util.List;
 public class AddonConfig extends Config {
 
     public static String category = "Modular Powersuits Addons";
+
+    public static BlockTorch torch;
 
     public static boolean useAdvancedOreScannerMessage;
     public static boolean useOldAutoFeeder;
@@ -33,16 +37,23 @@ public class AddonConfig extends Config {
         addModule(new SolarGeneratorModule(HEADONLY));
         addModule(new AutoFeederModule(HEADONLY));
         addModule(new MagnetModule(TORSOONLY));
-        addModule(new TorchPlacerModule(TOOLONLY));
         addModule(new OreScannerModule(TOOLONLY));
         addModule(new LeafBlowerModule(TOOLONLY));
         addModule(new ThermalGeneratorModule(TORSOONLY));
         addModule(new MobRepulsorModule(TORSOONLY));
         //addModule(new BucketModule(TOOLONLY));
+        //addModule(new DimensionalRift(TORSOONLY));
 
         if (ModCompatability.isIndustrialCraftLoaded()) {
             addModule(new EUReaderModule(TOOLONLY));
             addModule(new TreetapModule(TOOLONLY));
+        }
+
+        try {
+            torch = (BlockTorch) Block.blocksList[Block.torchWood.blockID];
+            addModule(new TorchPlacerModule(TOOLONLY));
+        } catch (Exception e) {
+            AddonLogger.logError("Some mod is overriding the default torch. MPSA Torch Placer Module is being disabled.");
         }
     }
 
