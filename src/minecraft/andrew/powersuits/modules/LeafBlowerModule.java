@@ -83,8 +83,8 @@ public class LeafBlowerModule extends PowerModuleBase implements IRightClickModu
                         int meta = world.getBlockMetadata(x + i, y + j, z + k);
                         Block tempBlock = Block.blocksList[id];
                         if (tempBlock != null && tempBlock.isLeaves(world, x + i, y + j, z + k)) {
-                            if (block.canHarvestBlock(player, meta)) {
-                                block.harvestBlock(world, player, x + i, y + j, z + k, meta);
+                            if (tempBlock.canHarvestBlock(player, meta)) {
+                                tempBlock.harvestBlock(world, player, x + i, y + j, z + k, meta);
                                 totalEnergyDrain += ModuleManager.computeModularProperty(itemStack, LEAF_BLOWER_ENERGY_CONSUMPTION);
                             }
                             world.setBlockToAir(x + i, y + j, z + k);
@@ -102,11 +102,11 @@ public class LeafBlowerModule extends PowerModuleBase implements IRightClickModu
                     int meta = world.getBlockMetadata(x + i, y + j, z + k);
                     Block tempBlock = Block.blocksList[id];
                     if (tempBlock != null && tempBlock instanceof BlockFlower) {
-                        if (block.canHarvestBlock(player, meta)) {
+                        if (tempBlock.canHarvestBlock(player, meta)) {
                             //AddonLogger.logDebug("X: "+Math.abs(x+i)+" Y: "+Math.abs(y+j)+" Z: "+Math.abs(z+k));
                             //AddonLogger.logDebug("Block ID: "+id);
                             //AddonLogger.logDebug("Block Meta: "+meta);
-                            block.harvestBlock(world, player, x + i, y + j, z + k, meta);
+                            tempBlock.harvestBlock(world, player, x + i, y + j, z + k, meta);
                             totalEnergyDrain += ModuleManager.computeModularProperty(itemStack, LEAF_BLOWER_ENERGY_CONSUMPTION);
                             world.setBlockToAir(x + i, y + j, z + k);
                         }
