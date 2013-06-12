@@ -42,6 +42,8 @@ public class AddonConfig extends Config {
         addModule(new ThermalGeneratorModule(TORSOONLY));
         addModule(new MobRepulsorModule(TORSOONLY));
         addModule(new FlintAndSteelModule(TOOLONLY));
+        addModule(new ClockModule(HEADONLY));
+        addModule(new CompassModule(HEADONLY));
         //addModule(new BucketModule(TOOLONLY));
         //addModule(new DimensionalRift(TORSOONLY));
 
