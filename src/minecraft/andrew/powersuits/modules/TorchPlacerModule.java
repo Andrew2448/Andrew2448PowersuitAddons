@@ -73,7 +73,9 @@ public class TorchPlacerModule extends PowerModuleBase implements IToggleableMod
                             player.inventory.setInventorySlotContents(i, null);
                         }
                     }
-                    player.sendChatToPlayer("[MPSA] Ate some torches. Torch level: " + AddonUtils.getTorchLevel(item) + "/" + (int) ModuleManager.computeModularProperty(item, MAX_TORCH_STORAGE));
+                    if (AddonUtils.isClientSide()) {
+                        player.sendChatToPlayer("[MPSA] Ate some torches. Torch level: " + AddonUtils.getTorchLevel(item) + "/" + (int) ModuleManager.computeModularProperty(item, MAX_TORCH_STORAGE));
+                    }
                 }
             }
         }
