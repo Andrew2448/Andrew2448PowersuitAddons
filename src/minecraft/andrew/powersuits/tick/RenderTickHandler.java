@@ -39,6 +39,7 @@ public class RenderTickHandler implements ITickHandler {
     }
     double yOffsetIcon = 16.0;
     int yOffsetString = 18;
+    String ampm = "";
 
     ArrayList<String> modules;
 
@@ -78,9 +79,29 @@ public class RenderTickHandler implements ITickHandler {
                     MuseRenderer.drawItemAt(-1.0, yBaseIcon + (yOffsetIcon*i), torch);
                 }
             } else if (modules.get(i).equals(ClockModule.MODULE_CLOCK)) {
+                long time = player.worldObj.provider.getWorldTime();
+                int hour = (int)(time/1000);
+                if (hour < 6) {
+                    hour += 6;
+                    ampm = " AM";
+                } else if (hour == 6) {
+                    hour = 12;
+                    ampm = " PM";
+                } else if (hour > 6 && hour < 18) {
+                    hour -= 6;
+                    ampm = " PM";
+                } else if (hour == 18) {
+                    hour = 12;
+                    ampm = " AM";
+                } else {
+                    hour -= 18;
+                    ampm = " AM";
+                }
                 if (i == 0) {
+                    MuseRenderer.drawString(hour + ampm, 17, yBaseString);
                     MuseRenderer.drawItemAt(-1.0, yBaseIcon, clock);
                 } else {
+                    MuseRenderer.drawString(hour + ampm, 17, yBaseString + (yOffsetString*i));
                     MuseRenderer.drawItemAt(-1.0, yBaseIcon + (yOffsetIcon*i), clock);
                 }
             } else if (modules.get(i).equals(CompassModule.MODULE_COMPASS)) {
