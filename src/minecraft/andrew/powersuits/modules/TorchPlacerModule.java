@@ -106,6 +106,7 @@ public class TorchPlacerModule extends PowerModuleBase implements IToggleableMod
                 if (world.isAirBlock(x, y, z) || (Block.blocksList[blockID].isBlockReplaceable(world, x, y, z))) {
                     if (torch.canPlaceBlockAt(world, x, y, z)) {
                         world.setBlock(x, y, z, Block.torchWood.blockID, getMetaForTorch(world, x, y, z, side), 2);
+                        world.notifyBlocksOfNeighborChange(x, y, z, Block.torchWood.blockID);
                         Block.blocksList[Block.torchWood.blockID].onBlockAdded(world, x, y, z);
                         AddonUtils.setTorchLevel(itemStack, AddonUtils.getTorchLevel(itemStack) - 1);
                         ElectricItemUtils.drainPlayerEnergy(player, ModuleManager.computeModularProperty(itemStack, TORCH_ENERGY_CONSUMPTION));
