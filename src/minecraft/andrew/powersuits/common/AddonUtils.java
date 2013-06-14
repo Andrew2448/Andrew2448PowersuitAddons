@@ -10,24 +10,19 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 public class AddonUtils {
-	public static boolean canItemFitInInventory(EntityPlayer player, ItemStack itemstack)
-	{
-		for(int i = 0; i < player.inventory.getSizeInventory() - 4; i++)
-		{
-			if(player.inventory.getStackInSlot(i) == null)
-			{
+	public static boolean canItemFitInInventory(EntityPlayer player, ItemStack itemstack) {
+		for(int i = 0; i < player.inventory.getSizeInventory() - 4; i++) {
+			if(player.inventory.getStackInSlot(i) == null) {
 				return true;
 			}
 		}
-		if(!itemstack.isItemDamaged())
-        {
-	        if(itemstack.getMaxStackSize() == 1)return false;//would need to go in empty slot
-	        
-	        for(int i = 0; i < player.inventory.getSizeInventory(); i++)
-	        {
+		if(!itemstack.isItemDamaged()) {
+	        if(itemstack.getMaxStackSize() == 1){
+                return false;
+            }
+	        for(int i = 0; i < player.inventory.getSizeInventory(); i++) {
 	        	ItemStack invstack = player.inventory.getStackInSlot(i);
-	            if(invstack != null && invstack.itemID == itemstack.itemID && invstack.isStackable() && invstack.stackSize < invstack.getMaxStackSize() && invstack.stackSize < player.inventory.getInventoryStackLimit() && (!invstack.getHasSubtypes() || invstack.getItemDamage() == itemstack.getItemDamage()))
-	            {
+	            if(invstack != null && invstack.itemID == itemstack.itemID && invstack.isStackable() && invstack.stackSize < invstack.getMaxStackSize() && invstack.stackSize < player.inventory.getInventoryStackLimit() && (!invstack.getHasSubtypes() || invstack.getItemDamage() == itemstack.getItemDamage())) {
 	                return true;
 	            }
 	        }	        
