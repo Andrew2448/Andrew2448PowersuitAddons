@@ -1,9 +1,11 @@
 package andrew.powersuits.modules;
 
 import net.machinemuse.api.IModularItem;
+import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.moduletrigger.IRightClickModule;
 import net.machinemuse.powersuits.item.ItemComponent;
 import net.machinemuse.powersuits.powermodule.PowerModuleBase;
+import net.machinemuse.utils.ElectricItemUtils;
 import net.machinemuse.utils.MuseCommonStrings;
 import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.block.Block;
@@ -31,7 +33,7 @@ public class FlintAndSteelModule extends PowerModuleBase implements IRightClickM
         super(validItems);
         addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.servoMotor, 1));
         addInstallCost(new ItemStack(Item.flintAndSteel, 1));
-        addBaseProperty(IGNITION_ENERGY_CONSUMPTION, 1000);
+        addBaseProperty(IGNITION_ENERGY_CONSUMPTION, 1000, "J");
     }
 
     @Override
@@ -64,16 +66,20 @@ public class FlintAndSteelModule extends PowerModuleBase implements IRightClickM
 
     @Override
     public void onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-        x += (side == 5 ? 1 : side == 4 ? -1 : 0);
-        y += (side == 1 ? 1 : side == 0 ? -1 : 0);
-        z += (side == 3 ? 1 : side == 2 ? -1 : 0);
+        double energyConsumption = ModuleManager.computeModularProperty(itemStack, IGNITION_ENERGY_CONSUMPTION);
+        if (energyConsumption < ElectricItemUtils.getPlayerEnergy(player)) {
+            x += (side == 5 ? 1 : side == 4 ? -1 : 0);
+            y += (side == 1 ? 1 : side == 0 ? -1 : 0);
+            z += (side == 3 ? 1 : side == 2 ? -1 : 0);
 
-        if (player.canPlayerEdit(x, y, z, side, itemStack)) {
-            int id = world.getBlockId(x, y, z);
+            if (player.canPlayerEdit(x, y, z, side, itemStack)) {
+                int id = world.getBlockId(x, y, z);
 
-            if (id == 0) {
-                world.playSoundEffect((double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D, "fire.ignite", 1.0F, ran.nextFloat() * 0.4F + 0.8F);
-                world.setBlock(x, y, z, Block.fire.blockID);
+                if (id == 0) {
+                    ElectricItemUtils.drainPlayerEnergy(player, energyConsumption);
+                    world.playSoundEffect((double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D, "fire.ignite", 1.0F, ran.nextFloat() * 0.4F + 0.8F);
+                    world.setBlock(x, y, z, Block.fire.blockID);
+                }
             }
         }
     }

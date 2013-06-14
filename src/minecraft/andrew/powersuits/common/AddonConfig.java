@@ -44,6 +44,7 @@ public class AddonConfig extends Config {
         addModule(new FlintAndSteelModule(TOOLONLY));
         addModule(new ClockModule(HEADONLY));
         addModule(new CompassModule(HEADONLY));
+        addModule(new LightningModule(TOOLONLY));
         //addModule(new BucketModule(TOOLONLY));
         //addModule(new DimensionalRift(TORSOONLY));
 
@@ -64,8 +65,8 @@ public class AddonConfig extends Config {
         useAdvancedOreScannerMessage = getConfig().get(category, "Use Detailed Ore Scanner Message", true).getBoolean(true);
         useOldAutoFeeder = getConfig().get(category, "Use Old Auto Feeder Method", false).getBoolean(false);
         useCheatyLeatherRecipe = getConfig().get(category, "Use Cheaty Leather Recipe", true).getBoolean(true);
-        useHUDStuff = getConfig().get(category, "Use HUD for certain modules (Auto Feeder, Torch Placer, etc.", true).getBoolean(true);
-        useDebugMode = getConfig().get(category, "Use Debug mode. WARNING: WILL SPAM YOUR CONSOLE", false).getBoolean(false);
+        useHUDStuff = getConfig().get(category, "Use HUD for certain modules (Auto Feeder, Torch Placer, Compass, Clock, etc.", true).getBoolean(true);
+        useDebugMode = getConfig().get(category, "Use Debug mode. WARNING: WILL PROBABLY SPAM YOUR CONSOLE", false).getBoolean(false);
     }
 
     public static String getNetworkChannelName() {
