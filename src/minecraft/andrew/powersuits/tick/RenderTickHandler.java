@@ -1,5 +1,6 @@
 package andrew.powersuits.tick;
 
+import andrew.powersuits.common.AddonConfig;
 import andrew.powersuits.common.AddonUtils;
 import andrew.powersuits.modules.AutoFeederModule;
 import andrew.powersuits.modules.ClockModule;
@@ -81,21 +82,31 @@ public class RenderTickHandler implements ITickHandler {
             } else if (modules.get(i).equals(ClockModule.MODULE_CLOCK)) {
                 long time = player.worldObj.provider.getWorldTime();
                 int hour = (int)((time%24000)/1000);
-                if (hour < 6) {
-                    hour += 6;
-                    ampm = " AM";
-                } else if (hour == 6) {
-                    hour = 12;
-                    ampm = " PM";
-                } else if (hour > 6 && hour < 18) {
-                    hour -= 6;
-                    ampm = " PM";
-                } else if (hour == 18) {
-                    hour = 12;
-                    ampm = " AM";
-                } else {
-                    hour -= 18;
-                    ampm = " AM";
+                if (AddonConfig.use24hClock) {
+                    if (hour < 19) {
+                        hour += 6;
+                    } else {
+                        hour -= 18;
+                    }
+                    ampm = "h";
+                }
+                else {
+                    if (hour < 6) {
+                        hour += 6;
+                        ampm = " AM";
+                    } else if (hour == 6) {
+                        hour = 12;
+                        ampm = " PM";
+                    } else if (hour > 6 && hour < 18) {
+                        hour -= 6;
+                        ampm = " PM";
+                    } else if (hour == 18) {
+                        hour = 12;
+                        ampm = " AM";
+                    } else {
+                        hour -= 18;
+                        ampm = " AM";
+                    }
                 }
                 if (i == 0) {
                     MuseRenderer.drawString(hour + ampm, 17, yBaseString);

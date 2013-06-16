@@ -22,6 +22,7 @@ public class AddonConfig extends Config {
     public static boolean useCheatyLeatherRecipe;
     public static boolean useHUDStuff;
     public static boolean useDebugMode;
+    public static boolean use24hClock;
 
     public static void loadPowerModules() {
         List<IModularItem> ARMORONLY = Arrays.asList((IModularItem) ModularPowersuits.powerArmorHead, ModularPowersuits.powerArmorTorso, ModularPowersuits.powerArmorLegs, ModularPowersuits.powerArmorFeet);
@@ -64,9 +65,10 @@ public class AddonConfig extends Config {
     public static void loadOptions() {
         useAdvancedOreScannerMessage = getConfig().get(category, "Use Detailed Ore Scanner Message", true).getBoolean(true);
         useOldAutoFeeder = getConfig().get(category, "Use Old Auto Feeder Method", false).getBoolean(false);
-        useCheatyLeatherRecipe = getConfig().get(category, "Use Cheaty Leather Recipe", true).getBoolean(true);
+        useCheatyLeatherRecipe = getConfig().get(category, "Use Cheaty Leather Recipe (Requires Thermal Expansion)", true).getBoolean(true);
         useHUDStuff = getConfig().get(category, "Use HUD for certain modules (Auto Feeder, Torch Placer, Compass, Clock, etc.", true).getBoolean(true);
         useDebugMode = getConfig().get(category, "Use Debug mode. WARNING: WILL PROBABLY SPAM YOUR CONSOLE", false).getBoolean(false);
+        use24hClock = getConfig().get(category, "Use a 24h clock instead of 12h", false).getBoolean(false);
     }
 
     public static String getNetworkChannelName() {
