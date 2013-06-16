@@ -78,9 +78,9 @@ public class TorchPlacerModule extends PowerModuleBase implements IToggleableMod
                     }
                 }
             }
-            if (AddonUtils.isClientSide()) {
+            /*if (AddonUtils.isClientSide()) {
                 player.sendChatToPlayer("[MPSA] Ate some torches. Torch level: " + AddonUtils.getTorchLevel(item) + "/" + (int) ModuleManager.computeModularProperty(item, MAX_TORCH_STORAGE));
-            }
+            }*/
         }
     }
 
@@ -89,13 +89,13 @@ public class TorchPlacerModule extends PowerModuleBase implements IToggleableMod
     }
 
     @Override
-    public void onRightClick(EntityPlayer playerClicking, World world, ItemStack item) {
+    public void onRightClick(EntityPlayer player, World world, ItemStack item) {
     }
 
     @Override
-    public void onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-        if (AddonUtils.getTorchLevel(itemStack) > 0) {
-            if ((player.canPlayerEdit(x, y, z, side, itemStack)) && (Block.blocksList[Block.torchWood.blockID].canPlaceBlockAt(world, x, y, z))) {
+    public void onItemUse(ItemStack item, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+        if (AddonUtils.getTorchLevel(item) > 0) {
+            if ((player.canPlayerEdit(x, y, z, side, item)) && (Block.blocksList[Block.torchWood.blockID].canPlaceBlockAt(world, x, y, z))) {
                 int blockID = world.getBlockId(x, y, z);
                 if ((blockID != Block.vine.blockID) && (blockID != Block.tallGrass.blockID) && (blockID != Block.deadBush.blockID) && ((Block.blocksList[blockID] == null) || (!Block.blocksList[blockID].isBlockReplaceable(world, x, y, z)))) {
                     x += (side == 5 ? 1 : side == 4 ? -1 : 0);
@@ -108,9 +108,21 @@ public class TorchPlacerModule extends PowerModuleBase implements IToggleableMod
                         world.setBlock(x, y, z, Block.torchWood.blockID, getMetaForTorch(world, x, y, z, side), 2);
                         world.notifyBlocksOfNeighborChange(x, y, z, Block.torchWood.blockID);
                         Block.blocksList[Block.torchWood.blockID].onBlockAdded(world, x, y, z);
-                        AddonUtils.setTorchLevel(itemStack, AddonUtils.getTorchLevel(itemStack) - 1);
-                        ElectricItemUtils.drainPlayerEnergy(player, ModuleManager.computeModularProperty(itemStack, TORCH_ENERGY_CONSUMPTION));
+                        AddonUtils.setTorchLevel(item, AddonUtils.getTorchLevel(item) - 1);
+                        ElectricItemUtils.drainPlayerEnergy(player, ModuleManager.computeModularProperty(item, TORCH_ENERGY_CONSUMPTION));
+                    } else {
+                        if (AddonUtils.isClientSide()) {
+                            player.sendChatToPlayer("[MPSA] Cannot place a torch here. Torch level: " + AddonUtils.getTorchLevel(item) + "/" + (int) ModuleManager.computeModularProperty(item, MAX_TORCH_STORAGE));
+                        }
                     }
+                } else {
+                    if (AddonUtils.isClientSide()) {
+                        player.sendChatToPlayer("[MPSA] Cannot place a torch here. Torch level: " + AddonUtils.getTorchLevel(item) + "/" + (int) ModuleManager.computeModularProperty(item, MAX_TORCH_STORAGE));
+                    }
+                }
+            } else {
+                if (AddonUtils.isClientSide()) {
+                    player.sendChatToPlayer("[MPSA] Cannot place a torch here. Torch level: " + AddonUtils.getTorchLevel(item) + "/" + (int) ModuleManager.computeModularProperty(item, MAX_TORCH_STORAGE));
                 }
             }
         } else {

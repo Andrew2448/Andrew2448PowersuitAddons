@@ -80,7 +80,7 @@ public class RenderTickHandler implements ITickHandler {
                 }
             } else if (modules.get(i).equals(ClockModule.MODULE_CLOCK)) {
                 long time = player.worldObj.provider.getWorldTime();
-                int hour = (int)(time/1000);
+                int hour = (int)((time%24000)/1000);
                 if (hour < 6) {
                     hour += 6;
                     ampm = " AM";
