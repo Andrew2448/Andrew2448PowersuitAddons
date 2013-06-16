@@ -6,7 +6,6 @@ import net.machinemuse.api.moduletrigger.IRightClickModule;
 import net.machinemuse.powersuits.item.ItemComponent;
 import net.machinemuse.powersuits.powermodule.PowerModuleBase;
 import net.machinemuse.utils.*;
-import net.minecraft.block.Block;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -64,7 +63,7 @@ public class LightningModule extends PowerModuleBase implements IRightClickModul
             MovingObjectPosition MOP = MusePlayerUtils.doCustomRayTrace(player.worldObj, player, true, range);
             world.spawnEntityInWorld(new EntityLightningBolt(player.worldObj, MOP.hitVec.xCoord, MOP.hitVec.yCoord, MOP.hitVec.zCoord));
 
-            for (int x = (int)player.posX-1; x < (int)player.posX+2; x++) {
+            /*for (int x = (int)player.posX-1; x < (int)player.posX+2; x++) {
                 for (int z = (int)player.posZ-1; z < (int)player.posZ+2; z++) {
                     if (player.canPlayerEdit(x, (int)player.posY, z, 1, item)) {
                         int id = world.getBlockId(x, (int)player.posY, z);
@@ -73,7 +72,7 @@ public class LightningModule extends PowerModuleBase implements IRightClickModul
                         }
                     }
                 }
-            }
+            }*/
         }
     }
 
