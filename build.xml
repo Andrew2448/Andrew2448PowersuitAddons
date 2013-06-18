@@ -334,9 +334,11 @@
         <unzip src="${download.dir}/BuildcraftAPI.zip" dest="${download.dir}"/>
         <mkdir dir="${mcpsrc.dir}/buildcraft/api/tools"/>
         <mkdir dir="${mcpsrc.dir}/buildcraft/api/power"/>
+        <mkdir dir="${mcpsrc.dir}/buildcraft/api/core"/>
         <move file="${download.dir}/buildcraft/api/tools/IToolWrench.java" todir="${mcpsrc.dir}/buildcraft/api/tools"/>
         <move file="${download.dir}/buildcraft/api/power/IPowerReceptor.java" todir="${mcpsrc.dir}/buildcraft/api/power"/>
         <move file="${download.dir}/buildcraft/api/power/IPowerProvider.java" todir="${mcpsrc.dir}/buildcraft/api/power"/>
+        <move file="${download.dir}/buildcraft/api/core/SafeTimeTracker.java" todir="${mcpsrc.dir}/buildcraft/api/core"/>
 
         <echo message="Extracting Scala Libraries..."/>
         <unzip src="${download.dir}/scalalib-${scala.version}.zip" dest="${mcp.dir}"/>
