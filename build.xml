@@ -336,6 +336,7 @@
         <mkdir dir="${mcpsrc.dir}/buildcraft/api/power"/>
         <move file="${download.dir}/buildcraft/api/tools/IToolWrench.java" todir="${mcpsrc.dir}/buildcraft/api/tools"/>
         <move file="${download.dir}/buildcraft/api/power/IPowerReceptor.java" todir="${mcpsrc.dir}/buildcraft/api/power"/>
+        <move file="${download.dir}/buildcraft/api/power/IPowerProvider.java" todir="${mcpsrc.dir}/buildcraft/api/power"/>
 
         <echo message="Extracting Scala Libraries..."/>
         <unzip src="${download.dir}/scalalib-${scala.version}.zip" dest="${mcp.dir}"/>
