@@ -66,6 +66,7 @@
             <available file="${download.dir}/scalalib-${scala.version}.zip"/>
             <available file="${download.dir}/ThaumcraftApi ${thaumcraftapi.version}.zip"/>
             <available file="${download.dir}/MFFS2_API.zip"/>
+            <available file="${download.dir}/BuildcraftAPI.zip"/>
             <available file="${download.dir}/slick-util.jar"/>
         </and>
     </condition>
@@ -174,7 +175,8 @@
              dest="${download.dir}/ThermalExpansion-API-${thermexapi.version}.zip"/>
 
         <echo message="Downloading CoFH API..."/>
-        <get src="http://machinemuse.minecraftforge.net/CoFHCore-API.zip" dest="${download.dir}/CoFHCore-API.zip"/>
+        <get src="https://dl.dropboxusercontent.com/u/66472801/CoFHCore-API.zip" dest="${download.dir}/CoFHCore-API.zip"/>
+        <!--get src="http://machinemuse.minecraftforge.net/CoFHCore-API.zip" dest="${download.dir}/CoFHCore-API.zip"/-->
 
         <echo message="Downloading Galacticraft API..."/>
         <get src="http://machinemuse.minecraftforge.net/GalacticraftAPIB.zip"
@@ -199,6 +201,10 @@
         <echo message="Downloading MFFS API..."/>
         <get src="http://machinemuse.minecraftforge.net/MFFS2_API.zip"
              dest="${download.dir}/MFFS2_API.zip"/>
+
+        <echo message="Downloading Buildcraft API..."/>
+        <get src="https://dl.dropboxusercontent.com/u/66472801/BuildcraftAPI.zip"
+             dest="${download.dir}/BuildcraftAPI.zip"/>
 
         <echo message="Downloading Scala Libraries..."/>
         <get src="http://machinemuse.minecraftforge.net/scalalib-${scala.version}.zip"
@@ -273,6 +279,8 @@
         <mkdir dir="${mcpsrc.dir}/cofh/api/tileentity"/>
         <move file="${download.dir}/cofh/api/tileentity/IReconfigurableFacing.java"
               todir="${mcpsrc.dir}/cofh/api/tileentity"/>
+        <move file="${download.dir}/cofh/api/tileentity/ITileInfo.java"
+              todir="${mcpsrc.dir}/cofh/api/tileentity"/>
 
         <echo message="Extracting Galacticraft API... "/>
         <unzip src="${download.dir}/GalacticraftAPIB.zip" dest="${download.dir}"/>
@@ -321,6 +329,13 @@
         <mkdir dir="${mcpsrc.dir}/mods/mffs/api"/>
         <move file="${download.dir}/mods/mffs/api/IFieldTeleporter.java" todir="${mcpsrc.dir}/mods/mffs/api"/>
         <move file="${download.dir}/mods/mffs/api/IMFFS_Wrench.java" todir="${mcpsrc.dir}/mods/mffs/api"/>
+
+        <echo message="Extracting Buildcraft API..."/>
+        <unzip src="${download.dir}/BuildcraftAPI.zip" dest="${download.dir}"/>
+        <mkdir dir="${mcpsrc.dir}/buildcraft/api/tools"/>
+        <mkdir dir="${mcpsrc.dir}/buildcraft/api/power"/>
+        <move file="${download.dir}/buildcraft/api/tools/IToolWrench.java" todir="${mcpsrc.dir}/buildcraft/api/tools"/>
+        <move file="${download.dir}/buildcraft/api/power/IPowerReceptor.java" todir="${mcpsrc.dir}/buildcraft/api/power"/>
 
         <echo message="Extracting Scala Libraries..."/>
         <unzip src="${download.dir}/scalalib-${scala.version}.zip" dest="${mcp.dir}"/>

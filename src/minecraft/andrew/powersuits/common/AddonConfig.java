@@ -54,6 +54,10 @@ public class AddonConfig extends Config {
             addModule(new TreetapModule(TOOLONLY));
         }
 
+        if (ModCompatability.isThermalExpansionLoaded()) {
+            addModule(new TEMultimeterModule(TOOLONLY));
+        }
+
         try {
             torch = (BlockTorch) Block.blocksList[Block.torchWood.blockID];
             addModule(new TorchPlacerModule(TOOLONLY));
