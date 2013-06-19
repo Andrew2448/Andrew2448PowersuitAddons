@@ -3,6 +3,7 @@ package andrew.powersuits.modules;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.moduletrigger.IPlayerTickModule;
+import net.machinemuse.api.moduletrigger.IToggleableModule;
 import net.machinemuse.powersuits.item.ItemComponent;
 import net.machinemuse.powersuits.powermodule.PowerModuleBase;
 import net.machinemuse.utils.ElectricItemUtils;
@@ -15,7 +16,7 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import java.util.List;
 
-public class KineticGeneratorModule extends PowerModuleBase implements IPlayerTickModule {
+public class KineticGeneratorModule extends PowerModuleBase implements IPlayerTickModule, IToggleableModule {
     public static final String MODULE_KINETIC_GENERATOR = "Kinetic Generator";
     public static final String KINETIC_ENERGY_GENERATION = "Energy Per 5 Blocks";
     public static final String KINETIC_HEAT_GENERATION = "Heat Generation";
