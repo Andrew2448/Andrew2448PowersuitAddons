@@ -46,6 +46,7 @@ public class AddonConfig extends Config {
         addModule(new ClockModule(HEADONLY));
         addModule(new CompassModule(HEADONLY));
         addModule(new LightningModule(TOOLONLY));
+        addModule(new WaterTankModule(TORSOONLY));
         //addModule(new BucketModule(TOOLONLY));
         //addModule(new DimensionalRift(TORSOONLY));
 

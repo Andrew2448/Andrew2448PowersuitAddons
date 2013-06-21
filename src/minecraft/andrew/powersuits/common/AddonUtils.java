@@ -10,6 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 public class AddonUtils {
+
 	public static boolean canItemFitInInventory(EntityPlayer player, ItemStack itemstack) {
 		for(int i = 0; i < player.inventory.getSizeInventory() - 4; i++) {
 			if(player.inventory.getStackInSlot(i) == null) {
@@ -83,6 +84,24 @@ public class AddonUtils {
 			itemTag.setInteger("Torch", i);
 		}
 	}
+
+    public static double getWaterLevel(ItemStack stack) {
+        if (stack != null && stack.getItem() instanceof IModularItem) {
+            NBTTagCompound itemTag = MuseItemUtils.getMuseItemTag(stack);
+            Double waterLevel = itemTag.getDouble("Water");
+            if (waterLevel != null) {
+                return waterLevel;
+            }
+        }
+        return 0;
+    }
+
+    public static void setWaterLevel(ItemStack stack, double d) {
+        if (stack != null && stack.getItem() instanceof IModularItem) {
+            NBTTagCompound itemTag = MuseItemUtils.getMuseItemTag(stack);
+            itemTag.setDouble("Water", d);
+        }
+    }
 
     public static void setLiquid(ItemStack stack, String name) {
         if (stack != null && stack.getItem() instanceof IModularItem) {

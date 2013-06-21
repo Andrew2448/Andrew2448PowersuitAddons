@@ -1,15 +1,15 @@
 package andrew.powersuits.tick;
 
+import andrew.powersuits.client.WaterMeter;
 import andrew.powersuits.common.AddonConfig;
 import andrew.powersuits.common.AddonUtils;
-import andrew.powersuits.modules.AutoFeederModule;
-import andrew.powersuits.modules.ClockModule;
-import andrew.powersuits.modules.CompassModule;
-import andrew.powersuits.modules.TorchPlacerModule;
+import andrew.powersuits.common.AddonWaterUtils;
+import andrew.powersuits.modules.*;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.powersuits.common.Config;
+import net.machinemuse.powersuits.item.ItemPowerArmorChestplate;
 import net.machinemuse.powersuits.item.ItemPowerArmorHelmet;
 import net.machinemuse.powersuits.item.ItemPowerFist;
 import net.machinemuse.utils.MuseItemUtils;
@@ -18,6 +18,8 @@ import net.machinemuse.utils.render.MuseRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -34,8 +36,8 @@ public class RenderTickHandler implements ITickHandler {
             yBaseString = 4;
         }
         else {
-            yBaseIcon = 17.0;
-            yBaseString = 23;
+            yBaseIcon = 26.0;
+            yBaseString = 32;
         }
     }
     double yOffsetIcon = 16.0;
@@ -43,6 +45,8 @@ public class RenderTickHandler implements ITickHandler {
     String ampm = "";
 
     ArrayList<String> modules;
+
+    protected static WaterMeter water;
 
     ItemStack food = new ItemStack(Item.beefCooked);
     ItemStack torch = new ItemStack(Block.torchWood);
@@ -57,69 +61,75 @@ public class RenderTickHandler implements ITickHandler {
         EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
         modules = new ArrayList<String>();
         findInstalledModules(player);
-        for (int i = 0; i < modules.size(); i++) {
-            if (modules.get(i).equals(AutoFeederModule.MODULE_AUTO_FEEDER)) {
-                int foodLevel = (int) AddonUtils.getFoodLevel(player.getCurrentArmor(3));
-                String num = MuseStringUtils.formatNumberShort(foodLevel);
-                if (i == 0) {
-                    MuseRenderer.drawString(num, 17, yBaseString);
-                    MuseRenderer.drawItemAt(-1.0, yBaseIcon, food);
-                } else {
-                    MuseRenderer.drawString(num, 17, yBaseString + (yOffsetString*i));
-                    MuseRenderer.drawItemAt(-1.0, yBaseIcon + (yOffsetIcon*i), food);
-                }
-            } else if (modules.get(i).equals(TorchPlacerModule.MODULE_TORCH_PLACER)) {
-                int torchLevel = AddonUtils.getTorchLevel(player.getCurrentEquippedItem());
-                int maxTorchLevel = (int) ModuleManager.computeModularProperty(player.getCurrentEquippedItem(), TorchPlacerModule.MAX_TORCH_STORAGE);
-                String num = MuseStringUtils.formatNumberShort(torchLevel) + "/" + MuseStringUtils.formatNumberShort(maxTorchLevel);
-                if (i == 0) {
-                    MuseRenderer.drawString(num, 17, yBaseString);
-                    MuseRenderer.drawItemAt(-1.0, yBaseIcon, torch);
-                } else {
-                    MuseRenderer.drawString(num, 17, yBaseString + (yOffsetString*i));
-                    MuseRenderer.drawItemAt(-1.0, yBaseIcon + (yOffsetIcon*i), torch);
-                }
-            } else if (modules.get(i).equals(ClockModule.MODULE_CLOCK)) {
-                long time = player.worldObj.provider.getWorldTime();
-                int hour = (int)((time%24000)/1000);
-                if (AddonConfig.use24hClock) {
-                    if (hour < 19) {
-                        hour += 6;
+        if (player != null && MuseItemUtils.modularItemsEquipped(player).size() > 0 && Minecraft.getMinecraft().currentScreen == null) {
+            for (int i = 0; i < modules.size(); i++) {
+                if (modules.get(i).equals(AutoFeederModule.MODULE_AUTO_FEEDER)) {
+                    int foodLevel = (int) AddonUtils.getFoodLevel(player.getCurrentArmor(3));
+                    String num = MuseStringUtils.formatNumberShort(foodLevel);
+                    if (i == 0) {
+                        MuseRenderer.drawString(num, 17, yBaseString);
+                        MuseRenderer.drawItemAt(-1.0, yBaseIcon, food);
                     } else {
-                        hour -= 18;
+                        MuseRenderer.drawString(num, 17, yBaseString + (yOffsetString*i));
+                        MuseRenderer.drawItemAt(-1.0, yBaseIcon + (yOffsetIcon*i), food);
                     }
-                    ampm = "h";
-                }
-                else {
-                    if (hour < 6) {
-                        hour += 6;
-                        ampm = " AM";
-                    } else if (hour == 6) {
-                        hour = 12;
-                        ampm = " PM";
-                    } else if (hour > 6 && hour < 18) {
-                        hour -= 6;
-                        ampm = " PM";
-                    } else if (hour == 18) {
-                        hour = 12;
-                        ampm = " AM";
+                } else if (modules.get(i).equals(TorchPlacerModule.MODULE_TORCH_PLACER)) {
+                    int torchLevel = AddonUtils.getTorchLevel(player.getCurrentEquippedItem());
+                    int maxTorchLevel = (int) ModuleManager.computeModularProperty(player.getCurrentEquippedItem(), TorchPlacerModule.MAX_TORCH_STORAGE);
+                    String num = MuseStringUtils.formatNumberShort(torchLevel) + "/" + MuseStringUtils.formatNumberShort(maxTorchLevel);
+                    if (i == 0) {
+                        MuseRenderer.drawString(num, 17, yBaseString);
+                        MuseRenderer.drawItemAt(-1.0, yBaseIcon, torch);
                     } else {
-                        hour -= 18;
-                        ampm = " AM";
+                        MuseRenderer.drawString(num, 17, yBaseString + (yOffsetString*i));
+                        MuseRenderer.drawItemAt(-1.0, yBaseIcon + (yOffsetIcon*i), torch);
                     }
-                }
-                if (i == 0) {
-                    MuseRenderer.drawString(hour + ampm, 17, yBaseString);
-                    MuseRenderer.drawItemAt(-1.0, yBaseIcon, clock);
-                } else {
-                    MuseRenderer.drawString(hour + ampm, 17, yBaseString + (yOffsetString*i));
-                    MuseRenderer.drawItemAt(-1.0, yBaseIcon + (yOffsetIcon*i), clock);
-                }
-            } else if (modules.get(i).equals(CompassModule.MODULE_COMPASS)) {
-                if (i == 0) {
-                    MuseRenderer.drawItemAt(-1.0, yBaseIcon, compass);
-                } else {
-                    MuseRenderer.drawItemAt(-1.0, yBaseIcon + (yOffsetIcon*i), compass);
+                } else if (modules.get(i).equals(ClockModule.MODULE_CLOCK)) {
+                    long time = player.worldObj.provider.getWorldTime();
+                    int hour = (int)((time%24000)/1000);
+                    if (AddonConfig.use24hClock) {
+                        if (hour < 19) {
+                            hour += 6;
+                        } else {
+                            hour -= 18;
+                        }
+                        ampm = "h";
+                    }
+                    else {
+                        if (hour < 6) {
+                            hour += 6;
+                            ampm = " AM";
+                        } else if (hour == 6) {
+                            hour = 12;
+                            ampm = " PM";
+                        } else if (hour > 6 && hour < 18) {
+                            hour -= 6;
+                            ampm = " PM";
+                        } else if (hour == 18) {
+                            hour = 12;
+                            ampm = " AM";
+                        } else {
+                            hour -= 18;
+                            ampm = " AM";
+                        }
+                    }
+                    if (i == 0) {
+                        MuseRenderer.drawString(hour + ampm, 17, yBaseString);
+                        MuseRenderer.drawItemAt(-1.0, yBaseIcon, clock);
+                    } else {
+                        MuseRenderer.drawString(hour + ampm, 17, yBaseString + (yOffsetString*i));
+                        MuseRenderer.drawItemAt(-1.0, yBaseIcon + (yOffsetIcon*i), clock);
+                    }
+                } else if (modules.get(i).equals(CompassModule.MODULE_COMPASS)) {
+                    if (i == 0) {
+                        MuseRenderer.drawItemAt(-1.0, yBaseIcon, compass);
+                    } else {
+                        MuseRenderer.drawItemAt(-1.0, yBaseIcon + (yOffsetIcon*i), compass);
+                    }
+                } else if (modules.get(i).equals(WaterTankModule.MODULE_WATER_TANK)) {
+                    Minecraft mc = Minecraft.getMinecraft();
+                    ScaledResolution screen = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
+                    drawMeters(player, screen);
                 }
             }
         }
@@ -145,6 +155,30 @@ public class RenderTickHandler implements ITickHandler {
                     modules.add(CompassModule.MODULE_COMPASS);
                 }
             }
+            ItemStack chest = player.getCurrentArmor(2);
+            if (chest != null && chest.getItem() instanceof ItemPowerArmorChestplate) {
+                if (MuseItemUtils.itemHasActiveModule(chest, WaterTankModule.MODULE_WATER_TANK)) {
+                    modules.add(WaterTankModule.MODULE_WATER_TANK);
+                }
+            }
+        }
+    }
+
+    private void drawMeters(EntityPlayer player, ScaledResolution screen) {
+        double currWater = AddonWaterUtils.getPlayerWater(player);
+        double maxWater = AddonWaterUtils.getMaxWater(player);
+        String currStr = MuseStringUtils.formatNumberShort(currWater);
+        String maxStr = MuseStringUtils.formatNumberShort(maxWater);
+        if (Config.useGraphicalMeters()) {
+            if (water == null) {
+                water = new WaterMeter();
+            }
+            double left = screen.getScaledWidth() - 12;
+            double top = (screen.getScaledHeight() / 2.0 - 16)+40;
+            water.draw(left, top, currWater / maxWater);
+            MuseRenderer.drawRightAlignedString(currStr, left - 2, top + 15); //10
+        } else {
+            MuseRenderer.drawString(currStr + '/' + maxStr + " buckets", 1, 19);
         }
     }
 
