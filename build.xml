@@ -1,4 +1,4 @@
-<project name="ModularPowersuitsAddons" default="release">
+<project name="ModularPowersuitsAddons" default="clean">
 
     <property environment="env"/>
 
@@ -77,8 +77,7 @@
     <target name="clean">
         <delete dir="${mcpsrc.dir}/andrew"/>
         <delete dir="${mcpsrc.dir}/net/machinemuse"/>
-        <delete file="${mcp.dir}/bin/minecraft/atomicscience/api/IAntiPoisonArmor.java"/>
-        <delete file="${mcp.dir}/bin/minecraft/atomicscience/api/poison/Poison.java"/>
+        <delete dir="${mcpsrc.dir}/ic2"/>
         <delete dir="${download.dir}/MachineMusePowersuits"/>
     </target>
 
