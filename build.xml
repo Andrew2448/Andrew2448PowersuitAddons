@@ -1,4 +1,4 @@
-<project name="ModularPowersuitsAddons" default="clean">
+<project name="ModularPowersuitsAddons" default="release">
 
     <property environment="env"/>
 
@@ -77,7 +77,6 @@
     <target name="clean">
         <delete dir="${mcpsrc.dir}/andrew"/>
         <delete dir="${mcpsrc.dir}/net/machinemuse"/>
-        <delete dir="${mcpsrc.dir}/ic2"/>
         <delete dir="${download.dir}/MachineMusePowersuits"/>
     </target>
 
