@@ -4,9 +4,12 @@ import andrew.powersuits.common.AddonUtils;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.moduletrigger.IPlayerTickModule;
+import net.machinemuse.powersuits.item.ItemComponent;
 import net.machinemuse.powersuits.powermodule.PowerModuleBase;
 import net.machinemuse.utils.MuseCommonStrings;
 import net.machinemuse.utils.MuseHeatUtils;
+import net.machinemuse.utils.MuseItemUtils;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -30,6 +33,8 @@ public class WaterTankModule extends PowerModuleBase implements IPlayerTickModul
         addTradeoffProperty("Tank Size", WATER_TANK_SIZE, 800, " buckets");
         addTradeoffProperty("Tank Size", MuseCommonStrings.WEIGHT, 4000, "g");
         addInstallCost(new ItemStack(Item.bucketWater));
+        addInstallCost(new ItemStack(Block.glass, 8));
+        addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.controlCircuit, 2));
     }
 
     @Override
