@@ -225,6 +225,7 @@
         <move file="${download.dir}/ic2/api/energy/EnergyNet.java" todir="${mcpsrc.dir}/ic2/api/energy" />
         <move file="${download.dir}/ic2/api/item/ICustomElectricItem.java" todir="${mcpsrc.dir}/ic2/api/"/>
         <move file="${download.dir}/ic2/api/item/IElectricItem.java" todir="${mcpsrc.dir}/ic2/api/"/>
+        <move file="${download.dir}/ic2/api/item/IElectricItemManager.java" todir="${mcpsrc.dir}/ic2/api/"/>
         <move file="${download.dir}/ic2/api/item/ElectricItem.java" todir="${mcpsrc.dir}/ic2/api/"/>
         <move file="${download.dir}/ic2/api/item/Items.java" todir="${mcpsrc.dir}/ic2/api/"/>
         <move file="${download.dir}/ic2/api/Direction.java" todir="${mcpsrc.dir}/ic2/api/"/>
