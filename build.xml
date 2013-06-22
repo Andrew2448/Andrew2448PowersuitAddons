@@ -10,7 +10,7 @@
     <property name="mcp.version" value="742"/>
     <property name="forgebuild" value="700"/>
     <property name="forge.version" value="1.5.2-7.8.0.${forgebuild}"/>
-    <property name="ic2api.version" value="1.115.304-lf"/>
+    <property name="ic2api.version" value="1.116.354-lf"/>
     <property name="ueapi.version" value="1.3.1.56"/>
     <property name="asapi.version" value="0.5.1.3"/>
     <property name="icbmapi.version" value="1.1.1.26"/>
@@ -175,8 +175,8 @@
              dest="${download.dir}/ThermalExpansion-API-${thermexapi.version}.zip"/>
 
         <echo message="Downloading CoFH API..."/>
-        <get src="https://dl.dropboxusercontent.com/u/66472801/CoFHCore-API.zip" dest="${download.dir}/CoFHCore-API.zip"/>
-        <!--get src="http://machinemuse.minecraftforge.net/CoFHCore-API.zip" dest="${download.dir}/CoFHCore-API.zip"/-->
+        <!--get src="https://dl.dropboxusercontent.com/u/66472801/CoFHCore-API.zip" dest="${download.dir}/CoFHCore-API.zip"/-->
+        <get src="http://machinemuse.minecraftforge.net/CoFHCore-API.zip" dest="${download.dir}/CoFHCore-API.zip"/>
 
         <echo message="Downloading Galacticraft API..."/>
         <get src="http://machinemuse.minecraftforge.net/GalacticraftAPIB.zip"
@@ -203,7 +203,7 @@
              dest="${download.dir}/MFFS2_API.zip"/>
 
         <echo message="Downloading Buildcraft API..."/>
-        <get src="https://dl.dropboxusercontent.com/u/66472801/BuildcraftAPI.zip"
+        <get src="http://machinemuse.minecraftforge.net/BuildcraftAPI.zip"
              dest="${download.dir}/BuildcraftAPI.zip"/>
 
         <echo message="Downloading Scala Libraries..."/>
