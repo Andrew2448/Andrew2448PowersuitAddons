@@ -64,16 +64,15 @@ public class WaterTankModule extends PowerModuleBase implements IPlayerTickModul
 
     @Override
     public void onPlayerTickActive(EntityPlayer player, ItemStack item) {
-        double waterLevel = AddonUtils.getWaterLevel(item);
-        if (player.isInWater() && waterLevel < ModuleManager.computeModularProperty(item, WATER_TANK_SIZE)) {
-            AddonUtils.setWaterLevel(item, waterLevel + 1);
-        }
-        if (player.worldObj.isRaining() && (player.worldObj.getTotalWorldTime() % 5) == 0) {
+        if (player.isInWater() && AddonUtils.getWaterLevel(item) < ModuleManager.computeModularProperty(item, WATER_TANK_SIZE)) {
             AddonUtils.setWaterLevel(item, AddonUtils.getWaterLevel(item) + 1);
         }
-        if (MuseHeatUtils.getPlayerHeat(player) >= (MuseHeatUtils.getMaxHeat(player)-1) && waterLevel > 0) {
+        if (player.worldObj.isRaining() && (player.worldObj.getTotalWorldTime() % 5) == 0 && AddonUtils.getWaterLevel(item) < ModuleManager.computeModularProperty(item, WATER_TANK_SIZE)) {
+            AddonUtils.setWaterLevel(item, AddonUtils.getWaterLevel(item) + 1);
+        }
+        if (MuseHeatUtils.getPlayerHeat(player) >= (MuseHeatUtils.getMaxHeat(player)-1) && AddonUtils.getWaterLevel(item) > 0) {
             MuseHeatUtils.coolPlayer(player, 1);
-            AddonUtils.setWaterLevel(item, waterLevel - 1);
+            AddonUtils.setWaterLevel(item, AddonUtils.getWaterLevel(item) - 1);
         }
     }
 
