@@ -68,6 +68,9 @@ public class WaterTankModule extends PowerModuleBase implements IPlayerTickModul
         if (player.isInWater() && waterLevel < ModuleManager.computeModularProperty(item, WATER_TANK_SIZE)) {
             AddonUtils.setWaterLevel(item, waterLevel + 1);
         }
+        if (player.worldObj.isRaining() && (player.worldObj.getTotalWorldTime() % 5) == 0) {
+            AddonUtils.setWaterLevel(item, AddonUtils.getWaterLevel(item) + 1);
+        }
         if (MuseHeatUtils.getPlayerHeat(player) >= (MuseHeatUtils.getMaxHeat(player)-1) && waterLevel > 0) {
             MuseHeatUtils.coolPlayer(player, 1);
             AddonUtils.setWaterLevel(item, waterLevel - 1);
