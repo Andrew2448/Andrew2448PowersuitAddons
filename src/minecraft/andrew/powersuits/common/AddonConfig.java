@@ -21,7 +21,7 @@ public class AddonConfig extends Config {
     public static BlockTorch torch;
 
     public static final String LANG_PATH = "/andrew/powersuits/lang/";
-    public static String[] languages = {"en_US"};
+    public static String[] languages = {"en_US", "de_DE"};
     public static File configFolder;
 
     public static boolean useAdvancedOreScannerMessage;

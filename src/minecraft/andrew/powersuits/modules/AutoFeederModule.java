@@ -16,11 +16,12 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.FoodStats;
+import net.minecraft.util.StatCollector;
 
 import java.util.List;
 
 public class AutoFeederModule extends PowerModuleBase implements IToggleableModule, IPlayerTickModule {
-    public static final String MODULE_AUTO_FEEDER = "Auto-Feeder";
+    public static String MODULE_AUTO_FEEDER;
     public static final String EATING_ENERGY_CONSUMPTION = "Eating Energy Consumption";
     public static final String EATING_EFFICIENCY = "Auto-Feeder Efficiency";
 
@@ -46,6 +47,7 @@ public class AutoFeederModule extends PowerModuleBase implements IToggleableModu
 
     @Override
     public String getName() {
+        MODULE_AUTO_FEEDER = StatCollector.translateToLocal("module.autoFeeder.name");
         return MODULE_AUTO_FEEDER;
     }
 
