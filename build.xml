@@ -370,7 +370,7 @@
     </target>
 
     <!-- ============================================================Build===================================================================================== -->
-    <target name="build" depends="update names">
+    <target name="build">
         <delete dir="${mcpsrc.dir}/andrew"/>
         <mkdir dir="${mcpsrc.dir}/andrew"/>
         <copy todir="${mcpsrc.dir}/andrew">
