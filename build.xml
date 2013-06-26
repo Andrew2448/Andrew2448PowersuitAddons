@@ -401,11 +401,11 @@
     <!-- ============================================================Reobfuscate=============================================================================== -->
     <target name="reobfuscate">
         <exec dir="${mcp.dir}" executable="cmd" osfamily="windows" failonerror="true">
-            <arg value="/c reobfuscate_srg.bat"/>
+            <arg value="/c reobfuscate.bat"/>
         </exec>
 
         <exec dir="${mcp.dir}" executable="sh" osfamily="unix" failonerror="true">
-            <arg value="reobfuscate_srg.sh"/>
+            <arg value="reobfuscate.sh"/>
         </exec>
     </target>
 
