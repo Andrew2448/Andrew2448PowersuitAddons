@@ -10,6 +10,7 @@ import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
  */
 public class LightningModule extends PowerModuleBase implements IRightClickModule {
 
-    public static final String MODULE_LIGHTNING = "Lightning Summoner";
+    public static String MODULE_LIGHTNING;
     public static final String LIGHTNING_ENERGY_CONSUMPTION = "Lightning Energy Consumption";
     public static final String HEAT = "Lightning Heat Emission";
 
@@ -45,6 +46,7 @@ public class LightningModule extends PowerModuleBase implements IRightClickModul
 
     @Override
     public String getName() {
+        MODULE_LIGHTNING = StatCollector.translateToLocal("module.lightningSummoner.name");
         return MODULE_LIGHTNING;
     }
 

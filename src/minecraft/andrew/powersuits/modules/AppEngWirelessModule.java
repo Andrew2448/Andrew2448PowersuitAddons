@@ -6,6 +6,7 @@ import net.machinemuse.powersuits.powermodule.PowerModuleBase;
 import net.machinemuse.utils.MuseCommonStrings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
  * 1:42 AM 6/22/13
  */
 public class AppEngWirelessModule extends PowerModuleBase implements IRightClickModule {
-    public static final String MODULE_APPENG_WIRELESS = "AppEng Wireless Terminal";
+    public static String MODULE_APPENG_WIRELESS;
 
     public AppEngWirelessModule(List<IModularItem> validItems) {
         super(validItems);
@@ -33,6 +34,7 @@ public class AppEngWirelessModule extends PowerModuleBase implements IRightClick
 
     @Override
     public String getName() {
+        MODULE_APPENG_WIRELESS = StatCollector.translateToLocal("module.appengWireless.name");
         return MODULE_APPENG_WIRELESS;
     }
 

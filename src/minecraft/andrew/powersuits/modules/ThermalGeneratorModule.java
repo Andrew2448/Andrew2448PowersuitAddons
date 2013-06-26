@@ -12,6 +12,7 @@ import net.machinemuse.utils.MuseHeatUtils;
 import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ import java.util.List;
  * 6:43 PM 4/23/13
  */
 public class ThermalGeneratorModule extends PowerModuleBase implements IPlayerTickModule {
-    public static final String MODULE_THERMAL_GENERATOR = "Thermal Generator";
+    public static String MODULE_THERMAL_GENERATOR;
     public static final String THERMAL_ENERGY_GENERATION = "Energy Generation";
 
     public ThermalGeneratorModule(List<IModularItem> validItems) {
@@ -50,6 +51,7 @@ public class ThermalGeneratorModule extends PowerModuleBase implements IPlayerTi
 
     @Override
     public String getName() {
+        MODULE_THERMAL_GENERATOR = StatCollector.translateToLocal("module.thermalGenerator.name");
         return MODULE_THERMAL_GENERATOR;
     }
 

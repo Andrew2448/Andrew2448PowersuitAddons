@@ -12,6 +12,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -21,7 +22,7 @@ import java.util.List;
  * 7:45 PM 4/23/13
  */
 public class TreetapModule extends PowerModuleBase implements IRightClickModule {
-    public static final String MODULE_TREETAP = "Treetap";
+    public static String MODULE_TREETAP;
     public static final String TREETAP_ENERGY_CONSUMPTION = "Energy Consumption";
     private static ItemStack rubber = ModCompatability.getIC2Item("rubberWood");
     private static ItemStack resin = ModCompatability.getIC2Item("resin");
@@ -44,6 +45,7 @@ public class TreetapModule extends PowerModuleBase implements IRightClickModule 
 
     @Override
     public String getName() {
+        MODULE_TREETAP = StatCollector.translateToLocal("module.treetap.name");
         return MODULE_TREETAP;
     }
 

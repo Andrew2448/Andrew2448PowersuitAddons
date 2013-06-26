@@ -17,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.text.DecimalFormat;
@@ -24,7 +25,7 @@ import java.util.List;
 
 public class EUReaderModule extends PowerModuleBase implements IRightClickModule {
 	
-	public static final String MODULE_EU_READER = "EU Reader";
+	public static String MODULE_EU_READER;
 	
 	public EUReaderModule(List<IModularItem> validItems) {
 		super(validItems);
@@ -44,6 +45,7 @@ public class EUReaderModule extends PowerModuleBase implements IRightClickModule
 
 	@Override
 	public String getName() {
+        MODULE_EU_READER = StatCollector.translateToLocal("module.euReader.name");
 		return MODULE_EU_READER;
 	}
 

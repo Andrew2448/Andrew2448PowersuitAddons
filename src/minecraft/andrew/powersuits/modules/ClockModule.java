@@ -9,6 +9,7 @@ import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.util.StatCollector;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ import java.util.List;
  */
 public class ClockModule extends PowerModuleBase implements IToggleableModule {
 
-    public static final String MODULE_CLOCK = "Clock";
+    public static String MODULE_CLOCK;
     public static ItemStack clock = new ItemStack(Item.pocketSundial);
 
     public ClockModule(List<IModularItem> validItems) {
@@ -44,6 +45,7 @@ public class ClockModule extends PowerModuleBase implements IToggleableModule {
 
     @Override
     public String getName() {
+        MODULE_CLOCK = StatCollector.translateToLocal("module.clock.name");
         return MODULE_CLOCK;
     }
 

@@ -28,7 +28,7 @@ import java.util.List;
  * 4:59 PM 5/4/13
  */
 public class BucketModule extends PowerModuleBase implements IRightClickModule {
-    public static final String MODULE_BUCKET = "Bucket";
+    public static String MODULE_BUCKET;
     public static final ItemStack bucket = new ItemStack(Item.bucketEmpty);
     private boolean isEmpty = true;
     public LiquidStack contained = null;
@@ -38,8 +38,6 @@ public class BucketModule extends PowerModuleBase implements IRightClickModule {
         super(validItems);
         addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.controlCircuit, 1));
         addInstallCost(new ItemStack(Item.bucketEmpty, 1));
-
-
     }
 
     @Override
@@ -59,6 +57,7 @@ public class BucketModule extends PowerModuleBase implements IRightClickModule {
 
     @Override
     public String getName() {
+        MODULE_BUCKET = StatCollector.translateToLocal("module.bucket.name");
         return MODULE_BUCKET;
     }
 

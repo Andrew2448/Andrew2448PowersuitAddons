@@ -13,6 +13,7 @@ import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -22,7 +23,7 @@ import java.util.List;
  * 7:13 PM 4/21/13
  */
 public class LeafBlowerModule extends PowerModuleBase implements IRightClickModule {
-    private static final String MODULE_LEAF_BLOWER = "Leaf Blower";
+    private static String MODULE_LEAF_BLOWER;
     private static final String LEAF_BLOWER_ENERGY_CONSUMPTION = "Energy Consumption";
     private static final String PLANT_RADIUS = "Plant Radius";
     private static final String LEAF_RADIUS = "Leaf Radius";
@@ -50,6 +51,7 @@ public class LeafBlowerModule extends PowerModuleBase implements IRightClickModu
 
     @Override
     public String getName() {
+        MODULE_LEAF_BLOWER = StatCollector.translateToLocal("module.leafBlower.name");
         return MODULE_LEAF_BLOWER;
     }
 

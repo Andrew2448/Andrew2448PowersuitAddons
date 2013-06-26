@@ -14,6 +14,7 @@ import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
@@ -24,7 +25,7 @@ import java.util.List;
  * 8:42 PM 6/17/13
  */
 public class TEMultimeterModule extends PowerModuleBase implements IRightClickModule {
-    public static final String MODULE_TE_MULTIMETER = "TE Multimeter";
+    public static String MODULE_TE_MULTIMETER;
 
     public TEMultimeterModule(List<IModularItem> validItems) {
         super(validItems);
@@ -44,6 +45,7 @@ public class TEMultimeterModule extends PowerModuleBase implements IRightClickMo
 
     @Override
     public String getName() {
+        MODULE_TE_MULTIMETER = StatCollector.translateToLocal("module.teMultimeter.name");
         return MODULE_TE_MULTIMETER;
     }
 

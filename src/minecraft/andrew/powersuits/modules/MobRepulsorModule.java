@@ -19,6 +19,7 @@ import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.entity.projectile.EntityPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.util.Iterator;
@@ -29,7 +30,7 @@ import java.util.List;
  * 8:26 PM 4/25/13
  */
 public class MobRepulsorModule extends PowerModuleBase implements IPlayerTickModule, IToggleableModule {
-    public static final String MODULE_MOB_REPULSOR = "Mob Repulsor";
+    public static String MODULE_MOB_REPULSOR;
     public static final String MOB_REPULSOR_ENERGY_CONSUMPTION = "Repulsor Energy Consumption";
 
     public MobRepulsorModule(List<IModularItem> validItems) {
@@ -52,6 +53,7 @@ public class MobRepulsorModule extends PowerModuleBase implements IPlayerTickMod
 
     @Override
     public String getName() {
+        MODULE_MOB_REPULSOR = StatCollector.translateToLocal("module.mobRepulsor.name");
         return MODULE_MOB_REPULSOR;
     }
 

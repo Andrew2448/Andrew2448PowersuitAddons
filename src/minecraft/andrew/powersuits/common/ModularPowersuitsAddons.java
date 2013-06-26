@@ -23,19 +23,22 @@ public class ModularPowersuitsAddons {
     public static GuiHandler guiHandler = new GuiHandler();
 
     @Instance("PowersuitAddons")
-    public static ModularPowersuitsAddons instance;
+    public static ModularPowersuitsAddons INSTANCE;
 
     @SidedProxy(clientSide = "andrew.powersuits.client.ClientProxy", serverSide = "andrew.powersuits.common.CommonProxy")
     public static CommonProxy proxy;
 
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
+        AddonConfig.setConfigFolderBase(event.getModConfigurationDirectory());
+        AddonConfig.extractLang(AddonConfig.languages);
     }
 
     @Init
     public void load(FMLInitializationEvent event) {
         AddonComponent.populate();
         AddonConfig.loadPowerModules();
+        AddonConfig.loadLang();
         AddonConfig.loadOptions();
         proxy.registerHandlers();
         NetworkRegistry.instance().registerGuiHandler(this, guiHandler);

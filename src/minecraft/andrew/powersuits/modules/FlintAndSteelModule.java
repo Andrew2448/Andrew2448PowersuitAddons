@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -24,7 +25,7 @@ import java.util.Random;
  */
 public class FlintAndSteelModule extends PowerModuleBase implements IRightClickModule {
 
-    public static final String MODULE_FLINT_AND_STEEL= "Flint and Steel";
+    public static String MODULE_FLINT_AND_STEEL;
     public static final String IGNITION_ENERGY_CONSUMPTION = "Ignition Energy Consumption";
     public ItemStack fas = new ItemStack(Item.flintAndSteel);
     Random ran = new Random();
@@ -53,6 +54,7 @@ public class FlintAndSteelModule extends PowerModuleBase implements IRightClickM
 
     @Override
     public String getName() {
+        MODULE_FLINT_AND_STEEL = StatCollector.translateToLocal("module.flintAndSteel.name");
         return MODULE_FLINT_AND_STEEL;
     }
 
