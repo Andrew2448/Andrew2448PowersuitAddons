@@ -14,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 
 import java.util.List;
@@ -69,7 +70,10 @@ public class WaterTankModule extends PowerModuleBase implements IPlayerTickModul
         if (player.isInWater() && AddonUtils.getWaterLevel(item) < ModuleManager.computeModularProperty(item, WATER_TANK_SIZE)) {
             AddonUtils.setWaterLevel(item, AddonUtils.getWaterLevel(item) + 1);
         }
-        if (player.worldObj.isRaining() && (player.worldObj.getTotalWorldTime() % 5) == 0 && AddonUtils.getWaterLevel(item) < ModuleManager.computeModularProperty(item, WATER_TANK_SIZE)) {
+        int xCoord = MathHelper.floor_double(player.posX);
+        int zCoord = MathHelper.floor_double(player.posZ);
+        boolean isRaining = (player.worldObj.getWorldChunkManager().getBiomeGenAt(xCoord, zCoord).getIntRainfall() > 0) && (player.worldObj.isRaining() || player.worldObj.isThundering());
+        if (isRaining && player.worldObj.canBlockSeeTheSky(xCoord, MathHelper.floor_double(player.posY) + 1, zCoord) && (player.worldObj.getTotalWorldTime() % 5) == 0 && AddonUtils.getWaterLevel(item) < ModuleManager.computeModularProperty(item, WATER_TANK_SIZE)) {
             AddonUtils.setWaterLevel(item, AddonUtils.getWaterLevel(item) + 1);
         }
         if (MuseHeatUtils.getPlayerHeat(player) >= (MuseHeatUtils.getMaxHeat(player)-1) && AddonUtils.getWaterLevel(item) > 0) {
