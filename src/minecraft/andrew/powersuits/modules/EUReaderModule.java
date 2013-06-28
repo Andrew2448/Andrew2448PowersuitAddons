@@ -25,7 +25,7 @@ import java.util.List;
 
 public class EUReaderModule extends PowerModuleBase implements IRightClickModule {
 	
-	public static String MODULE_EU_READER;
+	public static final String MODULE_EU_READER = "EU Reader";
 	
 	public EUReaderModule(List<IModularItem> validItems) {
 		super(validItems);
@@ -45,9 +45,13 @@ public class EUReaderModule extends PowerModuleBase implements IRightClickModule
 
 	@Override
 	public String getName() {
-        MODULE_EU_READER = StatCollector.translateToLocal("module.euReader.name");
 		return MODULE_EU_READER;
 	}
+
+    @Override
+    public String getDisplayName() {
+        return StatCollector.translateToLocal("module.euReader.name");
+    }
 
 	@Override
 	public String getDescription() {

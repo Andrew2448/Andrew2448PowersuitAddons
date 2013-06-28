@@ -17,6 +17,7 @@ import net.minecraft.block.BlockTorch;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -50,6 +51,11 @@ public class TorchPlacerModule extends PowerModuleBase implements IToggleableMod
     @Override
     public String getName() {
         return MODULE_TORCH_PLACER;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return StatCollector.translateToLocal("module.torchPlacer.name");
     }
 
     @Override

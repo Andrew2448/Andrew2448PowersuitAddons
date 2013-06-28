@@ -21,7 +21,7 @@ import net.minecraft.util.StatCollector;
 import java.util.List;
 
 public class AutoFeederModule extends PowerModuleBase implements IToggleableModule, IPlayerTickModule {
-    public static String MODULE_AUTO_FEEDER;
+    public static final String MODULE_AUTO_FEEDER = "Auto-Feeder";
     public static final String EATING_ENERGY_CONSUMPTION = "Eating Energy Consumption";
     public static final String EATING_EFFICIENCY = "Auto-Feeder Efficiency";
 
@@ -47,8 +47,12 @@ public class AutoFeederModule extends PowerModuleBase implements IToggleableModu
 
     @Override
     public String getName() {
-        MODULE_AUTO_FEEDER = StatCollector.translateToLocal("module.autoFeeder.name");
         return MODULE_AUTO_FEEDER;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return StatCollector.translateToLocal("module.autoFeeder.name");
     }
 
     @Override

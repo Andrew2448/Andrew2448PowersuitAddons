@@ -30,7 +30,7 @@ import java.util.List;
  * 8:26 PM 4/25/13
  */
 public class MobRepulsorModule extends PowerModuleBase implements IPlayerTickModule, IToggleableModule {
-    public static String MODULE_MOB_REPULSOR;
+    public static final String MODULE_MOB_REPULSOR = "Mob Repulsor";
     public static final String MOB_REPULSOR_ENERGY_CONSUMPTION = "Repulsor Energy Consumption";
 
     public MobRepulsorModule(List<IModularItem> validItems) {
@@ -53,8 +53,12 @@ public class MobRepulsorModule extends PowerModuleBase implements IPlayerTickMod
 
     @Override
     public String getName() {
-        MODULE_MOB_REPULSOR = StatCollector.translateToLocal("module.mobRepulsor.name");
         return MODULE_MOB_REPULSOR;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return StatCollector.translateToLocal("module.mobRepulsor.name");
     }
 
     @Override

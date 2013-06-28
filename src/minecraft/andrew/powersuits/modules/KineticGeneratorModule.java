@@ -13,6 +13,7 @@ import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.StatCollector;
 
 import java.util.List;
 
@@ -45,6 +46,11 @@ public class KineticGeneratorModule extends PowerModuleBase implements IPlayerTi
     @Override
     public String getName() {
         return MODULE_KINETIC_GENERATOR;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return StatCollector.translateToLocal("module.kineticGenerator.name");
     }
 
     @Override

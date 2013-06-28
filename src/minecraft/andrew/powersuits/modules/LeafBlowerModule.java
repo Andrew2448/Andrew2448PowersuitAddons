@@ -23,7 +23,7 @@ import java.util.List;
  * 7:13 PM 4/21/13
  */
 public class LeafBlowerModule extends PowerModuleBase implements IRightClickModule {
-    private static String MODULE_LEAF_BLOWER;
+    private static final String MODULE_LEAF_BLOWER = "Leaf Blower";
     private static final String LEAF_BLOWER_ENERGY_CONSUMPTION = "Energy Consumption";
     private static final String PLANT_RADIUS = "Plant Radius";
     private static final String LEAF_RADIUS = "Leaf Radius";
@@ -51,8 +51,11 @@ public class LeafBlowerModule extends PowerModuleBase implements IRightClickModu
 
     @Override
     public String getName() {
-        MODULE_LEAF_BLOWER = StatCollector.translateToLocal("module.leafBlower.name");
         return MODULE_LEAF_BLOWER;
+    }
+    @Override
+    public String getDisplayName() {
+        return StatCollector.translateToLocal("module.leafBlower.name");
     }
 
     @Override

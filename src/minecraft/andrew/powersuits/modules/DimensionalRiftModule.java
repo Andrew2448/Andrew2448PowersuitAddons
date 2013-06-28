@@ -45,6 +45,11 @@ public class DimensionalRiftModule extends PowerModuleBase implements IPlayerTic
     }
 
     @Override
+    public String getDisplayName() {
+        return MODULE_DIMENSIONAL_RIFT;
+    }
+
+    @Override
     public String getDescription() {
         return "Generate a tear in the space-time continuum that will teleport the player to its relative coordinates in the nether or overworld. You must bind this module to a key and activate it to use.";
     }

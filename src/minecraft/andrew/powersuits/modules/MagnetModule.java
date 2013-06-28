@@ -12,6 +12,7 @@ import net.machinemuse.utils.MuseCommonStrings;
 import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 
 import java.util.List;
 
@@ -43,8 +44,13 @@ public class MagnetModule extends PowerModuleBase implements IPlayerTickModule, 
     }
 
     @Override
+    public String getDisplayName() {
+        return StatCollector.translateToLocal("module.magnet.name");
+    }
+
+    @Override
     public String getDescription() {
-        return "Generates a magnetic field strong enough to attract items towards the player.         WARNING:                 This module drains power continuously. Turn it off when not needed. (Keybind menu: k)";
+        return "Generates a magnetic field strong enough to attract items towards the player.         WARNING:                   This module drains power continuously. Turn it off when not needed. (Keybind menu: k)";
     }
 
     @Override

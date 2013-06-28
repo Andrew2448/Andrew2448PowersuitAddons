@@ -25,7 +25,7 @@ import java.util.List;
  * 8:42 PM 6/17/13
  */
 public class TEMultimeterModule extends PowerModuleBase implements IRightClickModule {
-    public static String MODULE_TE_MULTIMETER;
+    public static final String MODULE_TE_MULTIMETER = "TE Multimeter";
 
     public TEMultimeterModule(List<IModularItem> validItems) {
         super(validItems);
@@ -45,8 +45,12 @@ public class TEMultimeterModule extends PowerModuleBase implements IRightClickMo
 
     @Override
     public String getName() {
-        MODULE_TE_MULTIMETER = StatCollector.translateToLocal("module.teMultimeter.name");
         return MODULE_TE_MULTIMETER;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return StatCollector.translateToLocal("module.teMultimeter.name");
     }
 
     @Override

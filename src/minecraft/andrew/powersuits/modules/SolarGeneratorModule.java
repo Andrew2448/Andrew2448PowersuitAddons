@@ -12,6 +12,7 @@ import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -42,6 +43,11 @@ public class SolarGeneratorModule extends PowerModuleBase implements IPlayerTick
     @Override
     public String getName() {
         return MODULE_SOLAR_GENERATOR;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return StatCollector.translateToLocal("module.solarGenerator.name");
     }
 
     @Override

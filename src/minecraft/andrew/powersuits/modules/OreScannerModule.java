@@ -27,7 +27,7 @@ import java.util.List;
 
 public class OreScannerModule extends PowerModuleBase implements IRightClickModule {
 	
-	public static String MODULE_ORE_SCANNER;
+	public static final String MODULE_ORE_SCANNER = "Ore Scanner";
 	public static final String ORE_SCANNER_ENERGY_CONSUMPTION = "Energy Per Block";
 	public static final String ORE_SCANNER_RADIUS_X = "X Radius";
 	public static final String ORE_SCANNER_RADIUS_Y = "Y Radius";
@@ -158,9 +158,13 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 
 	@Override
 	public String getName() {
-        MODULE_ORE_SCANNER = StatCollector.translateToLocal("module.oreScanner.name");
 		return MODULE_ORE_SCANNER;
 	}
+
+    @Override
+    public String getDisplayName() {
+        return StatCollector.translateToLocal("module.oreScanner.name");
+    }
 
 	@Override
 	public String getDescription() {

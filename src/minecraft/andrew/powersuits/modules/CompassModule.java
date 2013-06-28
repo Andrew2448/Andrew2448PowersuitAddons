@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class CompassModule extends PowerModuleBase implements IToggleableModule {
 
-    public static String MODULE_COMPASS;
+    public static final String MODULE_COMPASS = "Compass";
     public static ItemStack compass = new ItemStack(Item.compass);
 
     public CompassModule(List<IModularItem> validItems) {
@@ -45,8 +45,12 @@ public class CompassModule extends PowerModuleBase implements IToggleableModule 
 
     @Override
     public String getName() {
-        MODULE_COMPASS = StatCollector.translateToLocal("module.compass.name");
         return MODULE_COMPASS;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return StatCollector.translateToLocal("module.compass.name");
     }
 
     @Override

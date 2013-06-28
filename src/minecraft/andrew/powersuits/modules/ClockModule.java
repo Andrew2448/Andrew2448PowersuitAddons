@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class ClockModule extends PowerModuleBase implements IToggleableModule {
 
-    public static String MODULE_CLOCK;
+    public static final String MODULE_CLOCK = "Clock";
     public static ItemStack clock = new ItemStack(Item.pocketSundial);
 
     public ClockModule(List<IModularItem> validItems) {
@@ -45,8 +45,12 @@ public class ClockModule extends PowerModuleBase implements IToggleableModule {
 
     @Override
     public String getName() {
-        MODULE_CLOCK = StatCollector.translateToLocal("module.clock.name");
         return MODULE_CLOCK;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return StatCollector.translateToLocal("module.clock.name");
     }
 
     @Override

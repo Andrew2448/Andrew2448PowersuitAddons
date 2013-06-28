@@ -21,7 +21,7 @@ import java.util.List;
  * 6:43 PM 4/23/13
  */
 public class ThermalGeneratorModule extends PowerModuleBase implements IPlayerTickModule {
-    public static String MODULE_THERMAL_GENERATOR;
+    public static final String MODULE_THERMAL_GENERATOR = "Thermal Generator";
     public static final String THERMAL_ENERGY_GENERATION = "Energy Generation";
 
     public ThermalGeneratorModule(List<IModularItem> validItems) {
@@ -51,8 +51,12 @@ public class ThermalGeneratorModule extends PowerModuleBase implements IPlayerTi
 
     @Override
     public String getName() {
-        MODULE_THERMAL_GENERATOR = StatCollector.translateToLocal("module.thermalGenerator.name");
         return MODULE_THERMAL_GENERATOR;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return StatCollector.translateToLocal("module.thermalGenerator.name");
     }
 
     @Override

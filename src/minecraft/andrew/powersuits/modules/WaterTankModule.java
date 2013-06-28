@@ -24,7 +24,7 @@ import java.util.List;
  * 4:35 PM 6/21/13
  */
 public class WaterTankModule extends PowerModuleBase implements IPlayerTickModule {
-    public static String MODULE_WATER_TANK;
+    public static final String MODULE_WATER_TANK = "Water Tank";
     public static final String WATER_TANK_SIZE = "Tank Size";
     ItemStack bucketWater = new ItemStack(Item.bucketWater);
 
@@ -56,8 +56,12 @@ public class WaterTankModule extends PowerModuleBase implements IPlayerTickModul
 
     @Override
     public String getName() {
-        MODULE_WATER_TANK = StatCollector.translateToLocal("module.waterTank.name");
         return MODULE_WATER_TANK;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return StatCollector.translateToLocal("module.waterTank.name");
     }
 
     @Override
