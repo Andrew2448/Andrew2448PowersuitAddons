@@ -20,7 +20,7 @@ public class AddonConfig extends Config {
 
     public static BlockTorch torch;
 
-    public static final String LANG_PATH = "/andrew/powersuits/lang/";
+    public static final String LANG_PATH = "/mods/PowersuitAddons/lang/";
     public static String[] languages = {"en_US", "de_DE"};
     public static File configFolder;
 
@@ -75,7 +75,7 @@ public class AddonConfig extends Config {
     }
 
     public static void setConfigFolderBase(File folder) {
-        configFolder = new File(folder.getAbsolutePath() + "/andrew/powersuits/");
+        configFolder = new File(folder.getAbsolutePath() + "/machinemuse/andrew");
     }
 
     public static void extractLang(String[] langauges) {
