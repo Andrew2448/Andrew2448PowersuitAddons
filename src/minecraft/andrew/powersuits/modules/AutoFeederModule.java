@@ -46,12 +46,12 @@ public class AutoFeederModule extends PowerModuleBase implements IToggleableModu
     }
 
     @Override
-    public String getName() {
+    public String getDataName() {
         return MODULE_AUTO_FEEDER;
     }
 
     @Override
-    public String getDisplayName() {
+    public String getLocalizedName() {
         return StatCollector.translateToLocal("module.autoFeeder.name");
     }
 

@@ -40,12 +40,12 @@ public class DimensionalRiftModule extends PowerModuleBase implements IPlayerTic
     }
 
     @Override
-    public String getName() {
+    public String getDataName() {
         return MODULE_DIMENSIONAL_RIFT;
     }
 
     @Override
-    public String getDisplayName() {
+    public String getLocalizedName() {
         return MODULE_DIMENSIONAL_RIFT;
     }
 

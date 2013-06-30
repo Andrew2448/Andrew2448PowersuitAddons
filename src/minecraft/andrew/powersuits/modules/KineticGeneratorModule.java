@@ -44,12 +44,12 @@ public class KineticGeneratorModule extends PowerModuleBase implements IPlayerTi
     }
 
     @Override
-    public String getName() {
+    public String getDataName() {
         return MODULE_KINETIC_GENERATOR;
     }
 
     @Override
-    public String getDisplayName() {
+    public String getLocalizedName() {
         return StatCollector.translateToLocal("module.kineticGenerator.name");
     }
 

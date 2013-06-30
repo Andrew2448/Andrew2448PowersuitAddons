@@ -56,12 +56,12 @@ public class BucketModule extends PowerModuleBase implements IRightClickModule {
     }
 
     @Override
-    public String getName() {
+    public String getDataName() {
         return MODULE_BUCKET;
     }
 
     @Override
-    public String getDisplayName() {
+    public String getLocalizedName() {
         return StatCollector.translateToLocal("module.bucket.name");
     }
 

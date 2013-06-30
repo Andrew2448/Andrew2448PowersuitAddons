@@ -157,12 +157,12 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 	}
 
 	@Override
-	public String getName() {
+	public String getDataName() {
 		return MODULE_ORE_SCANNER;
 	}
 
     @Override
-    public String getDisplayName() {
+    public String getLocalizedName() {
         return StatCollector.translateToLocal("module.oreScanner.name");
     }
 

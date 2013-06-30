@@ -53,12 +53,12 @@ public class FlintAndSteelModule extends PowerModuleBase implements IRightClickM
     }
 
     @Override
-    public String getName() {
+    public String getDataName() {
         return MODULE_FLINT_AND_STEEL;
     }
 
     @Override
-    public String getDisplayName() {
+    public String getLocalizedName() {
         return StatCollector.translateToLocal("module.flintAndSteel.name");
     }
 

@@ -52,12 +52,12 @@ public class MobRepulsorModule extends PowerModuleBase implements IPlayerTickMod
     }
 
     @Override
-    public String getName() {
+    public String getDataName() {
         return MODULE_MOB_REPULSOR;
     }
 
     @Override
-    public String getDisplayName() {
+    public String getLocalizedName() {
         return StatCollector.translateToLocal("module.mobRepulsor.name");
     }
 

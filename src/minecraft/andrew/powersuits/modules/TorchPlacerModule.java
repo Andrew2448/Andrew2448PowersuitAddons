@@ -49,12 +49,12 @@ public class TorchPlacerModule extends PowerModuleBase implements IToggleableMod
     }
 
     @Override
-    public String getName() {
+    public String getDataName() {
         return MODULE_TORCH_PLACER;
     }
 
     @Override
-    public String getDisplayName() {
+    public String getLocalizedName() {
         return StatCollector.translateToLocal("module.torchPlacer.name");
     }
 

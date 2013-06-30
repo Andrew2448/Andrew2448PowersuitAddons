@@ -41,12 +41,12 @@ public class SolarGeneratorModule extends PowerModuleBase implements IPlayerTick
     }
 
     @Override
-    public String getName() {
+    public String getDataName() {
         return MODULE_SOLAR_GENERATOR;
     }
 
     @Override
-    public String getDisplayName() {
+    public String getLocalizedName() {
         return StatCollector.translateToLocal("module.solarGenerator.name");
     }
 

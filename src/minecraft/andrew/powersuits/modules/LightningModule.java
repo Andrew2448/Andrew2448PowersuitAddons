@@ -45,12 +45,12 @@ public class LightningModule extends PowerModuleBase implements IRightClickModul
     }
 
     @Override
-    public String getName() {
+    public String getDataName() {
         return MODULE_LIGHTNING;
     }
 
     @Override
-    public String getDisplayName() {
+    public String getLocalizedName() {
         return StatCollector.translateToLocal("module.lightningSummoner.name");
     }
 

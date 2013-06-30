@@ -44,12 +44,12 @@ public class TreetapModule extends PowerModuleBase implements IRightClickModule 
     }
 
     @Override
-    public String getName() {
+    public String getDataName() {
         return MODULE_TREETAP;
     }
 
     @Override
-    public String getDisplayName() {
+    public String getLocalizedName() {
         return StatCollector.translateToLocal("module.treetap.name");
     }
 

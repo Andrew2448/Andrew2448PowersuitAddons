@@ -44,12 +44,12 @@ public class ClockModule extends PowerModuleBase implements IToggleableModule {
     }
 
     @Override
-    public String getName() {
+    public String getDataName() {
         return MODULE_CLOCK;
     }
 
     @Override
-    public String getDisplayName() {
+    public String getLocalizedName() {
         return StatCollector.translateToLocal("module.clock.name");
     }
 

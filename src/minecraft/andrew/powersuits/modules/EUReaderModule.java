@@ -44,12 +44,12 @@ public class EUReaderModule extends PowerModuleBase implements IRightClickModule
 	}
 
 	@Override
-	public String getName() {
+	public String getDataName() {
 		return MODULE_EU_READER;
 	}
 
     @Override
-    public String getDisplayName() {
+    public String getLocalizedName() {
         return StatCollector.translateToLocal("module.euReader.name");
     }
 

@@ -50,11 +50,11 @@ public class LeafBlowerModule extends PowerModuleBase implements IRightClickModu
     }
 
     @Override
-    public String getName() {
+    public String getDataName() {
         return MODULE_LEAF_BLOWER;
     }
     @Override
-    public String getDisplayName() {
+    public String getLocalizedName() {
         return StatCollector.translateToLocal("module.leafBlower.name");
     }
 

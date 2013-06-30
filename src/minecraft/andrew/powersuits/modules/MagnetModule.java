@@ -39,12 +39,12 @@ public class MagnetModule extends PowerModuleBase implements IPlayerTickModule, 
     }
 
     @Override
-    public String getName() {
+    public String getDataName() {
         return MODULE_MAGNET;
     }
 
     @Override
-    public String getDisplayName() {
+    public String getLocalizedName() {
         return StatCollector.translateToLocal("module.magnet.name");
     }
 

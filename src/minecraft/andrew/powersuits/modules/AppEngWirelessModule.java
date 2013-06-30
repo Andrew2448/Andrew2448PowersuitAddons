@@ -33,12 +33,12 @@ public class AppEngWirelessModule extends PowerModuleBase implements IRightClick
     }
 
     @Override
-    public String getName() {
+    public String getDataName() {
         return MODULE_APPENG_WIRELESS;
     }
 
     @Override
-    public String getDisplayName() {
+    public String getLocalizedName() {
         return StatCollector.translateToLocal("module.appengWireless.name");
     }
 

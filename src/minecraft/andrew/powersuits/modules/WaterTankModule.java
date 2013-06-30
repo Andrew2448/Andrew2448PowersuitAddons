@@ -55,12 +55,12 @@ public class WaterTankModule extends PowerModuleBase implements IPlayerTickModul
     }
 
     @Override
-    public String getName() {
+    public String getDataName() {
         return MODULE_WATER_TANK;
     }
 
     @Override
-    public String getDisplayName() {
+    public String getLocalizedName() {
         return StatCollector.translateToLocal("module.waterTank.name");
     }
 
