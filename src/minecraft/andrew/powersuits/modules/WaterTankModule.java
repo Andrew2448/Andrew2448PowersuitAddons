@@ -26,12 +26,15 @@ import java.util.List;
 public class WaterTankModule extends PowerModuleBase implements IPlayerTickModule {
     public static final String MODULE_WATER_TANK = "Water Tank";
     public static final String WATER_TANK_SIZE = "Tank Size";
+    public static final String ACTIVATION_PERCENT = "Heat Activation Percent";
     ItemStack bucketWater = new ItemStack(Item.bucketWater);
 
     public WaterTankModule(List<IModularItem> validItems) {
         super(validItems);
         addBaseProperty(WATER_TANK_SIZE, 200);
         addBaseProperty(MuseCommonStrings.WEIGHT, 1000);
+        addBaseProperty(ACTIVATION_PERCENT, 0.5);
+        addTradeoffProperty("Activation Percent", ACTIVATION_PERCENT, 0.5, "%");
         addTradeoffProperty("Tank Size", WATER_TANK_SIZE, 800, " buckets");
         addTradeoffProperty("Tank Size", MuseCommonStrings.WEIGHT, 4000, "g");
         addInstallCost(new ItemStack(Item.bucketWater));
@@ -71,6 +74,9 @@ public class WaterTankModule extends PowerModuleBase implements IPlayerTickModul
 
     @Override
     public void onPlayerTickActive(EntityPlayer player, ItemStack item) {
+        if (AddonUtils.getWaterLevel(item) > ModuleManager.computeModularProperty(item, WATER_TANK_SIZE)) {
+            AddonUtils.setWaterLevel(item, ModuleManager.computeModularProperty(item, WATER_TANK_SIZE));
+        }
         if (player.isInWater() && AddonUtils.getWaterLevel(item) < ModuleManager.computeModularProperty(item, WATER_TANK_SIZE)) {
             AddonUtils.setWaterLevel(item, AddonUtils.getWaterLevel(item) + 1);
         }
@@ -80,7 +86,9 @@ public class WaterTankModule extends PowerModuleBase implements IPlayerTickModul
         if (isRaining && player.worldObj.canBlockSeeTheSky(xCoord, MathHelper.floor_double(player.posY) + 1, zCoord) && (player.worldObj.getTotalWorldTime() % 5) == 0 && AddonUtils.getWaterLevel(item) < ModuleManager.computeModularProperty(item, WATER_TANK_SIZE)) {
             AddonUtils.setWaterLevel(item, AddonUtils.getWaterLevel(item) + 1);
         }
-        if (MuseHeatUtils.getPlayerHeat(player) >= (MuseHeatUtils.getMaxHeat(player)-1) && AddonUtils.getWaterLevel(item) > 0) {
+        double currentHeat = MuseHeatUtils.getPlayerHeat(player);
+        double maxHeat = MuseHeatUtils.getMaxHeat(player);
+        if ((currentHeat / maxHeat) >= ModuleManager.computeModularProperty(item, ACTIVATION_PERCENT)) {
             MuseHeatUtils.coolPlayer(player, 1);
             AddonUtils.setWaterLevel(item, AddonUtils.getWaterLevel(item) - 1);
         }
