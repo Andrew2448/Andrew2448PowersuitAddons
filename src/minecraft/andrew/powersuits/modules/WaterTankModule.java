@@ -88,7 +88,7 @@ public class WaterTankModule extends PowerModuleBase implements IPlayerTickModul
         }
         double currentHeat = MuseHeatUtils.getPlayerHeat(player);
         double maxHeat = MuseHeatUtils.getMaxHeat(player);
-        if ((currentHeat / maxHeat) >= ModuleManager.computeModularProperty(item, ACTIVATION_PERCENT)) {
+        if ((currentHeat / maxHeat) >= ModuleManager.computeModularProperty(item, ACTIVATION_PERCENT) && AddonUtils.getWaterLevel(item) > 0) {
             MuseHeatUtils.coolPlayer(player, 1);
             AddonUtils.setWaterLevel(item, AddonUtils.getWaterLevel(item) - 1);
         }

@@ -61,25 +61,27 @@ public class LightningModule extends PowerModuleBase implements IRightClickModul
 
     @Override
     public void onRightClick(EntityPlayer player, World world, ItemStack item) {
-        double range = 64;
-        double energyConsumption = ModuleManager.computeModularProperty(item, LIGHTNING_ENERGY_CONSUMPTION);
-        if (energyConsumption < ElectricItemUtils.getPlayerEnergy(player)) {
-            ElectricItemUtils.drainPlayerEnergy(player, energyConsumption);
-            MuseHeatUtils.heatPlayer(player, ModuleManager.computeModularProperty(item, HEAT));
-            MovingObjectPosition MOP = MusePlayerUtils.doCustomRayTrace(player.worldObj, player, true, range);
-            world.spawnEntityInWorld(new EntityLightningBolt(player.worldObj, MOP.hitVec.xCoord, MOP.hitVec.yCoord, MOP.hitVec.zCoord));
+        try {
+            double range = 64;
+            double energyConsumption = ModuleManager.computeModularProperty(item, LIGHTNING_ENERGY_CONSUMPTION);
+            if (energyConsumption < ElectricItemUtils.getPlayerEnergy(player)) {
+                ElectricItemUtils.drainPlayerEnergy(player, energyConsumption);
+                MuseHeatUtils.heatPlayer(player, ModuleManager.computeModularProperty(item, HEAT));
+                MovingObjectPosition MOP = MusePlayerUtils.doCustomRayTrace(player.worldObj, player, true, range);
+                world.spawnEntityInWorld(new EntityLightningBolt(player.worldObj, MOP.hitVec.xCoord, MOP.hitVec.yCoord, MOP.hitVec.zCoord));
 
-            /*for (int x = (int)player.posX-1; x < (int)player.posX+2; x++) {
-                for (int z = (int)player.posZ-1; z < (int)player.posZ+2; z++) {
-                    if (player.canPlayerEdit(x, (int)player.posY, z, 1, item)) {
-                        int id = world.getBlockId(x, (int)player.posY, z);
-                        if (id == 0) {
-                            world.setBlock(x, (int)player.posY, z, Block.fire.blockID);
+                /*for (int x = (int)player.posX-1; x < (int)player.posX+2; x++) {
+                    for (int z = (int)player.posZ-1; z < (int)player.posZ+2; z++) {
+                        if (player.canPlayerEdit(x, (int)player.posY, z, 1, item)) {
+                            int id = world.getBlockId(x, (int)player.posY, z);
+                            if (id == 0) {
+                                world.setBlock(x, (int)player.posY, z, Block.fire.blockID);
+                            }
                         }
                     }
-                }
-            }*/
-        }
+                }*/
+            }
+        } catch (Exception e) {}
     }
 
     @Override
