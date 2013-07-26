@@ -91,6 +91,9 @@ public class WaterTankModule extends PowerModuleBase implements IPlayerTickModul
         if ((currentHeat / maxHeat) >= ModuleManager.computeModularProperty(item, ACTIVATION_PERCENT) && AddonUtils.getWaterLevel(item) > 0) {
             MuseHeatUtils.coolPlayer(player, 1);
             AddonUtils.setWaterLevel(item, AddonUtils.getWaterLevel(item) - 1);
+            for (int i = 0; i < 4; i++) {
+                player.worldObj.spawnParticle("smoke", player.posX, player.posY + 0.5, player.posZ, 0.0D, 0.0D, 0.0D);
+            }
         }
     }
 
