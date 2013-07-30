@@ -1,5 +1,6 @@
 package andrew.powersuits.modules;
 
+import andrew.powersuits.common.GuiHandler;
 import andrew.powersuits.common.ModularPowersuitsAddons;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.moduletrigger.IRightClickModule;
@@ -52,7 +53,7 @@ public class InPlaceAssemblerModule extends PowerModuleBase implements IRightCli
 
     @Override
     public void onRightClick(EntityPlayer player, World world, ItemStack item) {
-        player.openGui(ModularPowersuitsAddons.INSTANCE, 0, world, (int) player.posX, (int) player.posY, (int) player.posZ);
+        player.openGui(ModularPowersuitsAddons.INSTANCE, GuiHandler.craftingGuiID, world, (int) player.posX, (int) player.posY, (int) player.posZ);
     }
 
     @Override

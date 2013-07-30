@@ -1,5 +1,6 @@
 package andrew.powersuits.common;
 
+import andrew.powersuits.book.ItemBook;
 import andrew.powersuits.network.AndrewPacketHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -22,6 +23,8 @@ public class ModularPowersuitsAddons {
 
     public static GuiHandler guiHandler = new GuiHandler();
 
+    public static ItemBook book;
+
     @Instance("PowersuitAddons")
     public static ModularPowersuitsAddons INSTANCE;
 
@@ -32,10 +35,14 @@ public class ModularPowersuitsAddons {
     public void preInit(FMLPreInitializationEvent event) {
         AddonConfig.setConfigFolderBase(event.getModConfigurationDirectory());
         AddonConfig.extractLang(AddonConfig.languages);
+        AddonConfig.initItems();
+        proxy.registerRenderers();
+        //proxy.readManuals();
     }
 
     @Init
     public void load(FMLInitializationEvent event) {
+        //book = new ItemBook(AddonConfig.manualID);
         AddonComponent.populate();
         AddonConfig.loadPowerModules();
         AddonConfig.loadLang();

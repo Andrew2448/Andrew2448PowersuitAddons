@@ -31,6 +31,8 @@ public class AddonConfig extends Config {
     public static boolean useDebugMode;
     public static boolean use24hClock;
 
+    public static int manualID;
+
     public static void loadPowerModules() {
         List<IModularItem> ARMORONLY = Arrays.asList((IModularItem) ModularPowersuits.powerArmorHead, ModularPowersuits.powerArmorTorso, ModularPowersuits.powerArmorLegs, ModularPowersuits.powerArmorFeet);
         List<IModularItem> ALLITEMS = Arrays.asList((IModularItem) ModularPowersuits.powerArmorHead, ModularPowersuits.powerArmorTorso, ModularPowersuits.powerArmorLegs, ModularPowersuits.powerArmorFeet, ModularPowersuits.powerTool);
@@ -120,6 +122,10 @@ public class AddonConfig extends Config {
                 AddonLogger.logError("Error reading MPSA localizations!");
             }
         }
+    }
+
+    public static void initItems() {
+        manualID = getConfig().getItem("MPS Manual", 24770).getInt();
     }
 
     public static void loadOptions() {

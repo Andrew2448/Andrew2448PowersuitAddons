@@ -19,4 +19,8 @@ public class CommonProxy {
         packetHandler = new AndrewPacketHandler();
         packetHandler.register();
     }
+
+    public void registerRenderers() {}
+
+    public void readManuals() {}
 }

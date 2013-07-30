@@ -4,6 +4,7 @@ Last edited on 6/25/13 8:51PM EST
 item.powerArmorComponent.componentSolarPanel.name = Solar Panel
 item.powerArmorComponent.componentMagnet.name = Magnet
 item.powerArmorComponent.componentComputerChip.name = Computer Chip
+item.mpsManual.name = MPS Manual
 
 module.portableCraftingTable.name = In-Place Assembler
 module.kineticGenerator.name = Kinetic Generator
