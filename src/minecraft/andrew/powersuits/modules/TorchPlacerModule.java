@@ -2,6 +2,7 @@ package andrew.powersuits.modules;
 
 import andrew.powersuits.common.AddonConfig;
 import andrew.powersuits.common.AddonUtils;
+import andrew.powersuits.common.Localization;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.moduletrigger.IPlayerTickModule;
@@ -17,7 +18,6 @@ import net.minecraft.block.BlockTorch;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -55,7 +55,7 @@ public class TorchPlacerModule extends PowerModuleBase implements IToggleableMod
 
     @Override
     public String getLocalizedName() {
-        return StatCollector.translateToLocal("module.torchPlacer.name");
+        return Localization.translate("module.torchPlacer.name");
     }
 
     @Override

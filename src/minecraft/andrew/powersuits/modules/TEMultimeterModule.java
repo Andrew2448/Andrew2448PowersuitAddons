@@ -1,6 +1,7 @@
 package andrew.powersuits.modules;
 
 import andrew.powersuits.common.AddonUtils;
+import andrew.powersuits.common.Localization;
 import buildcraft.api.power.IPowerProvider;
 import buildcraft.api.power.IPowerReceptor;
 import cofh.api.tileentity.ITileInfo;
@@ -14,7 +15,6 @@ import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
@@ -50,7 +50,7 @@ public class TEMultimeterModule extends PowerModuleBase implements IRightClickMo
 
     @Override
     public String getLocalizedName() {
-        return StatCollector.translateToLocal("module.teMultimeter.name");
+        return Localization.translate("module.teMultimeter.name");
     }
 
     @Override

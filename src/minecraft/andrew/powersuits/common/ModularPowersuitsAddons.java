@@ -34,7 +34,6 @@ public class ModularPowersuitsAddons {
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
         AddonConfig.setConfigFolderBase(event.getModConfigurationDirectory());
-        AddonConfig.extractLang(AddonConfig.languages);
         AddonConfig.initItems();
         proxy.registerRenderers();
         //proxy.readManuals();
@@ -45,7 +44,7 @@ public class ModularPowersuitsAddons {
         //book = new ItemBook(AddonConfig.manualID);
         AddonComponent.populate();
         AddonConfig.loadPowerModules();
-        AddonConfig.loadLang();
+        Localization.loadCurrentLanguage();
         AddonConfig.loadOptions();
         proxy.registerHandlers();
         NetworkRegistry.instance().registerGuiHandler(this, guiHandler);

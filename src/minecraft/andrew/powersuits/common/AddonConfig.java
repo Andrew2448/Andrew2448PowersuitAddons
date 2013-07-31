@@ -1,7 +1,6 @@
 package andrew.powersuits.common;
 
 import andrew.powersuits.modules.*;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.powersuits.common.Config;
 import net.machinemuse.powersuits.common.ModCompatability;
@@ -9,10 +8,9 @@ import net.machinemuse.powersuits.common.ModularPowersuits;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
 
-import java.io.*;
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Properties;
 
 public class AddonConfig extends Config {
 
@@ -20,8 +18,6 @@ public class AddonConfig extends Config {
 
     public static BlockTorch torch;
 
-    public static final String LANG_PATH = "/mods/PowersuitAddons/lang/";
-    public static String[] languages = {"en_US", "de_DE"};
     public static File configFolder;
 
     public static boolean useAdvancedOreScannerMessage;
@@ -78,50 +74,6 @@ public class AddonConfig extends Config {
 
     public static void setConfigFolderBase(File folder) {
         configFolder = new File(folder.getAbsolutePath() + "/machinemuse/andrew");
-    }
-
-    public static void extractLang(String[] langauges) {
-        for (String lang : langauges) {
-            InputStream inputStream = ModularPowersuitsAddons.INSTANCE.getClass().getResourceAsStream(LANG_PATH + lang + ".lang");
-            try {
-                File file = new File(configFolder.getAbsolutePath() + "/lang/" + lang + ".lang");
-                if (!file.exists()) {
-                    file.getParentFile().mkdirs();
-                }
-                OutputStream outputStream = new FileOutputStream(file);
-                byte[] buffer = new byte[1024];
-                int read;
-                while ((read = inputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, read);
-                }
-                inputStream.close();
-                outputStream.flush();
-                outputStream.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-                AddonLogger.logError("Error initializing MPSA localizations!");
-            }
-        }
-    }
-
-    public static void loadLang() {
-        File file = new File(configFolder.getAbsolutePath() + "/lang/");
-        for (File langFile : file.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return name.endsWith(".lang");
-            }
-        })) {
-            try {
-                Properties langPack = new Properties();
-                langPack.load(new FileInputStream(langFile));
-                String lang = langFile.getName().replace(".lang", "");
-                LanguageRegistry.instance().addStringLocalization(langPack, lang);
-            } catch (Exception e) {
-                e.printStackTrace();
-                AddonLogger.logError("Error reading MPSA localizations!");
-            }
-        }
     }
 
     public static void initItems() {

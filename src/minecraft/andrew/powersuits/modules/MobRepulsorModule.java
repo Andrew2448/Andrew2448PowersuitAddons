@@ -1,6 +1,7 @@
 package andrew.powersuits.modules;
 
 import andrew.powersuits.common.AddonComponent;
+import andrew.powersuits.common.Localization;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.moduletrigger.IPlayerTickModule;
@@ -19,7 +20,6 @@ import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.entity.projectile.EntityPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.util.Iterator;
@@ -58,7 +58,7 @@ public class MobRepulsorModule extends PowerModuleBase implements IPlayerTickMod
 
     @Override
     public String getLocalizedName() {
-        return StatCollector.translateToLocal("module.mobRepulsor.name");
+        return Localization.translate("module.mobRepulsor.name");
     }
 
     @Override

@@ -1,5 +1,6 @@
 package andrew.powersuits.modules;
 
+import andrew.powersuits.common.Localization;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.moduletrigger.IRightClickModule;
@@ -10,7 +11,6 @@ import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -51,7 +51,7 @@ public class LightningModule extends PowerModuleBase implements IRightClickModul
 
     @Override
     public String getLocalizedName() {
-        return StatCollector.translateToLocal("module.lightningSummoner.name");
+        return Localization.translate("module.lightningSummoner.name");
     }
 
     @Override

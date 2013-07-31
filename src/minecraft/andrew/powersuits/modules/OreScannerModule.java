@@ -3,6 +3,7 @@ package andrew.powersuits.modules;
 import andrew.powersuits.common.AddonComponent;
 import andrew.powersuits.common.AddonConfig;
 import andrew.powersuits.common.AddonUtils;
+import andrew.powersuits.common.Localization;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.moduletrigger.IRightClickModule;
@@ -15,7 +16,6 @@ import net.machinemuse.utils.MuseStringUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
@@ -163,7 +163,7 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 
     @Override
     public String getLocalizedName() {
-        return StatCollector.translateToLocal("module.oreScanner.name");
+        return Localization.translate("module.oreScanner.name");
     }
 
 	@Override

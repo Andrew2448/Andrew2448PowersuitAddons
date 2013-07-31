@@ -1,5 +1,6 @@
 package andrew.powersuits.modules;
 
+import andrew.powersuits.common.Localization;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.moduletrigger.IPlayerTickModule;
@@ -13,7 +14,6 @@ import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.StatCollector;
 
 import java.util.List;
 
@@ -50,7 +50,7 @@ public class KineticGeneratorModule extends PowerModuleBase implements IPlayerTi
 
     @Override
     public String getLocalizedName() {
-        return StatCollector.translateToLocal("module.kineticGenerator.name");
+        return Localization.translate("module.kineticGenerator.name");
     }
 
     @Override
